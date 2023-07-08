@@ -1,0 +1,46 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.app-container {
+  background-color: #f5f5f5;
+  /* Puedes ajustar el color de fondo según tus preferencias */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
+}
+
+.active {
+  border-bottom: 2px solid rgba(225, 35, 22, 0.944);
+}
+
+.active-text {
+  color: rgba(225, 35, 22, 0.944);
+}
+
+.bg-navar {
+  background-image: url('/bg_navar.png');
+  background-size: 100% 100%;
+  /* Esto es para asegurarte de que la imagen cubra todo el elemento */
+  background-position: center;
+  /* Esto es para centrar la imagen */
+}
+
+.bg-navar_sm {
+  background-image: url('/bg_navar_sm.png');
+  background-size: 100% 100%;
+  /* Esto es para asegurarte de que la imagen cubra todo el elemento */
+  background-position: center;
+  /* Esto es para centrar la imagen */
+
+}
+
+.bg-footer {
+  background-image: url('/public/bg_footer.png');
+  background-size: cover;
+  background-position: center;
+}
