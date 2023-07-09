@@ -1,6 +1,4 @@
-import Routes from "../../routes/Routes";
 
-Routes
 export const sectionsMap = {
   'Abastecimiento': {
     icon: 'fa-cart-shopping',

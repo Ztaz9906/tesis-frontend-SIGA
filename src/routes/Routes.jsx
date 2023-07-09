@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { IndexClassPlatos } from '../components/Configuracion/Abastecimiento/Classificacion Platos/IndexClassPlatos';
+import { CreateClassPlatos } from '../components/Configuracion/Abastecimiento/Classificacion Platos/CreateClassPlatos';
+import { UpdateClassPlatos } from '../components/Configuracion/Abastecimiento/Classificacion Platos/UpdateClassPlatos';
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -7,6 +9,8 @@ const RoutesComponent = () => (
     <Routes>
         {/* Abastecimiento */}
         <Route path="/Configuracio/clasificacion_platos" element={<IndexClassPlatos />} />
+        <Route path="/Configuracio/clasificacion_platos/create" element={<CreateClassPlatos />} />
+        <Route path="/Configuracio/clasificacion_platos/update/:id" element={<UpdateClassPlatos />} />
         <Route path="/Configuracio/unidad_medida" element={<Placeholder />} />
         <Route path="/Configuracio/tipo_productos" element={<Placeholder />} />
         <Route path="/Configuracio/productos" element={<Placeholder />} />
