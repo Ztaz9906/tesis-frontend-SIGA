@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination } from '@mui/material';
 import Select from '../../../auxiliar/Select';
-import SearchComponent from '../../../auxiliar/SearchComponent';
+import Title from '../../../auxiliar/SearchComponent';
 import { Link } from 'react-router-dom';
 
 const datos = [
@@ -114,7 +114,7 @@ export const IndexClassPlatos = () => {
     // Estado para la paginación
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [showOption, setshowOption] = useState(false)
+    const [showOption, setshowOption] = useState(true)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -125,11 +125,9 @@ export const IndexClassPlatos = () => {
         setPage(0);
     };
 
-
-
     return (
         <>
-            <SearchComponent title="Clasificacion de platos" path={'/Configuracio/clasificacion_platos/create'} />
+            <Title title="Clasificacion de platos" path={'/Configuracio/clasificacion_platos/create'} />
             <form action="">
                 <div className=' py-5 flex flex-row justify-start'>
                     <input className=' focus:outline-none focus:border-gray-400 border border-gray-300 placeholder-gray-700 mr-3 w-2/3' type="text" placeholder='nombre' />

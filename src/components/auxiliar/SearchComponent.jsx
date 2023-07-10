@@ -1,8 +1,7 @@
 import React from 'react';
-import RoutesComponent from '../../routes/Routes';
 import { Link } from 'react-router-dom';
 
-const SearchComponent = ({ title, path }) => {
+const Title = ({ title, path }) => {
     return (
         <>
             <div className='border-b-2 border-gray-300 p-1 flex flex-row justify-between'>
@@ -24,4 +23,4 @@ const SearchComponent = ({ title, path }) => {
     );
 };
 
-export default SearchComponent;
+export default Title;
