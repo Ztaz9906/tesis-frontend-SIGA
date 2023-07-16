@@ -17,7 +17,8 @@ export default function SideBar() {
         showFacturacion,
         showDistribucion,
         showReservacion,
-        showConfiguracion
+        showConfiguracion,
+        showSeguridad,
     } = useSelector(state => state.global);
 
     const showSections = {
@@ -26,7 +27,8 @@ export default function SideBar() {
         Facturacion: showFacturacion,
         Distribucion: showDistribucion,
         Reservacion: showReservacion,
-        Configuracion: showConfiguracion
+        Configuracion: showConfiguracion,
+        Seguridad: showSeguridad,
     };
 
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -39,7 +41,7 @@ export default function SideBar() {
             window.removeEventListener("resize", handleResize);
         };
     }, []);
-
+   
     const renderSection = (title, { icon, routes, computerViewHeight, movilViewHeight }, index) => (
         <div key={index}>
             <ButtonSideBar isOpen={showSections[title]} onClick={() => handleButtonClick(title)}>

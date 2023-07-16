@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 import { create, getDetail, update } from '../../../../services/services';
 import { useNavigate } from 'react-router-dom';
 
-export const ClassPlatos = ({ title }) => {
+export const TipoProducto = ({ title }) => {
     const { id } = useParams(); // Obtiene el id desde la URL
     const navigate = useNavigate();
     const [formValues, setFormValues] = useState({
-        nombre_clasificacion_plato: '',
+        nombre_tipo_producto: '',
         activo: false,
-        descripcion_clasificacion_plato: '',
+        descripcion_tipo_producto: '',
         id_institucion: 1, // Se pone 1 como id_institucion por defecto
     });
     const [data, setData] = useState(null)
@@ -19,14 +19,14 @@ export const ClassPlatos = ({ title }) => {
     if (id) {
         const fetchData = async () => {
             try {
-                const response = await getDetail(id,'Abastecimiento_TbNclasificacionPlato');
+                const response = await getDetail(id, 'Abastecimiento_TbNtipoProducto');
                 setData(response.data);
 
                 // Configurar los valores del formulario aquí
                 setFormValues({
-                    nombre_clasificacion_plato: response.data ? response.data.nombre_clasificacion_plato : '',
+                    nombre_tipo_producto: response.data ? response.data.nombre_tipo_producto : '',
                     activo: response.data ? response.data.activo : false,
-                    descripcion_clasificacion_plato: response.data ? response.data.descripcion_clasificacion_plato : '',
+                    descripcion_tipo_producto: response.data ? response.data.descripcion_tipo_producto : '',
                     id_institucion: 1,
                 });
             } catch (err) {
@@ -43,11 +43,11 @@ export const ClassPlatos = ({ title }) => {
         onSubmit: async values => {
             try {
                 if (id) {
-                    await update(id, values,'Abastecimiento_TbNclasificacionPlato');
-                    navigate('/configuracion/clasificacion_platos')
+                    await update(id, values, 'Abastecimiento_TbNtipoProducto');
+                    navigate('/configuracion/tipo_productos')
                 }
                 else {
-                    await create(values,'Abastecimiento_TbNclasificacionPlato');
+                    await create(values, 'Abastecimiento_TbNtipoProducto');
                     formik.resetForm();
                 }
             } catch (error) {
@@ -72,10 +72,10 @@ export const ClassPlatos = ({ title }) => {
                             </label>
                             <input
                                 id="nombre"
-                                name="nombre_clasificacion_plato"
+                                name="nombre_tipo_producto"
                                 type="text"
                                 onChange={formik.handleChange}
-                                value={formik.values.nombre_clasificacion_plato}
+                                value={formik.values.nombre_tipo_producto}
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 placeholder="Nombre"
                             />
@@ -100,9 +100,9 @@ export const ClassPlatos = ({ title }) => {
                         </label>
                         <textarea
                             id="descripcion"
-                            name="descripcion_clasificacion_plato"
+                            name="descripcion_tipo_producto"
                             onChange={formik.handleChange}
-                            value={formik.values.descripcion_clasificacion_plato}
+                            value={formik.values.descripcion_tipo_producto}
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Descripción"
                         />
@@ -111,10 +111,10 @@ export const ClassPlatos = ({ title }) => {
                         <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" type="submit">
                             Aceptar
                         </button>
-                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" 
-                        type="button"
-                            onClick={() => navigate('/configuracion/clasificacion_platos')}
-                        >
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                         type="button"
+                            onClick={() => navigate('/configuracion/tipo_productos')}
+                         >
                             Cancelar
                         </button>
                     </div>

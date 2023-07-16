@@ -7,6 +7,7 @@ const initialState = {
   showDistribucion: false,
   showReservacion: false,
   showConfiguracion: false,
+  showSeguridad: false,
   activeTab: null,
 };
 
@@ -22,6 +23,7 @@ const globalSlice = createSlice({
         state.showDistribucion = false;
         state.showReservacion = false;
         state.showConfiguracion = false;
+        state.showSeguridad = false;
         state.activeTab = null;
       } else {
         state.showAbastecimiento = false;
@@ -30,6 +32,7 @@ const globalSlice = createSlice({
         state.showDistribucion = false;
         state.showReservacion = false;
         state.showConfiguracion = false;
+        state.showSeguridad = false;
         state[`show${action.payload}`] = true;
         state.activeTab = action.payload;
       }

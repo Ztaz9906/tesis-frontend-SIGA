@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, TablePagination, TextField } from '@mui/material';
 import Select from '../../../auxiliar/Select';
 import Title from '../../../auxiliar/SearchComponent';
 import { Link } from 'react-router-dom';
 import { getList, getListWithSearch, remove } from '../../../../services/services';
 import { Field, Form, Formik, useFormik } from 'formik';
 
-export const IndexClassPlatos = () => {
+export const IndexUM = () => {
     // Estado para la paginación
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -24,7 +24,7 @@ export const IndexClassPlatos = () => {
 
     const fetchData = async () => {
         try {
-            const response = await getList('Abastecimiento_TbNclasificacionPlato')
+            const response = await getList('Abastecimiento_TbNunidadMedida')
             setData(response.data);
         } catch (err) {
             console.error('Failed to fetch data', err);
@@ -33,7 +33,7 @@ export const IndexClassPlatos = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Estás seguro de que quieres borrar esto?')) {
-            await remove(id,'Abastecimiento_TbNclasificacionPlato')
+            await remove(id, 'Abastecimiento_TbNunidadMedida')
             // podrías querer refrescar los datos después de eliminar un elemento
             fetchData();
         }
@@ -41,6 +41,7 @@ export const IndexClassPlatos = () => {
     const formik = useFormik({
         initialValues: {
             active: '',
+            clasificacion: '',
         },
         onSubmit: values => {
             handleSearch(values.active);
@@ -60,10 +61,11 @@ export const IndexClassPlatos = () => {
 
     return (
         <>
-            <Title title="Clasificacion de platos" path={'/configuracion/clasificacion_platos/create'} />
+            <Title title="Unidades de Medidas" path={'/configuracion/unidad_medida/create'} />
             <Formik
                 initialValues={{
                     active: '',
+                    clasificacion:'',
                 }}
                 onSubmit={(values) => handleSearch(values.active)}
             >
@@ -91,14 +93,15 @@ export const IndexClassPlatos = () => {
                         </div>
                         <div className={`${showOption ? 'hidden' : 'flex flex-wrap justify-between '} border-gray-300  px-6 py-3`}>
                             <Select label="Activo" options={['true', 'false']} onChange={formik.handleChange} name="active" value={formik.values.active} />
+                            <Select label="Clasificacion Unidad de medida" options={['Masa', 'Volumen']} onChange={formik.handleChange} name="calsificacion" value={formik.values.clasificacion} />
                         </div>
                     </div>
                 </Form>
             </Formik>
             <div className='p-5'>
                 <TableContainer component={Paper}>
-                    <div className='flex flex-row justify-between px-3 items-center text-center'>
-                        <h2 className='text-gray-700 font-semibold text-lg'>Lista de clasificaciones de platos </h2>
+                    <div className='flex flex-row justify-between p-3 items-center text-center'>
+                        <h2 className='text-gray-700 font-semibold text-lg'>Lista de Unidades de Medidas </h2>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, 30, 35, 40]}
                             component="div"
@@ -108,11 +111,14 @@ export const IndexClassPlatos = () => {
                             onPageChange={handleChangePage}
                             onRowsPerPageChange={handleChangeRowsPerPage}
                             labelRowsPerPage='Registros por pagina'
-                        /></div>
+                        />
+                    </div>
                     <Table>
                         <TableHead>
                             <TableRow className='bg-gray-300'>
                                 <TableCell>Nombre</TableCell>
+                                <TableCell>Siglas</TableCell>
+                                <TableCell>Clasificacion</TableCell>
                                 <TableCell>Descripción</TableCell>
                                 <TableCell>Activo</TableCell>
                                 <TableCell>Opciones</TableCell>
@@ -120,18 +126,20 @@ export const IndexClassPlatos = () => {
                         </TableHead>
                         <TableBody>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                                <TableRow key={row.id_clasificacion_plato} className='hover:bg-gray-200'>
-                                    <TableCell>{String(row.nombre_clasificacion_plato)}</TableCell>
-                                    <TableCell>{String(row.descripcion_clasificacion_plato)}</TableCell>
+                                <TableRow key={row.id_unidad_medida} className='hover:bg-gray-200'>
+                                    <TableCell>{String(row.nombre_unidad_medida)}</TableCell>
+                                    <TableCell>{String(row.siglas)}</TableCell>
+                                    <TableCell>{String(row.clasificacion)}</TableCell>
+                                    <TableCell>{String(row.descripcion_unidad_medida)}</TableCell>
                                     <TableCell>{row.activo ? "Sí" : "No"}</TableCell>
                                     <TableCell>
                                         <div className='flex flex-row text-center items-center'>
                                             <Link
-                                                to={`/configuracion/clasificacion_platos/update/${row.id_clasificacion_plato}`}
+                                                to={`/configuracion/unidad_medida/update/${row.id_unidad_medida}`}
                                                 className={`mx-5 `}
                                             ><i className="fa-solid fa-pen"></i></Link>
                                             <button
-                                                onClick={() => handleDelete(row.id_clasificacion_plato)}><i className="fa-solid fa-trash-can"></i></button>
+                                                onClick={() => handleDelete(row.id_unidad_medida)}><i className="fa-solid fa-trash-can"></i></button>
                                         </div>
                                     </TableCell>
                                 </TableRow>

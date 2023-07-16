@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getList, getListWithSearch, remove } from '../../../../services/services';
 import { Field, Form, Formik, useFormik } from 'formik';
 
-export const IndexClassPlatos = () => {
+export const IndexTipoProducto = () => {
     // Estado para la paginación
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -24,7 +24,7 @@ export const IndexClassPlatos = () => {
 
     const fetchData = async () => {
         try {
-            const response = await getList('Abastecimiento_TbNclasificacionPlato')
+            const response = await getList('Abastecimiento_TbNtipoProducto')
             setData(response.data);
         } catch (err) {
             console.error('Failed to fetch data', err);
@@ -33,7 +33,7 @@ export const IndexClassPlatos = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Estás seguro de que quieres borrar esto?')) {
-            await remove(id,'Abastecimiento_TbNclasificacionPlato')
+            await remove(id, 'Abastecimiento_TbNtipoProducto')
             // podrías querer refrescar los datos después de eliminar un elemento
             fetchData();
         }
@@ -60,7 +60,7 @@ export const IndexClassPlatos = () => {
 
     return (
         <>
-            <Title title="Clasificacion de platos" path={'/configuracion/clasificacion_platos/create'} />
+            <Title title="Tipo de Productos" path={'/configuracion/tipo_productos/create'} />
             <Formik
                 initialValues={{
                     active: '',
@@ -98,7 +98,7 @@ export const IndexClassPlatos = () => {
             <div className='p-5'>
                 <TableContainer component={Paper}>
                     <div className='flex flex-row justify-between px-3 items-center text-center'>
-                        <h2 className='text-gray-700 font-semibold text-lg'>Lista de clasificaciones de platos </h2>
+                        <h2 className='text-gray-700 font-semibold text-lg'>Lista tipos de productos </h2>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, 30, 35, 40]}
                             component="div"
@@ -120,18 +120,18 @@ export const IndexClassPlatos = () => {
                         </TableHead>
                         <TableBody>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                                <TableRow key={row.id_clasificacion_plato} className='hover:bg-gray-200'>
-                                    <TableCell>{String(row.nombre_clasificacion_plato)}</TableCell>
-                                    <TableCell>{String(row.descripcion_clasificacion_plato)}</TableCell>
+                                <TableRow key={row.id_tipo_producto} className='hover:bg-gray-200'>
+                                    <TableCell>{String(row.nombre_tipo_producto)}</TableCell>
+                                    <TableCell>{String(row.descripcion_tipo_producto)}</TableCell>
                                     <TableCell>{row.activo ? "Sí" : "No"}</TableCell>
                                     <TableCell>
                                         <div className='flex flex-row text-center items-center'>
                                             <Link
-                                                to={`/configuracion/clasificacion_platos/update/${row.id_clasificacion_plato}`}
+                                                to={`/configuracion/tipo_productos/update/${row.id_tipo_producto}`}
                                                 className={`mx-5 `}
                                             ><i className="fa-solid fa-pen"></i></Link>
                                             <button
-                                                onClick={() => handleDelete(row.id_clasificacion_plato)}><i className="fa-solid fa-trash-can"></i></button>
+                                                onClick={() => handleDelete(row.id_tipo_producto)}><i className="fa-solid fa-trash-can"></i></button>
                                         </div>
                                     </TableCell>
                                 </TableRow>

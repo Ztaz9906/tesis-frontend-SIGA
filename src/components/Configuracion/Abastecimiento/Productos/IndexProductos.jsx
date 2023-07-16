@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { getList, getListWithSearch, remove } from '../../../../services/services';
 import { Field, Form, Formik, useFormik } from 'formik';
 
-export const IndexClassPlatos = () => {
+export const IndexProductos = () => {
     // Estado para la paginación
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -24,7 +24,7 @@ export const IndexClassPlatos = () => {
 
     const fetchData = async () => {
         try {
-            const response = await getList('Abastecimiento_TbNclasificacionPlato')
+            const response = await getList('Asset_TbDproducto')
             setData(response.data);
         } catch (err) {
             console.error('Failed to fetch data', err);
@@ -33,7 +33,7 @@ export const IndexClassPlatos = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Estás seguro de que quieres borrar esto?')) {
-            await remove(id,'Abastecimiento_TbNclasificacionPlato')
+            await remove(id, 'Asset_TbDproducto')
             // podrías querer refrescar los datos después de eliminar un elemento
             fetchData();
         }
@@ -60,7 +60,7 @@ export const IndexClassPlatos = () => {
 
     return (
         <>
-            <Title title="Clasificacion de platos" path={'/configuracion/clasificacion_platos/create'} />
+            <Title title="Tipo de Productos" path={'/configuracion/productos/create'} />
             <Formik
                 initialValues={{
                     active: '',
@@ -98,7 +98,7 @@ export const IndexClassPlatos = () => {
             <div className='p-5'>
                 <TableContainer component={Paper}>
                     <div className='flex flex-row justify-between px-3 items-center text-center'>
-                        <h2 className='text-gray-700 font-semibold text-lg'>Lista de clasificaciones de platos </h2>
+                        <h2 className='text-gray-700 font-semibold text-lg'>Lista tipos de productos </h2>
                         <TablePagination
                             rowsPerPageOptions={[5, 10, 25, 30, 35, 40]}
                             component="div"
@@ -114,24 +114,26 @@ export const IndexClassPlatos = () => {
                             <TableRow className='bg-gray-300'>
                                 <TableCell>Nombre</TableCell>
                                 <TableCell>Descripción</TableCell>
-                                <TableCell>Activo</TableCell>
+                                <TableCell>Unidad de medida</TableCell>
+                                <TableCell>Tipo de Producto</TableCell>
                                 <TableCell>Opciones</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
-                                <TableRow key={row.id_clasificacion_plato} className='hover:bg-gray-200'>
-                                    <TableCell>{String(row.nombre_clasificacion_plato)}</TableCell>
-                                    <TableCell>{String(row.descripcion_clasificacion_plato)}</TableCell>
-                                    <TableCell>{row.activo ? "Sí" : "No"}</TableCell>
+                                <TableRow key={row.id_producto} className='hover:bg-gray-200'>
+                                    <TableCell>{String(row.nombre_producto)}</TableCell>
+                                    <TableCell>{String(row.descripcion)}</TableCell>
+                                    <TableCell>{String(row.id_unidad_medida.siglas)}</TableCell>
+                                    <TableCell>{String(row.id_tipo_producto.nombre_tipo_producto)}</TableCell>
                                     <TableCell>
                                         <div className='flex flex-row text-center items-center'>
                                             <Link
-                                                to={`/configuracion/clasificacion_platos/update/${row.id_clasificacion_plato}`}
+                                                to={`/configuracion/productos/update/${row.id_producto}`}
                                                 className={`mx-5 `}
                                             ><i className="fa-solid fa-pen"></i></Link>
                                             <button
-                                                onClick={() => handleDelete(row.id_clasificacion_plato)}><i className="fa-solid fa-trash-can"></i></button>
+                                                onClick={() => handleDelete(row.id_producto)}><i className="fa-solid fa-trash-can"></i></button>
                                         </div>
                                     </TableCell>
                                 </TableRow>
