@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { getList, getListWithSearch, remove } from '../../../../services/services';
 import { Field, Form, Formik, useFormik } from 'formik';
 
+
 export const IndexClassPlatos = () => {
     // Estado para la paginación
     const [page, setPage] = useState(0);
@@ -33,7 +34,7 @@ export const IndexClassPlatos = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Estás seguro de que quieres borrar esto?')) {
-            await remove(id,'Abastecimiento_TbNclasificacionPlato')
+            await remove(id, 'Abastecimiento_TbNclasificacionPlato')
             // podrías querer refrescar los datos después de eliminar un elemento
             fetchData();
         }
@@ -57,6 +58,27 @@ export const IndexClassPlatos = () => {
     useEffect(() => {
         fetchData();
     }, []);
+    const columns = [
+        {
+            id: 'nombre',
+            header: 'Nombre',
+        },
+        {
+            id: 'descripcion',
+            header: 'Descripción',
+        },
+        {
+            id: 'activo',
+            header: 'Activo',
+        },
+        {
+            id: 'opciones',
+            header: 'Opciones',
+        },
+
+    ];
+
+
 
     return (
         <>
@@ -112,17 +134,16 @@ export const IndexClassPlatos = () => {
                     <Table>
                         <TableHead>
                             <TableRow className='bg-gray-300'>
-                                <TableCell>Nombre</TableCell>
-                                <TableCell>Descripción</TableCell>
-                                <TableCell>Activo</TableCell>
-                                <TableCell>Opciones</TableCell>
+                                {columns.map((cell) => (
+                                    <TableCell key={cell.id}>{cell.header}</TableCell>
+                                ))}
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => (
                                 <TableRow key={row.id_clasificacion_plato} className='hover:bg-gray-200'>
-                                    <TableCell>{String(row.nombre_clasificacion_plato)}</TableCell>
-                                    <TableCell>{String(row.descripcion_clasificacion_plato)}</TableCell>
+                                    <TableCell>{row.nombre_clasificacion_plato}</TableCell>
+                                    <TableCell>{row.descripcion_clasificacion_plato}</TableCell>
                                     <TableCell>{row.activo ? "Sí" : "No"}</TableCell>
                                     <TableCell>
                                         <div className='flex flex-row text-center items-center'>

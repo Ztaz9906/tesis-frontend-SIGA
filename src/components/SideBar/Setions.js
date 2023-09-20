@@ -14,9 +14,9 @@ export const sectionsMap = {
   'Cajero': {
     icon: 'fa-sharp fa-solid fa-desktop',
     routes: [
-      { path: "/configuracion/cajero/1", label: "Tipo de Tarjetas" },
-      { path: "/configuracion/cajero/2", label: "Tarjetas" },
-      { path: "/configuracion/cajero/3", label: "Asignar IP a Puerta" },
+      { path: "/configuracion/cajero/tipo_tarjeta", label: "Tipo de Tarjetas" },
+      { path: "/configuracion/cajero/tarjetas", label: "Tarjetas" },
+      { path: "/configuracion/cajero/asignar-ip", label: "Asignar IP a Puerta" },
       { path: "/configuracion/cajero/4", label: "configuracionnes" },
       { path: "/configuracion/cajero/5", label: "Torpedos" },
       { path: "/configuracion/cajero/6", label: "Solapin Perdido" }
@@ -35,13 +35,14 @@ export const sectionsMap = {
   'Distribucion': {
     icon: 'fa-solid fa-maximize',
     routes: [
-      { path: "/configuracion/distribucion/1", label: "Estructuras" },
+      { path: "/configuracion/distribucion/categorias", label: "Categoria" },
+      { path: "/configuracion/distribucion/estructuras", label: "Estructuras" },
       { path: "/configuracion/distribucion/2", label: "Eventos" },
       { path: "/configuracion/distribucion/3", label: "Horarios" },
       { path: "/configuracion/distribucion/4", label: "configuraciones" },
       { path: "/configuracion/distribucion/5", label: "configuracion de reglas" }
     ],
-    computerViewHeight: 'h-40',
+    computerViewHeight: 'h-44',
     movilViewHeight: 'h-48 w-48'
   },
   'Reservacion': {
@@ -61,7 +62,7 @@ export const sectionsMap = {
       { path: "/configuracion/configuracion/3", label: "Configuracion del proceso" },
       { path: "/configuracion/configuracion/4", label: "Configuracion cobro" }
     ],
-    computerViewHeight: 'h-32',
+    computerViewHeight: 'h-36',
     movilViewHeight: 'h-56 w-48'
   },
   'Seguridad': {
@@ -75,4 +76,5 @@ export const sectionsMap = {
     computerViewHeight: 'h-32',
     movilViewHeight: 'h-56 w-48'
   },
+  
 };

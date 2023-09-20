@@ -19,7 +19,7 @@ export const ClassPlatos = ({ title }) => {
     if (id) {
         const fetchData = async () => {
             try {
-                const response = await getDetail(id,'Abastecimiento_TbNclasificacionPlato');
+                const response = await getDetail(id, 'Abastecimiento_TbNclasificacionPlato');
                 setData(response.data);
 
                 // Configurar los valores del formulario aquí
@@ -43,11 +43,11 @@ export const ClassPlatos = ({ title }) => {
         onSubmit: async values => {
             try {
                 if (id) {
-                    await update(id, values,'Abastecimiento_TbNclasificacionPlato');
+                    await update(id, values, 'Abastecimiento_TbNclasificacionPlato');
                     navigate('/configuracion/clasificacion_platos')
                 }
                 else {
-                    await create(values,'Abastecimiento_TbNclasificacionPlato');
+                    await create(values, 'Abastecimiento_TbNclasificacionPlato');
                     formik.resetForm();
                 }
             } catch (error) {
@@ -111,8 +111,8 @@ export const ClassPlatos = ({ title }) => {
                         <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-2" type="submit">
                             Aceptar
                         </button>
-                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" 
-                        type="button"
+                        <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                            type="button"
                             onClick={() => navigate('/configuracion/clasificacion_platos')}
                         >
                             Cancelar
