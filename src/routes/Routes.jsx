@@ -26,6 +26,8 @@ import Categoria from "../components/Configuracion/Distribucion/Categoria/new-Ca
 import IndexEstructura from "../components/Configuracion/Distribucion/Estructura";
 import Estructura from "../components/Configuracion/Distribucion/Estructura/new-estructura/new.estructura";
 import DetailEstructura from "../components/Configuracion/Distribucion/Estructura/new-estructura/detail.estructura";
+import AddSettings from "../components/Configuracion/Distribucion/Estructura/new-estructura/settings";
+import IndexHorarios from "../components/Configuracion/Distribucion/Horario";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -144,7 +146,14 @@ const RoutesComponent = () => (
       path="/configuracion/distribucion/estructura/detail/:id"
       element={<DetailEstructura />}
     />
-
+    <Route
+      path="/configuracion/distribucion/estructura/configuracion/:id"
+      element={<AddSettings />}
+    />
+    <Route
+      path="/configuracion/distribucion/horarios"
+      element={<IndexHorarios />}
+    />
     <Route path="/configuracion/distribucion/1" element={<Placeholder />} />
     <Route path="/configuracion/distribucion/2" element={<Placeholder />} />
     <Route path="/configuracion/distribucion/3" element={<Placeholder />} />

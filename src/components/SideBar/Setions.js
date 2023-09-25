@@ -38,7 +38,7 @@ export const sectionsMap = {
       { path: "/configuracion/distribucion/categorias", label: "Categoria" },
       { path: "/configuracion/distribucion/estructuras", label: "Estructuras" },
       { path: "/configuracion/distribucion/2", label: "Eventos" },
-      { path: "/configuracion/distribucion/3", label: "Horarios" },
+      { path: "/configuracion/distribucion/horarios", label: "Horarios" },
       { path: "/configuracion/distribucion/4", label: "configuraciones" },
       { path: "/configuracion/distribucion/5", label: "configuracion de reglas" }
     ],

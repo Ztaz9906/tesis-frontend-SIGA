@@ -140,7 +140,11 @@ const RenderTreeView = ({ data }) => {
                   variant={"ghost"}
                   size={"icon"}
                   className={`items-end`}
-                  onClick={() => navigate("/click")}
+                  onClick={() =>
+                    navigate(
+                      `/configuracion/distribucion/estructura/configuracion/${item.id}`
+                    )
+                  }
                 >
                   <Settings size={15} />
                 </Button>

@@ -38,6 +38,7 @@ export function SGTable({
   selectOption = false,
   setRowSelection,
   rowSelection,
+  setFilter = true,
 }) {
   const [globalFilter, setGlobalFilter] = React.useState("");
   const table = useReactTable({
@@ -77,12 +78,14 @@ export function SGTable({
   return (
     <div className="flex flex-col items-start w-full h-full gap-3">
       <div className="flex flex-row-reverse w-full">
-        <DebouncedInput
-          value={globalFilter ?? ""}
-          onChange={(value) => setGlobalFilter(String(value))}
-          className="p-2 font-lg shadow border border-block"
-          placeholder="Buscar..."
-        />
+        {setFilter && (
+          <DebouncedInput
+            value={globalFilter ?? ""}
+            onChange={(value) => setGlobalFilter(String(value))}
+            className="p-2 font-lg shadow border border-block"
+            placeholder="Buscar..."
+          />
+        )}
       </div>
       <div className="flex flex-col w-full gap-3">
         <Table>

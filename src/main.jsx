@@ -21,10 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         autoHideDuration={5000}
       >
         <Router>
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="*" element={<App />} />
-          </Routes>
+          <App />
         </Router>
       </SnackbarProvider>
     </Provider>

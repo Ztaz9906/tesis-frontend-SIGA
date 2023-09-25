@@ -29,19 +29,17 @@ const validations = [
     [active.name]: Yup.string().required(active.errorMsg),
     [category.name]: Yup.string().required(category.errorMsg),
   }
-  // {
-  //   [name.name]: Yup.string().required(name.errorMsg),
-  //   [active.name]: Yup.string().required(active.errorMsg),
-  //   [description.name]: Yup.string().required(description.errorMsg),
-  //   [initials.name]: Yup.string().required(initials.errorMsg),
-  //   [capacidad.name]: Yup.string().required(capacidad.errorMsg),
-  //   [capacidad.name]: Yup.string().required(capacidad.errorMsg),
-  //   [centro_costo.name]: Yup.string().required(centro_costo.errorMsg),
-  //   [category.name]: Yup.string().required(category.errorMsg),
-  //   [id_sub_director.name]: Yup.string().required(id_sub_director.errorMsg),
-  //   [id_tecnico_general.name]: Yup.string().required(id_tecnico_general.errorMsg),
-  //   [id_especialista_complejo.name]: Yup.string().required(id_especialista_complejo.errorMsg),    
-  // }
+  ),
+];
+export const SettingsValidations = [
+  Yup.object().shape(
+  {
+    
+    [centro_costo.name]: Yup.string().required(centro_costo.errorMsg),
+    [id_sub_director.name]: Yup.string().required(id_sub_director.errorMsg),
+    [id_tecnico_general.name]: Yup.string().required(id_tecnico_general.errorMsg),
+    [id_especialista_complejo.name]: Yup.string().required(id_especialista_complejo.errorMsg),    
+  }
   ),
 ];
 export default validations;

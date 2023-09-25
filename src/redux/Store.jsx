@@ -6,6 +6,7 @@ import { AsignarIpApi } from "../services/asignarip.service";
 import { categoriaApi } from "../components/Configuracion/Distribucion/Categoria/service/categoria.service";
 import { estructuraApi } from "../components/Configuracion/Distribucion/Estructura/service/estructura.service";
 import { personaApi } from "../services/persona.service";
+import { horarioApi } from "../components/Configuracion/Distribucion/Horario/service/horario.service";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     [categoriaApi.reducerPath]: categoriaApi.reducer,
     [estructuraApi.reducerPath]: estructuraApi.reducer,
     [personaApi.reducerPath]: personaApi.reducer,
+    [horarioApi.reducerPath]: horarioApi.reducer,
 
     global: globalReducer,
     auth: authReducer,
@@ -24,6 +26,7 @@ export const store = configureStore({
       AsignarIpApi.middleware,
       categoriaApi.middleware,
       estructuraApi.middleware,
+      horarioApi.middleware,
       personaApi.middleware,
     ]),
 });

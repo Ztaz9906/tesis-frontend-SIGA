@@ -6,7 +6,33 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { BottomNavigation, BottomNavigationAction, Box } from "@mui/material";
-import { Grid, Typography, Paper } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import {
+  TablaEstructura,
+  TablaPersonas,
+  TablaReglas,
+  TablaResponsables,
+} from "./components/tablas";
+
+const StyledBottomNavigationAction = styled(BottomNavigationAction)(
+  ({ theme }) => ({
+    flex: 1,
+
+    "&.Mui-selected": {
+      color: "red",
+      borderTop: "1px solid lightgray",
+      borderLeft: "1px solid lightgray",
+      borderRight: "1px solid lightgray",
+      backgroundColor: "rgba(255, 0, 0, 0.05)", // Fondo ligeramente oscuro para resaltar
+      zIndex: 1, // Para asegurarse de que se muestre encima de los otros botones
+    },
+
+    "&:not(.Mui-selected)": {
+      borderBottom: "1px solid lightgray",
+    },
+  })
+);
+
 export default function DetailEstructura() {
   const [value, setValue] = React.useState(0);
   const { id } = useParams();
@@ -20,7 +46,19 @@ export default function DetailEstructura() {
         setEstructura(res);
       });
   }, [id]);
-  console.log(estructura);
+
+  function renderTables() {
+    switch (value) {
+      case 0:
+        return <TablaEstructura id={id} />;
+      case 1:
+        return <TablaReglas />;
+      case 2:
+        return <TablaResponsables />;
+      case 3:
+        return <TablaPersonas />;
+    }
+  }
   return (
     <>
       <div className="flex border-b border-gray-300 justify-between">
@@ -34,41 +72,59 @@ export default function DetailEstructura() {
           <List size={15} />
         </Link>
       </div>
-      <div>
-        {" "}
-        {estructura && (
-          <Paper elevation={3} style={{ padding: "16px", margin: "16px 0" }}>
-            {estructura && (
-              <Grid container spacing={4}>
-                <Grid item xs={12} md={6}>
-                  <Typography variant="subtitle1">
-                    <strong>Nombre:</strong>
-                    {estructura.name}
-                  </Typography>
-                  <Typography variant="body1">
-                    <strong>Siglas:</strong> {estructura.initials}
-                  </Typography>
-                  <Typography variant="body1">
-                    <strong>Categoria:</strong>
-                    {estructura?.category.name}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Typography variant="body1">
-                    <strong>Estructura Padre:</strong>
-                    {estructura?.estructura_parent
-                      ? estructura?.estructura_parent.name
-                      : "---"}
-                  </Typography>
-                  <Typography variant="body1">
-                    <strong>Tipo de tarjeta:</strong>
-                  </Typography>
-                </Grid>
-              </Grid>
-            )}
-          </Paper>
-        )}
-      </div>
+
+      {estructura && (
+        <div className="flex flex-wrap justify-start items-center gap-16 p-5 text-sm text-gray-500">
+          <div className="gap-1">
+            <p className="font-semibold">
+              <span className="font-bold">Nombre:</span> {estructura.name}
+            </p>
+            <p className="font-semibold">
+              <span className="font-bold">Siglas:</span> {estructura.initials}
+            </p>
+            <p className="font-semibold">
+              <span className="font-bold">Categoria:</span>
+              {estructura.category ? estructura?.category.name : "---"}
+            </p>
+          </div>
+          <div className="gap-1">
+            <p className="font-semibold">
+              <span className="font-bold">Estructura Padre:</span>
+              {estructura?.estructura_parent
+                ? estructura?.estructura_parent.name
+                : "---"}
+            </p>
+            <p className="font-semibold">
+              <span className="font-bold">Capacidad:</span>
+              {estructura.capacidad ? estructura.capacidad : "---"}
+            </p>
+            <p className="font-semibold">
+              <span className="font-bold">Activo:</span>
+              {estructura.active ? "Si" : "No"}
+            </p>
+          </div>
+          {/* This block appears to be repeated. Remove or adjust as necessary */}
+          <div className="gap-1">
+            <p className="font-semibold">
+              <span className="font-bold">Sub Director:</span>
+              {estructura?.id_sub_director
+                ? estructura?.id_sub_director.name
+                : "---"}
+            </p>
+            <p className="font-semibold">
+              <span className="font-bold">Tecnico general:</span>
+              {estructura.id_tecnico_general
+                ? estructura.id_tecnico_general.name
+                : "---"}
+            </p>
+            <p className="">
+              <span className="font-bold">Centro de costo:</span>
+              {estructura.centro_costo ? estructura.centro_costo : "---"}
+            </p>
+          </div>
+        </div>
+      )}
+
       <div className="p-5">
         <Box sx={{ width: "auto" }}>
           <BottomNavigation
@@ -77,14 +133,16 @@ export default function DetailEstructura() {
             onChange={(event, newValue) => {
               setValue(newValue);
             }}
+            style={{ color: "red" }}
           >
-            <BottomNavigationAction label="Estructura" />
-            <BottomNavigationAction label="Reglas" />
-            <BottomNavigationAction label="Responsables" />
-            <BottomNavigationAction label="Personas" />
+            <StyledBottomNavigationAction label="Estructura" />
+            {/* <StyledBottomNavigationAction label="Reglas" />
+            <StyledBottomNavigationAction label="Responsables" />
+            <StyledBottomNavigationAction label="Personas" /> */}
           </BottomNavigation>
         </Box>
       </div>
+      <div>{renderTables()}</div>
     </>
   );
 }

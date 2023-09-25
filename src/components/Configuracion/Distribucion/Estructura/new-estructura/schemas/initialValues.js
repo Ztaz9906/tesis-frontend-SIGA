@@ -37,5 +37,14 @@ const initialValues = {
   [id_especialista_complejo.name]: '',
 
 };
+export const initialValuesSettings = {
+  id_institucion: 1,
+  created_at: getCurrentTimestamp(),
+  [centro_costo.name]: '',
+  [id_sub_director.name]: '',
+  [id_tecnico_general.name]: '',
+  [id_especialista_complejo.name]: '',
+
+};
 
 export default initialValues;
