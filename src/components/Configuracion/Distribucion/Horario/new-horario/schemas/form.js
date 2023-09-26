@@ -25,8 +25,8 @@ const form = {
     hora_inicio: {
       name: "hora_inicio",
       label: "Hora de Inicio",
-      type: "text",
-      errorMsg: "La clave es requerida.",
+      type: "time",
+      errorMsg: "Seleccione una hora de inicio.",
     },
 
     activo: {
@@ -38,9 +38,17 @@ const form = {
     hora_fin: {
       name: "hora_fin",
       label: "Hora de Fin",
+      type: "time",
+      errorMsg: "Seleccione una hora de fin.",
+    },
+    dias_semana: {
+      name: "dias_semana",
+      label: "Dias",
       type: "text",
-      errorMsg: "Seleccione un color.",
+      errorMsg: "Seleccione dias de la semana para este horario.",
     },
   },
 };
 export default form;
+
+//Distribucion_TbNdiaSemana

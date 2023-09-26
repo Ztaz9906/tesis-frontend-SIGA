@@ -17,15 +17,16 @@ import * as Yup from "yup";
 import checkout from "./form";
 
 const {
-  formField: { name, active, description,color},
+  formField: { nombre_horario, activo, hora_fin,hora_inicio,dias_semana},
 } = checkout;
 
 const validations = [
   Yup.object().shape({
-    [name.name]: Yup.string().required(name.errorMsg),
-    [active.name]: Yup.string().required(active.errorMsg),
-    [description.name]: Yup.string().required(description.errorMsg),
-    [color.name]: Yup.string().required(color.errorMsg),
+    [nombre_horario.name]: Yup.string().required(nombre_horario.errorMsg),
+    [activo.name]: Yup.string().required(activo.errorMsg),
+    [hora_fin.name]: Yup.string().required(hora_fin.errorMsg),
+    [hora_inicio.name]: Yup.string().required(hora_inicio.errorMsg),
+    [dias_semana.name]: Yup.array().min(1, dias_semana.errorMsg).of(Yup.string()),
   }),
 ];
 export default validations;
