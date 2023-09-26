@@ -1,5 +1,4 @@
-import img from "/sc_trace.png";
-import bg from "/XABAL.png";
+import { Avatar } from "@mui/material";
 import DropDown from "./DropDown";
 import LinkBar from "./LinkBar";
 import { useEffect, useState } from "react";
@@ -29,13 +28,7 @@ const NavBar = () => {
         >
           <div className="flex flex-row items-center">
             <DropDown />
-            <div className="bg-gray-500 rounded-full h-12 w-12 overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                src={img}
-                alt="test"
-              />
-            </div>
+            <Avatar />
           </div>
         </div>
         <div className=" bg-black text-white border-t-2 border-yellow-400 h-6">

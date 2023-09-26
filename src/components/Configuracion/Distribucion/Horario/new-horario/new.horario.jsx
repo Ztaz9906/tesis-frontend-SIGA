@@ -16,14 +16,6 @@ Coded by www.creative-tim.com
 // formik components
 import { Formik, Form } from "formik";
 
-// @mui material components
-import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-
-// Material Dashboard 2 PRO React components
-
-// NewAsignatura page components
-
 // NewAsignatura layout schemas for form and form feilds
 import validations from "./schemas/validations";
 import form from "./schemas/form";
@@ -31,13 +23,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 import initialValues from "./schemas/initialValues";
-import AddTorpedo from "./components/categoria.info";
 import {
-  useCreateCategoriaMutation,
-  useEditCategoriaMutation,
-  useLazyGetCategoriaByIdQuery,
+  useCreateHorarioMutation,
+  useEditHorarioMutation,
+  useLazyGetHorarioByIdQuery,
 } from "../service/horario.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
+import AddHorario from "./components/horario.info";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -47,57 +39,57 @@ const getModifiedFields = (originalData, newData) => {
   );
 };
 
-export default function Categoria() {
+export default function Horario() {
   const { id } = useParams();
   const { formId, formField } = form;
   const currentValidation = validations[0];
   const navigate = useNavigate();
   const [
-    createCategoria,
+    createHorario,
     {
       isError: isErrorC,
       isLoading: isLoadingC,
       isSuccess: isSuccessC,
       error: errorC,
     },
-  ] = useCreateCategoriaMutation();
+  ] = useCreateHorarioMutation();
 
   const [
-    editCategoria,
+    editHorario,
     {
       isError: isErrorE,
       isLoading: isLoadingE,
       isSuccess: isSuccessE,
       error: errorE,
     },
-  ] = useEditCategoriaMutation();
+  ] = useEditHorarioMutation();
 
-  const [getCategoriaById, { data }] = useLazyGetCategoriaByIdQuery();
+  const [getHorarioById, { data }] = useLazyGetHorarioByIdQuery();
 
   useRedirectForm(
     isLoadingC,
     isSuccessC,
     isErrorC,
     errorC,
-    "Categoria Creada",
-    "/configuracion/distribucion/categorias"
+    "Horario Creado",
+    "/configuracion/distribucion/horarios"
   );
   useRedirectForm(
     isLoadingE,
     isSuccessE,
     isErrorE,
     errorE,
-    "Categoria Editada",
-    "/configuracion/distribucion/categorias"
+    "Horario Editado",
+    "/configuracion/distribucion/horarios"
   );
   const submitForm = async (values, actions) => {
     try {
       if (!id) {
-        createCategoria(values);
+        createHorario(values);
       } else {
         const modifiedFields = getModifiedFields(data, values);
         if (Object.keys(modifiedFields).length !== 0) {
-          editCategoria({ id: id, ...modifiedFields });
+          editHorario({ id: id, ...modifiedFields });
         }
       }
     } catch (error) {
@@ -115,7 +107,7 @@ export default function Categoria() {
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
         <div className="text-center mb-6">
           <Typography variant="h5" fontWeight="bold">
-            {!id ? "Registrar Categoría" : `Editar Categoría`}
+            {!id ? "Registrar Horario" : `Editar Horario`}
           </Typography>
         </div>
         <Formik
@@ -126,34 +118,48 @@ export default function Categoria() {
           {({ values, errors, touched, setFieldValue }) => {
             useEffect(() => {
               if (id) {
-                getCategoriaById(id)
+                getHorarioById(id)
                   .unwrap()
                   .then((res) => {
-                    setFieldValue(formField.active.name, res.active, true);
+                    console.log(res);
+                    setFieldValue(formField.activo.name, res.activo, true);
                     setFieldValue(
-                      formField.description.name,
-                      res.description,
+                      formField.hora_inicio.name,
+                      res.hora_inicio,
                       true
                     );
-                    setFieldValue(formField.name.name, res.name, true);
-                    setFieldValue(formField.color.name, res.color, true);
+                    setFieldValue(
+                      formField.nombre_horario.name,
+                      res.nombre_horario,
+                      true
+                    );
+                    setFieldValue(formField.hora_fin.name, res.hora_fin, true);
+                    const dias_semana_values = res.dias_semana.map(
+                      (item) => item.id_dia_semana
+                    );
+                    setFieldValue(
+                      formField.dias_semana.name,
+                      res.dias_semana.map((item) => item.id_dia_semana),
+                      true
+                    );
                   });
               }
             }, [id]);
             return (
               <Form id={formId} autoComplete="off">
-                <AddTorpedo
+                <AddHorario
                   formData={{
                     values,
                     touched,
                     formField,
                     errors,
+                    setFieldValue,
                   }}
                 />
                 <div className="mt-6 w-full flex justify-between">
                   <Button
                     onClick={() => {
-                      navigate("/configuracion/distribucion/categorias");
+                      navigate("/configuracion/distribucion/Horarios");
                     }}
                     variant="outlined"
                     color="error"

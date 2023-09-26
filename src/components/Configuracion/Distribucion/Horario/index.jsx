@@ -69,9 +69,9 @@ export default function IndexHorarios() {
         footer: (props) => props.column.id,
       },
       {
-        id: "active",
+        id: "activo",
         accessorFn: (row) => row.active,
-        cell: ({ row }) => (row.original.active === true ? "SI" : "NO"),
+        cell: ({ row }) => (row.original.activo === true ? "SI" : "NO"),
         header: "Activo",
         footer: (props) => props.column.id,
       },
@@ -79,7 +79,9 @@ export default function IndexHorarios() {
         id: "Opciones",
         accessorFn: (row) => (
           <div className="flex gap-2 justify-center items-center">
-            <Link to={`/configuracion/distribucion/horario/update/${row.id}`}>
+            <Link
+              to={`/configuracion/distribucion/horario/update/${row.id_horario}`}
+            >
               <Edit2Icon size={15} />
             </Link>
             <Delete
@@ -107,7 +109,7 @@ export default function IndexHorarios() {
           Horarios
         </h2>
         <Link
-          to={"/configuracion/distribucion/categorias/create"}
+          to={"/configuracion/distribucion/horario/create"}
           className={`mx-5 `}
         >
           <PlusCircle size={15} />

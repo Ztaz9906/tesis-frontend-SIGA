@@ -30,6 +30,7 @@ import IndexHorarios from "./components/Configuracion/Distribucion/Horario";
 import Login from "./components/Security/Login";
 import { IndexUM } from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas/IndexUM";
 import IndexTorpedo from "./components/Configuracion/Cajero/Torpedos/indexTorpedo";
+import Horario from "./components/Configuracion/Distribucion/Horario/new-horario/new.horario";
 const Placeholder = () => <div>Componente en construcción</div>;
 function App() {
   return (
@@ -172,6 +173,15 @@ function App() {
           path="/configuracion/distribucion/horarios"
           element={<IndexHorarios />}
         />
+        <Route
+          path="/configuracion/distribucion/horario/create"
+          element={<Horario />}
+        />
+        <Route
+          path="/configuracion/distribucion/horario/update/:id"
+          element={<Horario />}
+        />
+
         <Route path="/configuracion/distribucion/1" element={<Placeholder />} />
         <Route path="/configuracion/distribucion/2" element={<Placeholder />} />
         <Route path="/configuracion/distribucion/3" element={<Placeholder />} />

@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import checkout from "./form";
 
 const {
-  formField: { nombre_horario, activo, hora_fin,hora_inicio },
+  formField: { nombre_horario, activo, hora_fin,hora_inicio,dias_semana },
 } = checkout;
 
 const initialValues = {
@@ -25,6 +25,8 @@ const initialValues = {
   [activo.name]: "",
   [hora_fin.name]: "",
   [hora_inicio.name]: "",
+  [dias_semana.name]: [],
+  
 };
 
 export default initialValues;
