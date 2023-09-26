@@ -68,7 +68,7 @@ export const sectionsMap = {
   'Seguridad': {
     icon: 'fa-solid fa-shield',
     routes: [
-      { path: "/configuracion/seguridad/1", label: "Instituciones" },
+      { path: "/configuracion/seguridad/instituciones", label: "Instituciones" },
       { path: "/configuracion/seguridad/2", label: "Roles y Permisos" },
       { path: "/configuracion/seguridad/3", label: "Usuarios" },
       { path: "/configuracion/seguridad/4", label: "Configuracion cobro" }

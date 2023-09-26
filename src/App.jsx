@@ -31,12 +31,15 @@ import Login from "./components/Security/Login";
 import { IndexUM } from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas/IndexUM";
 import IndexTorpedo from "./components/Configuracion/Cajero/Torpedos/indexTorpedo";
 import Horario from "./components/Configuracion/Distribucion/Horario/new-horario/new.horario";
+import IndexInstituciones from "./components/Configuracion/Seguridad/Instituciones";
+import Institucion from "./components/Configuracion/Seguridad/Instituciones/new-institucion/new.institucion";
 const Placeholder = () => <div>Componente en construcción</div>;
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route element={<Layout />}>
+        <Route path="/configuracion" element={<div></div>} />
         {/* Abastecimiento */}
         <Route
           path="/configuracion/clasificacion_platos"
@@ -181,7 +184,6 @@ function App() {
           path="/configuracion/distribucion/horario/update/:id"
           element={<Horario />}
         />
-
         <Route path="/configuracion/distribucion/1" element={<Placeholder />} />
         <Route path="/configuracion/distribucion/2" element={<Placeholder />} />
         <Route path="/configuracion/distribucion/3" element={<Placeholder />} />
@@ -207,6 +209,22 @@ function App() {
           path="/configuracion/configuracion/4"
           element={<Placeholder />}
         />
+        <Route
+          path="/configuracion/seguridad/instituciones"
+          element={<IndexInstituciones />}
+        />
+        <Route
+          path="/configuracion/seguridad/institucion/create"
+          element={<Institucion />}
+        />
+        <Route
+          path="/configuracion/seguridad/institucion/update/:id"
+          element={<Institucion />}
+        />
+
+        <Route path="/configuracion/seguridad/2" element={<Placeholder />} />
+        <Route path="/configuracion/seguridad/3" element={<Placeholder />} />
+        <Route path="/configuracion/seguridad/4" element={<Placeholder />} />
       </Route>
     </Routes>
   );

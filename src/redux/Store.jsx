@@ -8,6 +8,7 @@ import { estructuraApi } from "../components/Configuracion/Distribucion/Estructu
 import { personaApi } from "../services/persona.service";
 import { horarioApi } from "../components/Configuracion/Distribucion/Horario/service/horario.service";
 import { diasApi } from "../services/dias.service";
+import { institucionApi } from "../components/Configuracion/Seguridad/Instituciones/service/institucion.service";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     [personaApi.reducerPath]: personaApi.reducer,
     [horarioApi.reducerPath]: horarioApi.reducer,
     [diasApi.reducerPath]: diasApi.reducer,
+    [institucionApi.reducerPath]: institucionApi.reducer,
 
     global: globalReducer,
   },
@@ -30,6 +32,7 @@ export const store = configureStore({
       horarioApi.middleware,
       personaApi.middleware,
       diasApi.middleware,
+      institucionApi.middleware,
     ]),
 });
 
