@@ -38,6 +38,7 @@ import {
   useLazyGetCategoriaByIdQuery,
 } from "../service/categoria.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
+import useUser from "../../../../../services/config/user";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -109,7 +110,8 @@ export default function Categoria() {
   const handleSubmit = (values, actions) => {
     submitForm(values, actions);
   };
-
+  const [user] = useUser();
+  console.log(user);
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
@@ -119,7 +121,10 @@ export default function Categoria() {
           </Typography>
         </div>
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            ...initialValues,
+            id_institucion: user.institucion.id,
+          }}
           validationSchema={currentValidation}
           onSubmit={handleSubmit}
         >
@@ -137,6 +142,7 @@ export default function Categoria() {
                     );
                     setFieldValue(formField.name.name, res.name, true);
                     setFieldValue(formField.color.name, res.color, true);
+                    setFieldValue(formField.base.name, res.base, true);
                   });
               }
             }, [id]);

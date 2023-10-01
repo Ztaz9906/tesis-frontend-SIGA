@@ -10,7 +10,7 @@ export const institucionApi = createApi({
   endpoints: (builder) => ({
     getInstituciones: builder.query({
       query: () => ({
-        url: "/Instituciones/",
+        url: "/api/management/instituciones/",
         method: "GET",
       }),
       providesTags: (result) =>
@@ -27,7 +27,7 @@ export const institucionApi = createApi({
 
     getInstitucionById: builder.query({
       query: (id) => ({
-        url: `/Instituciones/${id}/`,
+        url: `/api/management/instituciones/${id}/`,
         method: "GET",
       }),
       providesTags: (result, error, id) => [{ type: "Institucion", id }],
@@ -35,7 +35,7 @@ export const institucionApi = createApi({
 
     createInstitucion: builder.mutation({
       query: (Institucion) => ({
-        url: "/Instituciones/",
+        url: "/api/management/instituciones/",
         method: "POST",
         body: Institucion,
       }),
@@ -44,7 +44,7 @@ export const institucionApi = createApi({
 
     deleteInstitucion: builder.mutation({
       query: (id) => ({
-        url: `/Instituciones/${id}/`,
+        url: `/api/management/instituciones/${id}/`,
         method: "DELETE",
       }),
       invalidatesTags: [{ type: "Institucion", id: "LIST" }],
@@ -52,7 +52,7 @@ export const institucionApi = createApi({
 
     editInstitucion: builder.mutation({
       query: (body) => ({
-        url: `/Instituciones/${body.id}/`,
+        url: `/api/management/instituciones/${body.id}/`,
         method: "PATCH",
                  body,
       }),

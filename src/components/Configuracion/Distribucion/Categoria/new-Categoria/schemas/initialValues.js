@@ -16,15 +16,16 @@ Coded by www.creative-tim.com
 import checkout from "./form";
 
 const {
-  formField: { name, active, description,color },
+  formField: { name, active, description,color,base},
 } = checkout;
 
 const initialValues = {
-  id_institucion: 1,
+
   [name.name]: "",
   [active.name]: "",
   [description.name]: "",
   [color.name]: "#32c5c8",
+  [base.name]: "",
 };
 
 export default initialValues;

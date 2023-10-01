@@ -1,7 +1,6 @@
-import { Avatar } from "@mui/material";
-import DropDown from "./DropDown";
 import LinkBar from "./LinkBar";
 import { useEffect, useState } from "react";
+import UserSettings from "./UserSettings";
 
 const NavBar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -19,6 +18,8 @@ const NavBar = () => {
   }, [windowWidth]);
   const bg_navar = windowWidth > 785 ? "bg-navar" : "bg-navar_sm";
 
+  const userstorage = sessionStorage.getItem("user");
+  const user = JSON.parse(userstorage);
   return (
     <>
       <div className="flex flex-col">
@@ -27,8 +28,7 @@ const NavBar = () => {
            justify-end items-center h-16 w-full`}
         >
           <div className="flex flex-row items-center">
-            <DropDown />
-            <Avatar />
+            <UserSettings />
           </div>
         </div>
         <div className=" bg-black text-white border-t-2 border-yellow-400 h-6">

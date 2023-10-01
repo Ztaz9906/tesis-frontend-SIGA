@@ -16,6 +16,7 @@ import {
 import AddEstructura from "./components/estructura.info";
 import { useState } from "react";
 import EstructuraPadre from "./components/estructura.padre";
+import useUser from "../../../../../services/config/user";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -109,7 +110,8 @@ export default function Estructura() {
       actions.setSubmitting(false);
     }
   };
-
+  const [user] = useUser();
+  console.log(user);
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
@@ -119,7 +121,10 @@ export default function Estructura() {
           </Typography>
         </div>
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            ...initialValues,
+            id_institucion: user.institucion.id,
+          }}
           validationSchema={currentValidation}
           onSubmit={handleSubmit}
         >

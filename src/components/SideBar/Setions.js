@@ -8,8 +8,6 @@ export const sectionsMap = {
       { path: "/configuracion/tipo_productos", label: "Tipos de Productos" },
       { path: "/configuracion/productos", label: "Productos" }
     ],
-    computerViewHeight: 'h-32',
-    movilViewHeight: 'h-52 w-48'
   },
   'Cajero': {
     icon: 'fa-sharp fa-solid fa-desktop',
@@ -21,16 +19,12 @@ export const sectionsMap = {
       { path: "/configuracion/cajero/5", label: "Torpedos" },
       { path: "/configuracion/cajero/6", label: "Solapin Perdido" }
     ],
-    computerViewHeight: 'h-44',
-    movilViewHeight: 'h-64 w-48'
   },
   'Facturacion': {
     icon: 'fa-solid fa-circle-dollar-to-slot',
     routes: [
       { path: "/configuracion/facturacion/1", label: "Reglas a excluir" }
     ],
-    computerViewHeight: 'h-10',
-    movilViewHeight: 'h-20 w-48'
   },
   'Distribucion': {
     icon: 'fa-solid fa-maximize',
@@ -42,8 +36,6 @@ export const sectionsMap = {
       { path: "/configuracion/distribucion/4", label: "configuraciones" },
       { path: "/configuracion/distribucion/5", label: "configuracion de reglas" }
     ],
-    computerViewHeight: 'h-44',
-    movilViewHeight: 'h-48 w-48'
   },
   'Reservacion': {
     icon: 'fa-solid fa-calendar-days',
@@ -51,8 +43,6 @@ export const sectionsMap = {
       { path: "/configuracion/reservacion/1", label: "configuraciones" },
       { path: "/configuracion/reservacion/2", label: "Asignar responsable de reservacion" }
     ],
-    computerViewHeight: 'h-20',
-    movilViewHeight: 'h-36 w-48'
   },
   'Configuracion': {
     icon: 'fa-solid fa-gear',
@@ -62,8 +52,6 @@ export const sectionsMap = {
       { path: "/configuracion/configuracion/3", label: "Configuracion del proceso" },
       { path: "/configuracion/configuracion/4", label: "Configuracion cobro" }
     ],
-    computerViewHeight: 'h-36',
-    movilViewHeight: 'h-56 w-48'
   },
   'Seguridad': {
     icon: 'fa-solid fa-shield',
@@ -73,8 +61,6 @@ export const sectionsMap = {
       { path: "/configuracion/seguridad/3", label: "Usuarios" },
       { path: "/configuracion/seguridad/4", label: "Configuracion cobro" }
     ],
-    computerViewHeight: 'h-32',
-    movilViewHeight: 'h-56 w-48'
   },
   
 };

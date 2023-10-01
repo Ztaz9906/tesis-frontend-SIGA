@@ -40,10 +40,9 @@ export default function EstructuraPadre({ formData }) {
     refetchOnReconnect: true,
   });
   const filteredData =
-    data_estructura?.filter((item) => item.category.name === "Complejo") ||
-    null;
+    data_estructura?.filter((item) => item.category.base) || null;
   const [selected, setSelected] = useState(estructura_parentV);
-  console.log(filteredData);
+
   const handleChange = (event) => {
     setSelected(event.target.value);
     setFieldValue(estructura_parent.name, event.target.value);
@@ -51,7 +50,7 @@ export default function EstructuraPadre({ formData }) {
 
   useEffect(() => {
     if (estructura_parentV === "") {
-      if (filteredData !== null) {
+      if (filteredData !== null && filteredData.length > 0) {
         setSelected(filteredData[0].id);
         setFieldValue(estructura_parent.name, filteredData[0].id);
       }

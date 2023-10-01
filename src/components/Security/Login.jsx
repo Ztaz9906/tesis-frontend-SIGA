@@ -1,39 +1,26 @@
-import { useState } from "react";
 import { useFormik } from "formik";
-import { useNavigate } from "react-router-dom";
-import { create } from "../../services/services";
-import { useDispatch } from "react-redux";
+import { useLoginMutation } from "../../services/login.service";
+import { useRedirectForm } from "../../hooks/useRedirectForm";
 
 export default function Login() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [login, { isError, isLoading, isSuccess, error }] = useLoginMutation();
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
     onSubmit: async (values) => {
-      setLoading(true);
-      try {
-        // Asume que tienes una función de inicio de sesión
-        const response = await create(values, "login");
-        console.log(response.data);
-        const { access_token, refresh_token, user } = response.data;
-
-        dispatch(
-          login({ user, authToken: access_token, refreshToken: refresh_token })
-        );
-        localStorage.setItem("user", JSON.stringify(user));
-        localStorage.setItem("access_token", access_token);
-        localStorage.setItem("refresh_token", refresh_token);
-        navigate("/");
-      } catch (error) {
-        console.error("Failed to login", error);
-      }
-      setLoading(false);
+      login(values);
     },
   });
+  useRedirectForm(
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+    "Usuario autenticado",
+    "/configuracion"
+  );
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
       <div className="bg-white rounded-lg shadow-lg container mx-auto px-4 sm:px-8 max-w-md">
@@ -85,7 +72,7 @@ export default function Login() {
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                 type="submit"
               >
-                {loading ? "Loading..." : "Login"}
+                {isLoading ? "Loading..." : "Login"}
               </button>
             </div>
           </form>

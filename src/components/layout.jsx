@@ -3,6 +3,8 @@ import NavBar from "./NavBar/Navbar";
 import SideBar from "./SideBar/SideBar";
 import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+import { sectionsMap } from "./SideBar/Setions";
+import MovilSideBar from "./SideBar/Drawer";
 
 export default function Layout() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -31,10 +33,16 @@ export default function Layout() {
         }`}
       >
         <div
-          className={`${windowWidth < 640 ? "w-full" : "w-96 bg-gray-300"} `}
+          className={`${windowWidth < 640 ? "w-full" : "w-96 bg-gray-50"} `}
         >
           {location.pathname.toLowerCase().includes("/configuracion") ? (
-            <SideBar />
+            <>
+              {windowWidth < 640 ? (
+                <MovilSideBar />
+              ) : (
+                <SideBar sectionsMap={sectionsMap} />
+              )}
+            </>
           ) : null}
         </div>
         <div className="flex flex-col w-full p-3">

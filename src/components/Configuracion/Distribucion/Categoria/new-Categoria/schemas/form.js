@@ -41,6 +41,12 @@ const form = {
       type: "color",
       errorMsg: "Seleccione un color.",
     },
+     base: {
+      name: "base",
+      label: "Categoria Base",
+      type: "text",
+      errorMsg: "Categoria Base es requerido.",
+    },
   },
 };
 export default form;

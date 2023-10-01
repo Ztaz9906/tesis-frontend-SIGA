@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useDeleteEstructuraMutation,
-  useGetEstructurasQuery,
-} from "./service/estructura.service";
+import { useGetEstructurasQuery } from "./service/estructura.service";
 import { Link } from "react-router-dom";
 import { PlusCircle } from "lucide-react";
 import RenderTreeView from "./TreeView";
@@ -14,8 +11,8 @@ export default function IndexEstructura() {
   if (!data) {
     return;
   }
-
-  const filteredData = data.filter((item) => item.category.name === "Complejo");
+  console.log(data);
+  const filteredData = data.filter((item) => item.category.base);
 
   return (
     <>

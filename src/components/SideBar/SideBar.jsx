@@ -1,149 +1,76 @@
-import { useEffect, useState } from "react";
-import ButtonSideBar from "./ButtonSideBar";
-import { useDispatch, useSelector } from "react-redux";
-import { setActiveTab } from "../../redux/GlobalSlice";
-import SidebarSection from "./SideBarSections";
-import { sectionsMap } from "./Setions";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+} from "@mui/material";
+import { ArrowDown } from "lucide-react";
+import useUser from "../../services/config/user";
 
-export default function SideBar() {
-  const dispatch = useDispatch();
-  const handleButtonClick = (tabName) => {
-    dispatch(setActiveTab(tabName));
+export default function SideBar({ sectionsMap }) {
+  const location = useLocation();
+  const [expandedAccordion, setExpandedAccordion] = useState(null);
+  const [user] = useUser();
+  const isActiveRoute = (route) => {
+    return route === location.pathname;
   };
 
-  const {
-    showAbastecimiento,
-    showCajero,
-    showFacturacion,
-    showDistribucion,
-    showReservacion,
-    showConfiguracion,
-    showSeguridad,
-  } = useSelector((state) => state.global);
-
-  const showSections = {
-    Abastecimiento: showAbastecimiento,
-    Cajero: showCajero,
-    Facturacion: showFacturacion,
-    Distribucion: showDistribucion,
-    Reservacion: showReservacion,
-    Configuracion: showConfiguracion,
-    Seguridad: showSeguridad,
+  const handleAccordionChange = (panel) => (event, isExpanded) => {
+    setExpandedAccordion(isExpanded ? panel : false);
   };
 
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth);
+  const activeModules = user?.institucion.active_modules.map((module) =>
+    module.toLowerCase()
+  ); // Convertimos todo a minúsculas
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const renderSection = (
-    title,
-    { icon, routes, computerViewHeight, movilViewHeight },
-    index
-  ) => (
-    <div key={index}>
-      <ButtonSideBar
-        isOpen={showSections[title]}
-        onClick={() => handleButtonClick(title)}
-      >
-        <i className={`fa-solid ${icon} p-1`}></i>
-        {windowWidth < 640 ? "" : title}
-      </ButtonSideBar>
-      {windowWidth > 640 && (
-        <SidebarSection
-          isOpen={showSections[title]}
-          title={title}
-          routes={routes}
-          computerViewHeight={computerViewHeight}
-          movilViewHeight={movilViewHeight}
-        />
-      )}
-    </div>
+  const filteredSections = Object.entries(sectionsMap).filter(
+    ([sectionTitle]) =>
+      activeModules.includes(sectionTitle.toLowerCase()) ||
+      sectionTitle.toLowerCase() === "seguridad"
   );
 
   return (
-    <>
-      <div
-        className={`flex ${
-          windowWidth < 640 ? "flex-row" : "flex-col"
-        } items-start border-t-2 border-red-600`}
-      >
-        <div
-          className={`flex ${
-            windowWidth < 640
-              ? "flex-row border-b-2 border-gray-400"
-              : "flex-col"
-          } w-full text-sm`}
+    <div>
+      {filteredSections.map(([title, config], index) => (
+        <Accordion
+          key={index}
+          expanded={expandedAccordion === `panel${index}`}
+          onChange={handleAccordionChange(`panel${index}`)}
+          style={{
+            boxShadow: "none",
+            backgroundColor: "#f5f5f5",
+            marginBottom: 0,
+            marginTop: 0,
+          }} // Estilo para quitar separación entre acordeones
         >
-          {Object.entries(sectionsMap).map(([title, config], index) =>
-            renderSection(title, config, index)
-          )}
-        </div>
-      </div>
-      {windowWidth < 640 &&
-        Object.entries(sectionsMap).map(([title, config], index) => (
-          <SidebarSection
-            key={index}
-            isOpen={showSections[title]}
-            title={title}
-            routes={config.routes}
-            computerViewHeight={config.computerViewHeight}
-            movilViewHeight={config.movilViewHeight}
-          />
-        ))}
-    </>
+          <AccordionSummary
+            expandIcon={<ArrowDown size={16} />}
+            style={{ minHeight: "45px" }}
+          >
+            <i className={`fa-solid ${config.icon} p-1`}></i>
+            <Typography>{title}</Typography>
+          </AccordionSummary>
+          <AccordionDetails
+            style={{ backgroundColor: "#f5f5f5", padding: "8px 24px" }}
+          >
+            <div className="flex flex-col justify-between py-1 text-gray-500">
+              {config.routes.map((route, routeIndex) => (
+                <Link
+                  key={routeIndex}
+                  to={route.path}
+                  className={`${
+                    isActiveRoute(route.path) ? "active-text" : ""
+                  } p-1 transition-colors duration-200 hover:text-red-500`}
+                >
+                  {route.label}
+                </Link>
+              ))}
+            </div>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </div>
   );
 }
-
-// import * as React from "react";
-// import { TreeView } from "@mui/x-tree-view/TreeView";
-// import { TreeItem } from "@mui/x-tree-view/TreeItem";
-
-// import { Link } from "react-router-dom";
-// import { sectionsMap } from "./Setions";
-// import { ShoppingCart, Settings, Shield } from "lucide-react";
-// import { DotIcon } from "lucide-react";
-// const sectionIcons = {
-//   Abastecimiento: <ShoppingCart />,
-//   Cajero: <ShoppingCart />,
-//   Facturacion: <ShoppingCart />,
-//   Distribucion: <ShoppingCart />,
-//   Reservacion: <ShoppingCart />,
-//   Configuracion: <Settings />,
-//   Seguridad: <Shield />,
-//   Test: <Shield />,
-// };
-
-// export default function SideBar() {
-//   return (
-//     <TreeView aria-label="sidebar" defaultExpanded={["1"]}>
-//       {Object.entries(sectionsMap).map(([title, config], index) => (
-//         <TreeItem
-//           key={index}
-//           nodeId={title}
-//           label={title}
-//           icon={sectionIcons[title]}
-//         >
-//           {config.routes.map((route, routeIndex) => (
-//             <TreeItem
-//               key={routeIndex}
-//               nodeId={`${title}-${routeIndex}`}
-//               label={
-//                 <span className="flex">
-//                   <DotIcon />
-//                   <Link to={route.path}>{route.label}</Link>
-//                 </span>
-//               }
-//             />
-//           ))}
-//         </TreeItem>
-//       ))}
-//     </TreeView>
-//   );
-// }

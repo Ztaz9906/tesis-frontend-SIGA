@@ -20,12 +20,13 @@ import FormField from "../../../../../auxiliar/FormField";
 
 export default function AddTorpedo({ formData }) {
   const { formField, values, errors, touched } = formData;
-  const { name, active, description, color } = formField;
+  const { name, active, description, color, base } = formField;
   const {
     name: nameV,
     description: descriptionV,
     active: activeV,
     color: colorV,
+    base: baseV,
   } = values;
 
   return (
@@ -73,6 +74,22 @@ export default function AddTorpedo({ formData }) {
             value={activeV}
             placeholder={active.placeholder}
             error={errors.active && touched.active}
+          >
+            <MenuItem value={""} selected disabled>
+              --Seleccione--
+            </MenuItem>
+            <MenuItem value={true}>Si</MenuItem>
+            <MenuItem value={false}>No</MenuItem>
+          </FormField>
+        </div>
+        <div className="w-full px-3">
+          <FormField
+            select
+            label={base.label}
+            name={base.name}
+            value={baseV}
+            placeholder={base.placeholder}
+            error={errors.base && touched.base}
           >
             <MenuItem value={""} selected disabled>
               --Seleccione--

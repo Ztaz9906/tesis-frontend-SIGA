@@ -2,7 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 //const baseUrl = process.env.REACT_APP_BACKEND_URL;
-const baseUrl = "http://localhost:8000";
+const baseUrl = "http://localhost:8000/v1";
 
 const client = axios.create({
   baseURL: baseUrl,
@@ -36,6 +36,7 @@ client.interceptors.request.use(
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("refresh");
         sessionStorage.removeItem("user");
+        sessionStorage.removeItem("institucion");
 
         window.location
           .replace(window.location.origin)
