@@ -1,15 +1,13 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import UserAvatar from "./UserAvatar";
-import { Button } from "@mui/material";
 import { useLogoutMutation } from "../../services/login.service";
 import { useRedirectForm } from "../../hooks/useRedirectForm";
+import useUser from "../../hooks/useUser";
 
 export default function UserSettings() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -19,8 +17,8 @@ export default function UserSettings() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  const userstorage = sessionStorage.getItem("user");
-  const user = userstorage ? JSON.parse(userstorage) : "";
+
+  const [user] = useUser();
 
   const [logout, { isError, isLoading, isSuccess, error }] =
     useLogoutMutation();
@@ -43,11 +41,13 @@ export default function UserSettings() {
     "
     >
       <Typography className="text-black text-sm">
-        {user.nombre_completo}
+        {user?.nombre_completo}
       </Typography>
       <Tooltip title="Abrir Opciones de Usuario">
         <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-          <UserAvatar name={user ? user.nombre_completo : "User"} />
+          <UserAvatar
+            name={user?.nombre_completo ? user?.nombre_completo : "Admin"}
+          />
         </IconButton>
       </Tooltip>
       <Menu

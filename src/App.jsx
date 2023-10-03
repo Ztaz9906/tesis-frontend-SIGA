@@ -1,12 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout";
-import { IndexClassPlatos } from "./components/Configuracion/Abastecimiento/Classificacion Platos/IndexClassPlatos";
-import { ClassPlatos } from "./components/Configuracion/Abastecimiento/Classificacion Platos/ClassPlatos";
-import { UnidadMedida } from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas/UnidadMedida";
-import { IndexTipoProducto } from "./components/Configuracion/Abastecimiento/Tipos de Productos/IndexTipoProduct";
-import { TipoProducto } from "./components/Configuracion/Abastecimiento/Tipos de Productos/TipoProducto";
-import { IndexProductos } from "./components/Configuracion/Abastecimiento/Productos/IndexProductos";
-import { Producto } from "./components/Configuracion/Abastecimiento/Productos/Producto";
 import { IndexTipoTarjeta } from "./components/Configuracion/Cajero/TipoTarjetas/indexTipoTarjeta";
 import { TipoTarjeta } from "./components/Configuracion/Cajero/TipoTarjetas/TipoTarjeta";
 import { IndexTarjeta } from "./components/Configuracion/Cajero/Tarjetas/IndexTarjeta";
@@ -28,61 +21,57 @@ import DetailEstructura from "./components/Configuracion/Distribucion/Estructura
 import AddSettings from "./components/Configuracion/Distribucion/Estructura/new-estructura/settings";
 import IndexHorarios from "./components/Configuracion/Distribucion/Horario";
 import Login from "./components/Security/Login";
-import { IndexUM } from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas/IndexUM";
 import IndexTorpedo from "./components/Configuracion/Cajero/Torpedos/indexTorpedo";
 import Horario from "./components/Configuracion/Distribucion/Horario/new-horario/new.horario";
 import IndexInstituciones from "./components/Configuracion/Seguridad/Instituciones";
 import Institucion from "./components/Configuracion/Seguridad/Instituciones/new-institucion/new.institucion";
+import { Outlet } from "react-router-dom";
+import IndexRoles from "./components/Configuracion/Seguridad/Roles";
+import Roles from "./components/Configuracion/Seguridad/Roles/new-roles/new.roles";
+import IndexClassPlatos from "./components/Configuracion/Abastecimiento/Classificacion Platos";
+import ClassPlatos from "./components/Configuracion/Abastecimiento/Classificacion Platos/new-Categoria/new.clasificacion.platos";
+import UM from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas/new-UM/new.um";
+import IndexUM from "./components/Configuracion/Abastecimiento/Unidaddes de Medidas";
+import TipoProducto from "./components/Configuracion/Abastecimiento/Tipos de Productos/new-tipo_producto/new.tipo.producto";
+import IndexTipoProducto from "./components/Configuracion/Abastecimiento/Tipos de Productos";
+import Producto from "./components/Configuracion/Abastecimiento/Productos/new-producto/new.producto";
+import IndexProductos from "./components/Configuracion/Abastecimiento/Productos";
+
 const Placeholder = () => <div>Componente en construcción</div>;
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route element={<Layout />}>
-        <Route path="/configuracion" element={<div></div>} />
-        {/* Abastecimiento */}
-        <Route
-          path="/configuracion/clasificacion_platos"
-          element={<IndexClassPlatos />}
-        />
-        <Route
-          path="/configuracion/clasificacion_platos/create"
-          element={<ClassPlatos title={"Registrar Clasificación de Platos"} />}
-        />
-        <Route
-          path="/configuracion/clasificacion_platos/update/:id"
-          element={<ClassPlatos title={"Actualizar Clasificación de Platos"} />}
-        />
-        <Route path="/configuracion/unidad_medida" element={<IndexUM />} />
-        <Route
-          path="/configuracion/unidad_medida/create"
-          element={<UnidadMedida title={"Registrar Unidad de Medida"} />}
-        />
-        <Route
-          path="/configuracion/unidad_medida/update/:id"
-          element={<UnidadMedida title={"Actualizar Unidad de Medida"} />}
-        />
-        <Route
-          path="/configuracion/tipo_productos"
-          element={<IndexTipoProducto />}
-        />
-        <Route
-          path="/configuracion/tipo_productos/create"
-          element={<TipoProducto title={"Registrar tipo de producto"} />}
-        />
-        <Route
-          path="/configuracion/tipo_productos/update/:id"
-          element={<TipoProducto title={"Actualizar tipo de producto"} />}
-        />
-        <Route path="/configuracion/productos" element={<IndexProductos />} />
-        <Route
-          path="/configuracion/productos/create"
-          element={<Producto title={"Registrar producto"} />}
-        />
-        <Route
-          path="/configuracion/productos/update/:id"
-          element={<Producto title={"Actualizar producto"} />}
-        />
+        <Route path="/configuracion" element={<Outlet />}>
+          {/* Abastecimiento */}
+          <Route path="abastecimiento" element={<Outlet />}>
+            <Route path="clasificacion_platos" element={<IndexClassPlatos />} />
+            <Route
+              path="clasificacion_platos/create"
+              element={<ClassPlatos />}
+            />
+            <Route
+              path="clasificacion_platos/update/:id"
+              element={<ClassPlatos />}
+            />
+            <Route path="unidad_medidas" element={<IndexUM />} />
+            <Route path="unidad_medida/create" element={<UM />} />
+            <Route path="unidad_medida/update/:id" element={<UM />} />
+            <Route path="tipo_productos" element={<IndexTipoProducto />} />
+            <Route path="tipo_producto/create" element={<TipoProducto />} />
+            <Route path="tipo_producto/update/:id" element={<TipoProducto />} />
+            <Route path="productos" element={<IndexProductos />} />
+            <Route path="producto/create" element={<Producto />} />
+            <Route path="producto/update/:id" element={<Producto />} />
+          </Route>
+          {/* Seguridad */}
+          <Route path="seguridad" element={<Outlet />}>
+            <Route path="roles" element={<IndexRoles />} />
+            <Route path="roles/create" element={<Roles />} />
+            <Route path="roles/update/:id" element={<Roles />} />
+          </Route>
+        </Route>
         {/* Cajero */}
         <Route
           path="/configuracion/cajero/tipo_tarjeta"
@@ -221,7 +210,6 @@ function App() {
           path="/configuracion/seguridad/institucion/update/:id"
           element={<Institucion />}
         />
-
         <Route path="/configuracion/seguridad/2" element={<Placeholder />} />
         <Route path="/configuracion/seguridad/3" element={<Placeholder />} />
         <Route path="/configuracion/seguridad/4" element={<Placeholder />} />

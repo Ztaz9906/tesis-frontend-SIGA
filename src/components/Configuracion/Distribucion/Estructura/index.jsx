@@ -12,6 +12,7 @@ export default function IndexEstructura() {
     return;
   }
   console.log(data);
+
   const filteredData = data.filter((item) => item.category.base);
 
   return (

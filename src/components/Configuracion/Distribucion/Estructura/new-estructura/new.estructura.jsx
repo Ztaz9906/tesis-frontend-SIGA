@@ -16,7 +16,7 @@ import {
 import AddEstructura from "./components/estructura.info";
 import { useState } from "react";
 import EstructuraPadre from "./components/estructura.padre";
-import useUser from "../../../../../services/config/user";
+import useUser from "../../../../../hooks/useUser";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { ArrowDown } from "lucide-react";
-import useUser from "../../services/config/user";
+import useUser from "../../hooks/useUser";
 
 export default function SideBar({ sectionsMap }) {
   const location = useLocation();
@@ -21,16 +21,22 @@ export default function SideBar({ sectionsMap }) {
     setExpandedAccordion(isExpanded ? panel : false);
   };
 
-  const activeModules = user?.institucion.active_modules.map((module) =>
-    module.toLowerCase()
-  ); // Convertimos todo a minúsculas
+  let filteredSections = [];
 
-  const filteredSections = Object.entries(sectionsMap).filter(
-    ([sectionTitle]) =>
-      activeModules.includes(sectionTitle.toLowerCase()) ||
-      sectionTitle.toLowerCase() === "seguridad"
-  );
-
+  if (user.is_staff) {
+    // Si el usuario es staff, usa todas las secciones sin filtrar
+    filteredSections = Object.entries(sectionsMap);
+  } else {
+    // Si no es staff, aplica el filtro
+    const activeModules = user?.institucion.active_modules.map((module) =>
+      module.toLowerCase()
+    ); // Convertimos todo a minúsculas
+    filteredSections = Object.entries(sectionsMap).filter(
+      ([sectionTitle]) =>
+        activeModules.includes(sectionTitle.toLowerCase()) ||
+        sectionTitle.toLowerCase() === "seguridad"
+    );
+  }
   return (
     <div>
       {filteredSections.map(([title, config], index) => (

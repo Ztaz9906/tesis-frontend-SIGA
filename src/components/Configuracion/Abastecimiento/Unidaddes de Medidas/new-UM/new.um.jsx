@@ -1,22 +1,5 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// formik components
 import { Formik, Form } from "formik";
 
-// NewAsignatura layout schemas for form and form feilds
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,13 +7,13 @@ import { useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {
-  useCreateHorarioMutation,
-  useEditHorarioMutation,
-  useLazyGetHorarioByIdQuery,
-} from "../service/horario.service";
+  useCreateUMMutation,
+  useEditUMMutation,
+  useLazyGetUMByIdQuery,
+} from "../service/um.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
-import AddHorario from "./components/horario.info";
 import useUser from "../../../../../hooks/useUser";
+import AddUM from "./components/um.info";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -40,58 +23,57 @@ const getModifiedFields = (originalData, newData) => {
   );
 };
 
-export default function Horario() {
-  const [user] = useUser();
+export default function UM() {
   const { id } = useParams();
   const { formId, formField } = form;
   const currentValidation = validations[0];
   const navigate = useNavigate();
   const [
-    createHorario,
+    createUM,
     {
       isError: isErrorC,
       isLoading: isLoadingC,
       isSuccess: isSuccessC,
       error: errorC,
     },
-  ] = useCreateHorarioMutation();
+  ] = useCreateUMMutation();
 
   const [
-    editHorario,
+    editUM,
     {
       isError: isErrorE,
       isLoading: isLoadingE,
       isSuccess: isSuccessE,
       error: errorE,
     },
-  ] = useEditHorarioMutation();
+  ] = useEditUMMutation();
 
-  const [getHorarioById, { data }] = useLazyGetHorarioByIdQuery();
+  const [getUMById, { data }] = useLazyGetUMByIdQuery();
 
   useRedirectForm(
     isLoadingC,
     isSuccessC,
     isErrorC,
     errorC,
-    "Horario Creado",
-    "/configuracion/distribucion/horarios"
+    "Unidad de Medida Creada",
+    "/configuracion/abastecimiento/unidad_medidas"
   );
   useRedirectForm(
     isLoadingE,
     isSuccessE,
     isErrorE,
     errorE,
-    "Horario Editado",
-    "/configuracion/distribucion/horarios"
+    "Unidad de Medida Editada",
+    "/configuracion/abastecimiento/unidad_medidas"
   );
   const submitForm = async (values, actions) => {
     try {
       if (!id) {
-        createHorario(values);
+        createUM(values);
       } else {
         const modifiedFields = getModifiedFields(data, values);
         if (Object.keys(modifiedFields).length !== 0) {
-          editHorario({ id: id, ...modifiedFields });
+          editUM({ id: id, ...modifiedFields });
         }
       }
     } catch (error) {
@@ -103,13 +85,13 @@ export default function Horario() {
   const handleSubmit = (values, actions) => {
     submitForm(values, actions);
   };
-
+  const [user] = useUser();
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
         <div className="text-center mb-6">
           <Typography variant="h5" fontWeight="bold">
-            {!id ? "Registrar Horario" : `Editar Horario`}
+            {!id ? "Registrar Unidad de Medida" : `Editar Unidad de Medida`}
           </Typography>
         </div>
         <Formik
@@ -123,28 +105,25 @@ export default function Horario() {
           {({ values, errors, touched, setFieldValue }) => {
             useEffect(() => {
               if (id) {
-                getHorarioById(id)
+                getUMById(id)
                   .unwrap()
                   .then((res) => {
                     console.log(res);
+                    setFieldValue(formField.siglas.name, res.siglas, true);
+                    setFieldValue(
+                      formField.clasificacion.name,
+                      res.clasificacion,
+                      true
+                    );
                     setFieldValue(formField.activo.name, res.activo, true);
                     setFieldValue(
-                      formField.hora_inicio.name,
-                      res.hora_inicio,
+                      formField.nombre_unidad_medida.name,
+                      res.nombre_unidad_medida,
                       true
                     );
                     setFieldValue(
-                      formField.nombre_horario.name,
-                      res.nombre_horario,
-                      true
-                    );
-                    setFieldValue(formField.hora_fin.name, res.hora_fin, true);
-                    const dias_semana_values = res.dias_semana.map(
-                      (item) => item.id_dia_semana
-                    );
-                    setFieldValue(
-                      formField.dias_semana.name,
-                      res.dias_semana.map((item) => item.id_dia_semana),
+                      formField.descripcion_unidad_medida.name,
+                      res.descripcion_unidad_medida,
                       true
                     );
                   });
@@ -152,19 +131,18 @@ export default function Horario() {
             }, [id]);
             return (
               <Form id={formId} autoComplete="off">
-                <AddHorario
+                <AddUM
                   formData={{
                     values,
                     touched,
                     formField,
                     errors,
-                    setFieldValue,
                   }}
                 />
                 <div className="mt-6 w-full flex justify-between">
                   <Button
                     onClick={() => {
-                      navigate("/configuracion/distribucion/Horarios");
+                      navigate("/configuracion/abastecimiento/unidad_medidas");
                     }}
                     variant="outlined"
                     color="error"

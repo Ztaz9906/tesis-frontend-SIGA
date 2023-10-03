@@ -1,35 +1,18 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// formik components
 import { Formik, Form } from "formik";
-
-// NewAsignatura layout schemas for form and form feilds
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 import initialValues from "./schemas/initialValues";
-import {
-  useCreateHorarioMutation,
-  useEditHorarioMutation,
-  useLazyGetHorarioByIdQuery,
-} from "../service/horario.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
-import AddHorario from "./components/horario.info";
+import {
+  useCreateGrupoMutation,
+  useEditGrupoMutation,
+  useLazyGetGrupoByIdQuery,
+} from "../service/roles.service";
+import AddGrupo from "./components/roles.info";
+import { useState } from "react";
 import useUser from "../../../../../hooks/useUser";
 
 const getModifiedFields = (originalData, newData) => {
@@ -40,58 +23,60 @@ const getModifiedFields = (originalData, newData) => {
   );
 };
 
-export default function Horario() {
-  const [user] = useUser();
+export default function Roles() {
+  const [permisos, setPermisos] = useState([]);
   const { id } = useParams();
   const { formId, formField } = form;
   const currentValidation = validations[0];
   const navigate = useNavigate();
+  const [user] = useUser();
   const [
-    createHorario,
+    createGrupo,
     {
       isError: isErrorC,
       isLoading: isLoadingC,
       isSuccess: isSuccessC,
       error: errorC,
     },
-  ] = useCreateHorarioMutation();
+  ] = useCreateGrupoMutation();
 
   const [
-    editHorario,
+    editGrupo,
     {
       isError: isErrorE,
       isLoading: isLoadingE,
       isSuccess: isSuccessE,
       error: errorE,
     },
-  ] = useEditHorarioMutation();
+  ] = useEditGrupoMutation();
 
-  const [getHorarioById, { data }] = useLazyGetHorarioByIdQuery();
-
+  const [getGrupoById, { data }] = useLazyGetGrupoByIdQuery();
+  console.log("Permisos en roles new", permisos);
+  console.log("Grupo en roles new", data);
   useRedirectForm(
     isLoadingC,
     isSuccessC,
     isErrorC,
     errorC,
-    "Horario Creado",
-    "/configuracion/distribucion/horarios"
+    "Rol Creado",
+    "/configuracion/seguridad/roles"
   );
   useRedirectForm(
     isLoadingE,
     isSuccessE,
     isErrorE,
     errorE,
-    "Horario Editado",
-    "/configuracion/distribucion/horarios"
+    "Rol Editada",
+    "/configuracion/seguridad/roles"
   );
   const submitForm = async (values, actions) => {
     try {
       if (!id) {
-        createHorario(values);
+        createGrupo(values);
       } else {
         const modifiedFields = getModifiedFields(data, values);
         if (Object.keys(modifiedFields).length !== 0) {
-          editHorario({ id: id, ...modifiedFields });
+          editGrupo({ id: id, ...modifiedFields });
         }
       }
     } catch (error) {
@@ -101,15 +86,17 @@ export default function Horario() {
   };
 
   const handleSubmit = (values, actions) => {
-    submitForm(values, actions);
+    const permisosUrls = permisos.map((permiso) => permiso.url);
+    const combinedValues = { ...values, permissions: permisosUrls };
+    submitForm(combinedValues, actions);
   };
 
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
-      <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
+      <div className="w-full lg:w-full bg-white p-3 rounded shadow-xl">
         <div className="text-center mb-6">
           <Typography variant="h5" fontWeight="bold">
-            {!id ? "Registrar Horario" : `Editar Horario`}
+            {!id ? "Registrar Rol" : `Editar Rol`}
           </Typography>
         </div>
         <Formik
@@ -123,48 +110,33 @@ export default function Horario() {
           {({ values, errors, touched, setFieldValue }) => {
             useEffect(() => {
               if (id) {
-                getHorarioById(id)
+                getGrupoById(id)
                   .unwrap()
                   .then((res) => {
                     console.log(res);
-                    setFieldValue(formField.activo.name, res.activo, true);
-                    setFieldValue(
-                      formField.hora_inicio.name,
-                      res.hora_inicio,
-                      true
-                    );
-                    setFieldValue(
-                      formField.nombre_horario.name,
-                      res.nombre_horario,
-                      true
-                    );
-                    setFieldValue(formField.hora_fin.name, res.hora_fin, true);
-                    const dias_semana_values = res.dias_semana.map(
-                      (item) => item.id_dia_semana
-                    );
-                    setFieldValue(
-                      formField.dias_semana.name,
-                      res.dias_semana.map((item) => item.id_dia_semana),
-                      true
-                    );
+                    setFieldValue(formField.name.name, res.name, true);
+                    setPermisos(res.permissions);
                   });
               }
             }, [id]);
             return (
               <Form id={formId} autoComplete="off">
-                <AddHorario
+                <AddGrupo
                   formData={{
                     values,
                     touched,
                     formField,
                     errors,
+                    id,
                     setFieldValue,
+                    setPermisos,
+                    permisos,
                   }}
                 />
                 <div className="mt-6 w-full flex justify-between">
                   <Button
                     onClick={() => {
-                      navigate("/configuracion/distribucion/Horarios");
+                      navigate("/configuracion/seguridad/roles");
                     }}
                     variant="outlined"
                     color="error"

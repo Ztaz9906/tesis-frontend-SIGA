@@ -3,10 +3,10 @@ export const sectionsMap = {
   'Abastecimiento': {
     icon: 'fa-cart-shopping',
     routes: [
-      { path: "/configuracion/clasificacion_platos", label: "Clasificacion Platos" },
-      { path: "/configuracion/unidad_medida", label: "Unidades Medidas" },
-      { path: "/configuracion/tipo_productos", label: "Tipos de Productos" },
-      { path: "/configuracion/productos", label: "Productos" }
+      { path: "/configuracion/abastecimiento/clasificacion_platos", label: "Clasificacion Platos" },
+      { path: "/configuracion/abastecimiento/unidad_medidas", label: "Unidades Medidas" },
+      { path: "/configuracion/abastecimiento/tipo_productos", label: "Tipos de Productos" },
+      { path: "/configuracion/abastecimiento/productos", label: "Productos" }
     ],
   },
   'Cajero': {
@@ -57,7 +57,7 @@ export const sectionsMap = {
     icon: 'fa-solid fa-shield',
     routes: [
       { path: "/configuracion/seguridad/instituciones", label: "Instituciones" },
-      { path: "/configuracion/seguridad/2", label: "Roles y Permisos" },
+      { path: "/configuracion/seguridad/roles", label: "Roles y Permisos" },
       { path: "/configuracion/seguridad/3", label: "Usuarios" },
       { path: "/configuracion/seguridad/4", label: "Configuracion cobro" }
     ],

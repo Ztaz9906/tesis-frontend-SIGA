@@ -38,7 +38,7 @@ import {
   useLazyGetCategoriaByIdQuery,
 } from "../service/categoria.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
-import useUser from "../../../../../services/config/user";
+import useUser from "../../../../../hooks/useUser";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -111,7 +111,6 @@ export default function Categoria() {
     submitForm(values, actions);
   };
   const [user] = useUser();
-  console.log(user);
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">

@@ -1,22 +1,4 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// formik components
 import { Formik, Form } from "formik";
-
-// NewAsignatura layout schemas for form and form feilds
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import { useNavigate, useParams } from "react-router-dom";
@@ -24,13 +6,13 @@ import { useEffect } from "react";
 import { Button, Typography } from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {
-  useCreateHorarioMutation,
-  useEditHorarioMutation,
-  useLazyGetHorarioByIdQuery,
-} from "../service/horario.service";
+  useCreateProductoMutation,
+  useEditProductoMutation,
+  useLazyGetProductoByIdQuery,
+} from "../service/producto.service";
 import { useRedirectForm } from "../../../../../hooks/useRedirectForm";
-import AddHorario from "./components/horario.info";
 import useUser from "../../../../../hooks/useUser";
+import AddProducto from "./components/producto.info";
 
 const getModifiedFields = (originalData, newData) => {
   return Object.fromEntries(
@@ -40,58 +22,57 @@ const getModifiedFields = (originalData, newData) => {
   );
 };
 
-export default function Horario() {
-  const [user] = useUser();
+export default function Producto() {
   const { id } = useParams();
   const { formId, formField } = form;
   const currentValidation = validations[0];
   const navigate = useNavigate();
   const [
-    createHorario,
+    createProducto,
     {
       isError: isErrorC,
       isLoading: isLoadingC,
       isSuccess: isSuccessC,
       error: errorC,
     },
-  ] = useCreateHorarioMutation();
+  ] = useCreateProductoMutation();
 
   const [
-    editHorario,
+    editProducto,
     {
       isError: isErrorE,
       isLoading: isLoadingE,
       isSuccess: isSuccessE,
       error: errorE,
     },
-  ] = useEditHorarioMutation();
+  ] = useEditProductoMutation();
 
-  const [getHorarioById, { data }] = useLazyGetHorarioByIdQuery();
+  const [getProductoById, { data }] = useLazyGetProductoByIdQuery();
 
   useRedirectForm(
     isLoadingC,
     isSuccessC,
     isErrorC,
     errorC,
-    "Horario Creado",
-    "/configuracion/distribucion/horarios"
+    "Producto Creado",
+    "/configuracion/abastecimiento/productos"
   );
   useRedirectForm(
     isLoadingE,
     isSuccessE,
     isErrorE,
     errorE,
-    "Horario Editado",
-    "/configuracion/distribucion/horarios"
+    "Producto Editado",
+    "/configuracion/abastecimiento/productos"
   );
   const submitForm = async (values, actions) => {
     try {
       if (!id) {
-        createHorario(values);
+        createProducto(values);
       } else {
         const modifiedFields = getModifiedFields(data, values);
         if (Object.keys(modifiedFields).length !== 0) {
-          editHorario({ id: id, ...modifiedFields });
+          editProducto({ id: id, ...modifiedFields });
         }
       }
     } catch (error) {
@@ -103,13 +84,13 @@ export default function Horario() {
   const handleSubmit = (values, actions) => {
     submitForm(values, actions);
   };
-
+  const [user] = useUser();
   return (
     <div className="flex justify-center items-center bg-gray-100 h-full">
       <div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
         <div className="text-center mb-6">
           <Typography variant="h5" fontWeight="bold">
-            {!id ? "Registrar Horario" : `Editar Horario`}
+            {!id ? "Registrar Producto" : `Editar Producto`}
           </Typography>
         </div>
         <Formik
@@ -123,28 +104,33 @@ export default function Horario() {
           {({ values, errors, touched, setFieldValue }) => {
             useEffect(() => {
               if (id) {
-                getHorarioById(id)
+                getProductoById(id)
                   .unwrap()
                   .then((res) => {
                     console.log(res);
-                    setFieldValue(formField.activo.name, res.activo, true);
                     setFieldValue(
-                      formField.hora_inicio.name,
-                      res.hora_inicio,
+                      formField.descripcion.name,
+                      res.descripcion,
                       true
                     );
                     setFieldValue(
-                      formField.nombre_horario.name,
-                      res.nombre_horario,
+                      formField.id_tipo_producto.name,
+                      res.id_tipo_producto.id_tipo_producto,
                       true
                     );
-                    setFieldValue(formField.hora_fin.name, res.hora_fin, true);
-                    const dias_semana_values = res.dias_semana.map(
-                      (item) => item.id_dia_semana
+                    setFieldValue(
+                      formField.id_unidad_medida.name,
+                      res.id_unidad_medida.id_unidad_medida,
+                      true
                     );
                     setFieldValue(
-                      formField.dias_semana.name,
-                      res.dias_semana.map((item) => item.id_dia_semana),
+                      formField.nombre_producto.name,
+                      res.nombre_producto,
+                      true
+                    );
+                    setFieldValue(
+                      formField.precio_cup.name,
+                      res.precio_cup,
                       true
                     );
                   });
@@ -152,19 +138,18 @@ export default function Horario() {
             }, [id]);
             return (
               <Form id={formId} autoComplete="off">
-                <AddHorario
+                <AddProducto
                   formData={{
                     values,
                     touched,
                     formField,
                     errors,
-                    setFieldValue,
                   }}
                 />
                 <div className="mt-6 w-full flex justify-between">
                   <Button
                     onClick={() => {
-                      navigate("/configuracion/distribucion/Horarios");
+                      navigate("/configuracion/abastecimiento/productos");
                     }}
                     variant="outlined"
                     color="error"

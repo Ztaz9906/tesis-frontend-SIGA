@@ -27,7 +27,7 @@ client.interceptors.request.use(
       try {
         if (token && shouldRefresh.needRefresh) {
           if (shouldRefresh.valid === false) {
-            token = await client.post("/v1/api/token/refresh/", {
+            token = await client.post("/api/token/refresh/", {
               refresh: sessionStorage.getItem("refresh"),
             });
           }
