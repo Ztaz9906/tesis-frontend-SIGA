@@ -15,7 +15,7 @@ export default function FormFieldAutoComplete({
   return (
     <Field name={name}>
       {({ field, meta, form }) => {
-        const { setFieldValue, setFieldTouched } = form;
+        const { setFieldValue, setFieldTouched, handleBlur } = form;
 
         return (
           <Box mb={1.5}>
@@ -26,9 +26,9 @@ export default function FormFieldAutoComplete({
               onChange={(_, value) => {
                 // Establece el valor en el campo de Formik con el ID (u otro valor clave) del objeto seleccionado.
                 setFieldValue(name, value ? value[valueKey] : "");
-                setFieldTouched(name, true); // Marca el campo como "touched" cuando se cambia
+                // Marca el campo como "touched" cuando se cambia
               }}
-              onBlur={() => setFieldTouched(name, true)} // Marca el campo como "touched" cuando pierde el foco
+              onBlur={handleBlur} // Marca el campo como "touched" cuando pierde el foco
               value={
                 options.find((option) => option[valueKey] === field.value) ||
                 null
