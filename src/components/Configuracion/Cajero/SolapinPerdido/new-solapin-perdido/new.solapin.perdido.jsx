@@ -1,77 +1,83 @@
 import React from "react";
-import {SGTable} from "../../../auxiliar/table";
-import {FilterIcon, PlusCircle, Trash} from "lucide-react";
-import {Link} from "react-router-dom";
+
+import {FilterIcon, PlusCircle} from "lucide-react";
 import {Tooltip} from "@mui/material";
 import Delete from "@/components/auxiliar/delete.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
-	useDeleteSolapinPerdidoMutation,
-	useGetSolapinPerdidosQuery
+	useCreateSolapinPerdidoMutation
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import FilterSolapinPerdido
-	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.jsx";
+import {useGetUsuariosQuery} from "@/services/usuario.service.js";
+import useUser from "@/hooks/useUser.jsx";
+import {SGTable} from "@/components/auxiliar/table.jsx";
+import FilterUsuarios
+	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 
 
-export default function IndexSolapinPerdido() {
+export default function AddSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetSolapinPerdidosQuery(currentFilters, {
+	const {data} = useGetUsuariosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
 	const [
-		deleteSolapinPerdido,
+		CreateSolapinPerdido,
 		{
-			isError: isErrorD,
-			isLoading: isLoadingD,
-			isSuccess: isSuccessD,
-			error: errorD,
+			isError: isErrorC,
+			isLoading: isLoadingC,
+			isSuccess: isSuccessC,
+			error: errorC,
 		},
-	] = useDeleteSolapinPerdidoMutation();
+	] = useCreateSolapinPerdidoMutation();
 	useRedirectForm(
-		isLoadingD,
-		isSuccessD,
-		isErrorD,
-		errorD,
-		"Persona con Solapin Perdido Eliminada"
+		isLoadingC,
+		isSuccessC,
+		isErrorC,
+		errorC,
+		"Persona con solapin perdido añadida",
+		'/configuracion/cajero/solapin-perdidos'
 	);
+	const [user] = useUser();
+
+	function handleSubmit(id_persona) {
+		const newValues = {
+			"id_institucion": user?.institucion.id,
+			"id_persona": id_persona,
+			"id_usuario_registro": user.id
+		};
+		CreateSolapinPerdido(newValues)
+	}
+
 	console.log(data)
 	const datadef = {
 		columns: [
 			{
 				id: "nombre_completo",
-				accessorFn: (row) => row.id_persona.nombre_completo,
+				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
 				header: "nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "username",
-				accessorFn: (row) => row.id_persona.username,
+				accessorFn: (row) => row.username,
 				cell: (info) => info.getValue(),
 				header: "Usuario",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
-				accessorFn: (row) => row.id_persona.solapin,
+				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
 				header: "Solapin",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_solapin",
-				accessorFn: (row) => row.id_persona.codigo_solapin,
+				accessorFn: (row) => row.codigo_solapin,
 				cell: (info) => info.getValue(),
 				header: "Codigo de Barras",
-				footer: (props) => props.column.id,
-			},
-			{
-				id: "fecha_registro",
-				accessorFn: (row) => row.fecha_registro,
-				cell: (info) => info.getValue(),
-				header: "Fecha de Registro",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -79,13 +85,14 @@ export default function IndexSolapinPerdido() {
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
-							title={`Borrar ${row.id_persona.nombre_completo}`}
-							message="Esta seguro que desea cancelar este Solapin Perdido?"
-							action={() => deleteSolapinPerdido(row.id_solapin_perdido)}
+							title={`Registrar solapin perdido de ${row.nombre_completo}`}
+							message={`Esta seguro que desea registrar este Solapin Perdido? ${row.solapin}`}
+							action={() => handleSubmit(row.id)}
 						>
-							<Tooltip title={'Eliminar'}>
-								<Button variant={"ghost"} size={"icon"}>
-									<Trash size={15}/>
+							<Tooltip title={'Registrar solapin perdido'}>
+								<Button variant={"ghost"} size={"icon"}
+								>
+									<PlusCircle size={15}/>
 								</Button>
 							</Tooltip>
 						</Delete>
@@ -103,23 +110,12 @@ export default function IndexSolapinPerdido() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas con Solapin Perdido
+					Listado de Personas
 				</h2>
 				<div className="flex">
 					<Tooltip
-						title="Añadir Solapin Perdido"
-					>
-						<Link
-							to={"/configuracion/cajero/solapin_perdido/create"}
-							className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`}
-						>
-							<PlusCircle size={15}/>
-						</Link>
-					</Tooltip
-					>
-					<Tooltip
 						placement="bottom"
-						title="Filtro para los torpedos"
+						title="Filtro para las personas"
 					>
 						<Button
 							variant={"ghost"}
@@ -132,7 +128,7 @@ export default function IndexSolapinPerdido() {
 				</div>
 			</div>
 			<div className={`p-3 shadow-md ${active && "hidden"}`}>
-				<FilterSolapinPerdido filter={setCurrentFilters}/>
+				<FilterUsuarios filter={setCurrentFilters}/>
 			</div>
 			<SGTable data={datadef}/>
 		</div>

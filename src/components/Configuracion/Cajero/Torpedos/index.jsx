@@ -1,87 +1,100 @@
 import React from "react";
 import {SGTable} from "../../../auxiliar/table";
-import {FilterIcon, PlusCircle, Trash} from "lucide-react";
+import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
 import {Tooltip} from "@mui/material";
 import Delete from "@/components/auxiliar/delete.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
-	useDeleteSolapinPerdidoMutation,
-	useGetSolapinPerdidosQuery
-} from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import FilterSolapinPerdido
-	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.jsx";
+	useDeleteTorpedoMutation,
+	useGetTorpedosQuery
+} from "@/components/Configuracion/Cajero/Torpedos/service/torpedo.service.js";
+import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
+import FilterTorpedo from "@/components/Configuracion/Cajero/Torpedos/new-asgnatura/components/filter.jsx";
 
 
-export default function IndexSolapinPerdido() {
+export default function IndexTorpedo() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetSolapinPerdidosQuery(currentFilters, {
+	const {data} = useGetTorpedosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
 	const [
-		deleteSolapinPerdido,
+		deleteTorpedo,
 		{
 			isError: isErrorD,
 			isLoading: isLoadingD,
 			isSuccess: isSuccessD,
 			error: errorD,
 		},
-	] = useDeleteSolapinPerdidoMutation();
+	] = useDeleteTorpedoMutation();
 	useRedirectForm(
 		isLoadingD,
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Persona con Solapin Perdido Eliminada"
+		"Torpedo Eliminado"
 	);
-	console.log(data)
+
 	const datadef = {
 		columns: [
 			{
 				id: "nombre_completo",
-				accessorFn: (row) => row.id_persona.nombre_completo,
+				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
 				header: "nombre",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "username",
-				accessorFn: (row) => row.id_persona.username,
+				id: "ci",
+				accessorFn: (row) => row.ci,
 				cell: (info) => info.getValue(),
-				header: "Usuario",
+				header: "ci",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "solapin",
-				accessorFn: (row) => row.id_persona.solapin,
+				id: "id_pais",
+				accessorFn: (row) => row.id_pais.nombre_pais,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "pais",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "codigo_solapin",
-				accessorFn: (row) => row.id_persona.codigo_solapin,
+				id: "id_provincia",
+				accessorFn: (row) => row.id_provincia.nombre_provincia,
 				cell: (info) => info.getValue(),
-				header: "Codigo de Barras",
+				header: "provincia",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "fecha_registro",
-				accessorFn: (row) => row.fecha_registro,
+				id: "id_municipio.nombre_municipio",
+				accessorFn: (row) => row.id_municipio.nombre_municipio,
 				cell: (info) => info.getValue(),
-				header: "Fecha de Registro",
+				header: "municipio",
+				footer: (props) => props.column.id,
+			},
+			{
+				id: "id_sexo",
+				accessorFn: (row) => row.id_sexo.nombre_sexo,
+				cell: (info) => info.getValue(),
+				header: "sexo",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "Opciones",
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
+						<Tooltip title={'Editar'}>
+							<Link
+								to={`/configuracion/cajero/torpedo/update/${row.id_persona_torpedo}`}
+							>
+								<Edit2Icon size={15}/>
+							</Link>
+						</Tooltip>
 						<Delete
-							title={`Borrar ${row.id_persona.nombre_completo}`}
-							message="Esta seguro que desea cancelar este Solapin Perdido?"
-							action={() => deleteSolapinPerdido(row.id_solapin_perdido)}
+							title={`Borrar ${row.nombre_completo}`}
+							message="Esta seguro que desea eliminar este Torpedo"
+							action={() => deleteTorpedo(row.id_persona_torpedo)}
 						>
 							<Tooltip title={'Eliminar'}>
 								<Button variant={"ghost"} size={"icon"}>
@@ -103,14 +116,14 @@ export default function IndexSolapinPerdido() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas con Solapin Perdido
+					Listado de Tarjetas
 				</h2>
 				<div className="flex">
 					<Tooltip
-						title="Añadir Solapin Perdido"
+						title="Crear torpedo"
 					>
 						<Link
-							to={"/configuracion/cajero/solapin_perdido/create"}
+							to={"/configuracion/cajero/torpedo/create"}
 							className={`inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50`}
 						>
 							<PlusCircle size={15}/>
@@ -132,7 +145,7 @@ export default function IndexSolapinPerdido() {
 				</div>
 			</div>
 			<div className={`p-3 shadow-md ${active && "hidden"}`}>
-				<FilterSolapinPerdido filter={setCurrentFilters}/>
+				<FilterTorpedo filter={setCurrentFilters}/>
 			</div>
 			<SGTable data={datadef}/>
 		</div>

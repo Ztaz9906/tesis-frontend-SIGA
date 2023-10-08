@@ -13,28 +13,25 @@
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 
+import * as Yup from "yup";
 import checkout from "./form";
 
 const {
     formField: {
-        nombre_completo,
-        ci,
-        descripcion,
-        id_sexo,
-        id_municipio,
-        id_pais,
-        id_provincia
-    }
+        id_estado_tarjeta,
+        id_tipo_tarjeta,
+        fecha_fin,
+        fecha_inicio,
+    },
 } = checkout;
 
-const initialValues = {
-    [nombre_completo.name]: "",
-    [descripcion.name]: "",
-    [ci.name]: "",
-    [id_municipio.name]: "",
-    [id_provincia.name]: "",
-    [id_sexo.name]: "",
-    [id_pais.name]: "",
-};
+const validations = [
+    Yup.object().shape({
+        [id_estado_tarjeta.name]: Yup.string().required(id_estado_tarjeta.errorMsg),
+        [id_tipo_tarjeta.name]: Yup.string().required(id_tipo_tarjeta.errorMsg),
+        [fecha_fin.name]: Yup.string().required(fecha_fin.errorMsg),
+        [fecha_inicio.name]: Yup.string().required(fecha_inicio.errorMsg),
 
-export default initialValues;
+    }),
+];
+export default validations;
