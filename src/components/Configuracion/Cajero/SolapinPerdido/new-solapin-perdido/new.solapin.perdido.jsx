@@ -8,19 +8,21 @@ import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
 	useCreateSolapinPerdidoMutation
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import {useGetUsuariosQuery} from "@/services/usuario.service.js";
 import useUser from "@/hooks/useUser.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
+import {useGetPersonaQuery} from "@/services/persona.service.js";
 
 
 export default function AddSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetUsuariosQuery(currentFilters, {
+
+	const {data} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+
 	const [
 		CreateSolapinPerdido,
 		{
@@ -57,13 +59,6 @@ export default function AddSolapinPerdido() {
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
 				header: "nombre",
-				footer: (props) => props.column.id,
-			},
-			{
-				id: "username",
-				accessorFn: (row) => row.username,
-				cell: (info) => info.getValue(),
-				header: "Usuario",
 				footer: (props) => props.column.id,
 			},
 			{

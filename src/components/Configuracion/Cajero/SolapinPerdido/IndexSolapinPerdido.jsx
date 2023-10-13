@@ -12,7 +12,7 @@ import {
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
 import FilterSolapinPerdido
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.jsx";
-
+import {format, parseISO} from 'date-fns';
 
 export default function IndexSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
@@ -47,10 +47,10 @@ export default function IndexSolapinPerdido() {
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "username",
-				accessorFn: (row) => row.id_persona.username,
+				id: "ci",
+				accessorFn: (row) => row.id_persona.ci,
 				cell: (info) => info.getValue(),
-				header: "Usuario",
+				header: "Carnet de identidad",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -69,7 +69,10 @@ export default function IndexSolapinPerdido() {
 			},
 			{
 				id: "fecha_registro",
-				accessorFn: (row) => row.fecha_registro,
+				accessorFn: (row) => {
+					const date = parseISO(row.fecha_registro);
+					return format(date, 'dd/MM/yy HH:mm:ss');
+				},
 				cell: (info) => info.getValue(),
 				header: "Fecha de Registro",
 				footer: (props) => props.column.id,

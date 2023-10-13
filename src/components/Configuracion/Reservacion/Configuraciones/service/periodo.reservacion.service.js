@@ -6,7 +6,7 @@ export const periodoReservacionApi = createApi({
 	baseQuery: customFetchBase,
 	tagTypes: ["PeriodoReservacion"],
 	endpoints: (builder) => ({
-		getPeriodoReservacions: builder.query({
+		getPeriodoReservaciones: builder.query({
 			query: (filters) => {
 				let baseURL = "/Reservacion_TbDperiodoReservacion/";
 				let queryStrings = [];
@@ -79,6 +79,6 @@ export const {
 	useDeletePeriodoReservacionMutation,
 	useEditPeriodoReservacionMutation,
 	useGetPeriodoReservacionByIdQuery,
-	useGetPeriodoReservacionsQuery,
+	useGetPeriodoReservacionesQuery,
 	useLazyGetPeriodoReservacionByIdQuery,
 } = periodoReservacionApi;

@@ -25,7 +25,17 @@ import {accesosApi} from "@/components/Configuracion/Cajero/Configuraciones/serv
 import {genericApi} from "@/services/generic.service.js";
 import {torpedoApi} from "@/components/Configuracion/Cajero/Torpedos/service/torpedo.service.js";
 import {solapinPerdidoApi} from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import {usuarioApi} from "@/services/usuario.service.js";
+import {usuarioApi} from "@/components/Configuracion/Seguridad/Usuarios/service/usuario.service.js";
+import {
+	periodoReservacionApi
+} from "@/components/Configuracion/Reservacion/Configuraciones/service/periodo.reservacion.service.js";
+import {elementomostrarApi} from "@/components/Configuracion/Reservacion/Configuraciones/service/elementos.mostrar.js";
+import {contactoApi} from "@/components/Configuracion/Reservacion/Configuraciones/service/contacto.service.js";
+import {
+	procesoReservacionApi
+} from "@/components/Configuracion/Reservacion/ConfiguracionProceso/service/configuracion.proceso.reservacion.js";
+import {eventoApi} from "@/components/Configuracion/Distribucion/Evento/service/evento.service.js";
+import {clasificacioneventoApi} from "@/components/Configuracion/Distribucion/Evento/service/calsificacion.evento.js";
 
 export const store = configureStore({
 	reducer: {
@@ -51,6 +61,12 @@ export const store = configureStore({
 		[torpedoApi.reducerPath]: torpedoApi.reducer,
 		[solapinPerdidoApi.reducerPath]: solapinPerdidoApi.reducer,
 		[usuarioApi.reducerPath]: usuarioApi.reducer,
+		[periodoReservacionApi.reducerPath]: periodoReservacionApi.reducer,
+		[elementomostrarApi.reducerPath]: elementomostrarApi.reducer,
+		[contactoApi.reducerPath]: contactoApi.reducer,
+		[procesoReservacionApi.reducerPath]: procesoReservacionApi.reducer,
+		[eventoApi.reducerPath]: eventoApi.reducer,
+		[clasificacioneventoApi.reducerPath]: clasificacioneventoApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({}).concat([
@@ -76,6 +92,12 @@ export const store = configureStore({
 			torpedoApi.middleware,
 			solapinPerdidoApi.middleware,
 			usuarioApi.middleware,
+			periodoReservacionApi.middleware,
+			elementomostrarApi.middleware,
+			contactoApi.middleware,
+			procesoReservacionApi.middleware,
+			eventoApi.middleware,
+			clasificacioneventoApi.middleware,
 		]),
 });
 

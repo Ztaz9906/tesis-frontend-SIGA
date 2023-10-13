@@ -30,7 +30,7 @@ export const sectionsMap = {
 		routes: [
 			{path: "/configuracion/distribucion/categorias", label: "Categoria"},
 			{path: "/configuracion/distribucion/estructuras", label: "Estructuras"},
-			{path: "/configuracion/distribucion/2", label: "Eventos"},
+			{path: "/configuracion/distribucion/eventos", label: "Eventos"},
 			{path: "/configuracion/distribucion/horarios", label: "Horarios"},
 			{path: "/configuracion/distribucion/5", label: "configuracion de reglas"}
 		],
@@ -38,8 +38,11 @@ export const sectionsMap = {
 	'Reservacion': {
 		icon: 'fa-solid fa-calendar-days',
 		routes: [
-			{path: "/configuracion/reservacion/configuracion-acceso", label: "Configuraciones"},
-			{path: "/configuracion/reservacion/2", label: "Configuracion del proceso de reservacion"},
+			{path: "/configuracion/reservacion/configuracion-reservacion", label: "Configuraciones de reservacion"},
+			{
+				path: "/configuracion/reservacion/configuracion-proceso-reservacion",
+				label: "Configuracion del proceso de reservacion"
+			},
 			{path: "/configuracion/reservacion/3", label: "Asignar responsable de reservacion"}
 		],
 	},
@@ -56,8 +59,7 @@ export const sectionsMap = {
 		routes: [
 			{path: "/configuracion/seguridad/instituciones", label: "Instituciones"},
 			{path: "/configuracion/seguridad/roles", label: "Roles y Permisos"},
-			{path: "/configuracion/seguridad/3", label: "Usuarios"},
-			{path: "/configuracion/seguridad/4", label: "Configuracion cobro"}
+			{path: "/configuracion/seguridad/usuarios", label: "Usuarios"},
 		],
 	},
 

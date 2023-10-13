@@ -1,38 +1,37 @@
-import React from "react";
-import {SGTable} from "../../../auxiliar/table";
-import Modal from "./components/modal.jsx";
-
-import {
-	useCreateAccesoMutation,
-	useEditAccesoMutation,
-	useGetAccesoQuery
-} from "@/components/Configuracion/Cajero/Configuraciones/service/accesos.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import useUser from "@/hooks/useUser.jsx";
+import {
+	useCreatePeriodoReservacionMutation,
+	useEditPeriodoReservacionMutation,
+	useGetPeriodoReservacionesQuery,
+} from "@/components/Configuracion/Reservacion/Configuraciones/service/periodo.reservacion.service.js";
+import {SGTable} from "@/components/auxiliar/table.jsx";
+import ModalPreiodoReservacion
+	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/PeriodoReservacion/modal.preiodo.reservacion.jsx";
 
 export default function PeriodoReservacion() {
-	const {data} = useGetAccesoQuery(undefined, {
+	const {data} = useGetPeriodoReservacionesQuery(undefined, {
 		refetchOnReconnect: true,
 	});
 	const [
-		createAcceso,
+		createPeriodoReservacion,
 		{
 			isError: isErrorC,
 			isLoading: isLoadingC,
 			isSuccess: isSuccessC,
 			error: errorC,
 		},
-	] = useCreateAccesoMutation()
+	] = useCreatePeriodoReservacionMutation()
 	const [
-		editAcceso,
+		editPeriodoReservacion,
 		{
 			isError: isErrorE,
 			isLoading: isLoadingE,
 			isSuccess: isSuccessE,
 			error: errorE,
 		},
-	] = useEditAccesoMutation();
+	] = useEditPeriodoReservacionMutation();
 
 	const [user] = useUser()
 	const getCurrentDate = () => {
@@ -47,12 +46,12 @@ export default function PeriodoReservacion() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Cantidad de acceso editada",
+		"Cantidad editada",
 	);
 
 	function handleDefault() {
-		createAcceso({
-			'cantidad_acceso': 0,
+		createPeriodoReservacion({
+			'periodo_reservacion': 0,
 			'fecha_registro': getCurrentDate(),
 			'id_institucion': user.institucion.id,
 		})
@@ -68,18 +67,19 @@ export default function PeriodoReservacion() {
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "cantidad_acceso",
-				accessorFn: (row) => row.cantidad_acceso,
-				cell: (info) => info.getValue(),
-				header: "Cantidad de accesos por persona",
-				footer: (props) => props.column.id,
-			},
-			{
-				id: "editar",
-				accessorFn: (row) => <Modal title={"Editar Accesos"} id={row.id_acceso_evento_secundario}
-				                            edit={editAcceso}/>,
-				cell: (info) => info.getValue(),
-				header: "Editar",
+				id: "periodo_reservacion",
+				accessorFn: (row) => row.periodo_reservacion,
+				cell: (info) => (
+					<div className="flex items-center justify-evenly">
+						<span>{info.getValue()}</span>
+						<ModalPreiodoReservacion
+							title={"Editar Periodo Reservaciones"}
+							id={info.row.original.id_periodo_reservacion}
+							edit={editPeriodoReservacion}/>
+
+					</div>
+				),
+				header: "Periodo de reservacion",
 				footer: (props) => props.column.id,
 			},
 		],

@@ -2,14 +2,18 @@ import {useEffect} from "react";
 import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,} from "@/components/ui/dialog.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {Pen} from "lucide-react";
-import {useLazyGetAccesoByIdQuery} from "@/components/Configuracion/Cajero/Configuraciones/service/accesos.service.js";
 import {Form, Formik} from "formik";
 import FormField from "@/components/auxiliar/FormField.jsx";
-import form from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/form.js";
-import initialValues from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/initialValues.js";
-import useUser from "@/hooks/useUser.jsx";
-import validations from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/validations.js";
+import form
+	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/ElementosMostrar/schemas/calendario/form.js";
+import initialValues
+	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/ElementosMostrar/schemas/calendario/initialValues.js";
+import validations
+	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/ElementosMostrar/schemas/calendario/validations.js";
 import Tooltip from "@mui/material/Tooltip";
+import {
+	useLazyGetElementoMostrarByIdQuery,
+} from "@/components/Configuracion/Reservacion/Configuraciones/service/elementos.mostrar.js";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -19,16 +23,15 @@ const getModifiedFields = (originalData, newData) => {
 	);
 };
 
-const Modal = ({id, title, edit}) => {
+const ModalCalendario = ({id, title, edit}) => {
 	const {formId, formField} = form;
 	const currentValidation = validations[0];
 
 	const [
-		getAccesoById,
+		getElementoMostrarById,
 		{data: acceso}
-	] = useLazyGetAccesoByIdQuery();
+	] = useLazyGetElementoMostrarByIdQuery();
 
-	const [user] = useUser();
 	const submitForm = async (values, actions) => {
 		try {
 			const modifiedFields = getModifiedFields(acceso, values);
@@ -46,7 +49,7 @@ const Modal = ({id, title, edit}) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Tooltip title={'Editar Accesos'}>
+				<Tooltip title={'Editar reservacion por platos'}>
 					<Button variant="ghost" size="icon">
 						<Pen size={15}/>
 					</Button>
@@ -59,21 +62,19 @@ const Modal = ({id, title, edit}) => {
 				<Formik
 					initialValues={{
 						...initialValues,
-						id_institucion: user.institucion.id,
-						id_puerta: id,
 					}}
 					validationSchema={currentValidation}
 					onSubmit={handleSubmit}
 				>
 					{({values, errors, touched, setFieldValue}) => {
-						const {cantidad_acceso: cantidad_accesoV} = values;
-						const {cantidad_acceso} = formField;
+						const {elementos_mostrar_calendario: elementos_mostrar_calendarioV} = values;
+						const {elementos_mostrar_calendario} = formField;
 						useEffect(() => {
 							if (id) {
-								getAccesoById(id)
+								getElementoMostrarById(id)
 									.unwrap()
 									.then((res) => {
-										setFieldValue(formField.cantidad_acceso.name, res.cantidad_acceso, true)
+										setFieldValue(formField.elementos_mostrar_calendario.name, res.elementos_mostrar_calendario, true)
 									});
 							}
 						}, [id]);
@@ -82,11 +83,11 @@ const Modal = ({id, title, edit}) => {
 								<div className="flex-grow">
 									<FormField
 										size="small"
-										type={formField.cantidad_acceso.type}
-										label={formField.cantidad_acceso.label}
-										name={formField.cantidad_acceso.name}
-										value={cantidad_accesoV}
-										error={errors.cantidad_acceso && touched.cantidad_acceso}
+										type={formField.elementos_mostrar_calendario.type}
+										label={formField.elementos_mostrar_calendario.label}
+										name={formField.elementos_mostrar_calendario.name}
+										value={elementos_mostrar_calendarioV}
+										error={errors.elementos_mostrar_calendario && touched.elementos_mostrar_calendario}
 										onKeyPress={e => {
 											if (!/[0-9]/.test(e.key)) {
 												e.preventDefault();
@@ -98,8 +99,6 @@ const Modal = ({id, title, edit}) => {
 								{/* El botón no tiene flex-grow, por lo que no crecerá y se quedará a la derecha */}
 								<Button type="submit" variant={'aceptar'}>Editar</Button>
 							</Form>
-
-
 						)
 					}}
 				</Formik>
@@ -108,4 +107,4 @@ const Modal = ({id, title, edit}) => {
 	);
 };
 
-export default Modal;
+export default ModalCalendario;

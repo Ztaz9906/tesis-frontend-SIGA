@@ -17,20 +17,21 @@ export default function SideBar({sectionsMap}) {
 	};
 
 	let filteredSections = [];
-	
-	if (user.is_staff) {
-		// Si el usuario es staff, usa todas las secciones sin filtrar
-		filteredSections = Object.entries(sectionsMap);
-	} else {
-		// Si no es staff, aplica el filtro
-		const activeModules = user?.institucion.active_modules.map((module) =>
-			module.toLowerCase()
-		); // Convertimos todo a minúsculas
-		filteredSections = Object.entries(sectionsMap).filter(
-			([sectionTitle]) =>
-				activeModules.includes(sectionTitle.toLowerCase()) ||
-				sectionTitle.toLowerCase() === "seguridad"
-		);
+	if (user) {
+		if (user.is_staff) {
+			// Si el usuario es staff, usa todas las secciones sin filtrar
+			filteredSections = Object.entries(sectionsMap);
+		} else {
+			// Si no es staff, aplica el filtro
+			const activeModules = user?.institucion.active_modules.map((module) =>
+				module.toLowerCase()
+			); // Convertimos todo a minúsculas
+			filteredSections = Object.entries(sectionsMap).filter(
+				([sectionTitle]) =>
+					activeModules.includes(sectionTitle.toLowerCase()) ||
+					sectionTitle.toLowerCase() === "seguridad"
+			);
+		}
 	}
 
 	return (
