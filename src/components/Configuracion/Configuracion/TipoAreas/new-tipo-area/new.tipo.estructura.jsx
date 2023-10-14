@@ -5,14 +5,14 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {Button, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
-import AddTipoTarjeta from "./components/tipo.tarjeta.info";
 import {
-  useCreateTipoTarjetaMutation,
-  useEditTipoTarjetaMutation,
-  useLazyGetTipoTarjetaByIdQuery,
-} from "../service/tipo.tarjeta.service";
+	useCreateTipoAreaMutation,
+	useEditTipoAreaMutation,
+	useLazyGetTipoAreaByIdQuery,
+} from "../service/tipo.areas.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import useUser from "../../../../../hooks/useUser";
+import AddTipoArea from "./components/tipo.area.info.jsx";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -22,57 +22,57 @@ const getModifiedFields = (originalData, newData) => {
 	);
 };
 
-export default function TipoTarjeta() {
+export default function TipoArea() {
 	const {id} = useParams();
 	const {formId, formField} = form;
 	const currentValidation = validations[0];
 	const navigate = useNavigate();
 	const [
-		createTipoTarjeta,
+		createTipoArea,
 		{
 			isError: isErrorC,
 			isLoading: isLoadingC,
 			isSuccess: isSuccessC,
 			error: errorC,
 		},
-	] = useCreateTipoTarjetaMutation();
+	] = useCreateTipoAreaMutation();
 
 	const [
-		editTipoTarjeta,
+		editTipoArea,
 		{
 			isError: isErrorE,
 			isLoading: isLoadingE,
 			isSuccess: isSuccessE,
 			error: errorE,
 		},
-	] = useEditTipoTarjetaMutation();
+	] = useEditTipoAreaMutation();
 
-	const [getTipoTarjetaById, {data}] = useLazyGetTipoTarjetaByIdQuery();
+	const [getTipoAreaById, {data}] = useLazyGetTipoAreaByIdQuery();
 
 	useRedirectForm(
 		isLoadingC,
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tipo de Tarjeta Creada",
-		"/configuracion/cajero/tipo_tarjetas"
+		"Tipo de Area Creada",
+		"/configuracion/configuracion/tipo_areas"
 	);
 	useRedirectForm(
 		isLoadingE,
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tipo de Tarjeta Editada",
-		"/configuracion/cajero/tipo_tarjetas"
+		"Tipo de Area Editada",
+		"/configuracion/configuracion/tipo_areas"
 	);
 	const submitForm = async (values, actions) => {
 		try {
 			if (!id) {
-				createTipoTarjeta(values);
+				createTipoArea(values);
 			} else {
 				const modifiedFields = getModifiedFields(data, values);
 				if (Object.keys(modifiedFields).length !== 0) {
-					editTipoTarjeta({id: id, ...modifiedFields});
+					editTipoArea({id: id, ...modifiedFields});
 				}
 			}
 		} catch (error) {
@@ -90,7 +90,7 @@ export default function TipoTarjeta() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Tipo de Tarjeta" : `Editar Tipo de Tarjeta`}
+						{!id ? "Registrar Tipo de Area" : `Editar Tipo de Area`}
 					</Typography>
 				</div>
 				<Formik
@@ -104,19 +104,18 @@ export default function TipoTarjeta() {
 					{({values, errors, touched, setFieldValue}) => {
 						useEffect(() => {
 							if (id) {
-								getTipoTarjetaById(id)
+								getTipoAreaById(id)
 									.unwrap()
 									.then((res) => {
 										setFieldValue(formField.activo.name, res.activo, true);
 										setFieldValue(
-											formField.nombre_tipo_tarjeta.name,
-											res.nombre_tipo_tarjeta,
+											formField.nombre_tipo_estructura.name,
+											res.nombre_tipo_estructura,
 											true
 										);
-										setFieldValue(formField.color.name, res.color, true);
 										setFieldValue(
-											formField.descripcion.name,
-											res.descripcion,
+											formField.descripcion_tipo_estructura.name,
+											res.descripcion_tipo_estructura,
 											true
 										);
 									});
@@ -124,7 +123,7 @@ export default function TipoTarjeta() {
 						}, [id]);
 						return (
 							<Form id={formId} autoComplete="off">
-								<AddTipoTarjeta
+								<AddTipoArea
 									formData={{
 										values,
 										touched,
@@ -135,7 +134,7 @@ export default function TipoTarjeta() {
 								<div className="mt-6 w-full flex justify-between">
 									<Button
 										onClick={() => {
-											navigate("/configuracion/cajero/tipo_tarjetas");
+											navigate("/configuracion/configuracion/tipo_areas");
 										}}
 										variant="outlined"
 										color="error"

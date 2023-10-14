@@ -45,6 +45,10 @@ import NotFound from "@/components/auxiliar/NotFound.jsx";
 import UnAuthorized from "@/components/auxiliar/UnAuthorized.jsx";
 import IndexUsuarioes from "@/components/Configuracion/Seguridad/Usuarios/index.jsx";
 import Usuario from "@/components/Configuracion/Seguridad/Usuarios/new-usuario/new.usuario.jsx";
+import IndexTipoEstrutura from "@/components/Configuracion/Configuracion/TipoAreas/index.jsx";
+import IndexAreas from "@/components/Configuracion/Configuracion/Areas/index.jsx";
+import TipoArea from "@/components/Configuracion/Configuracion/TipoAreas/new-tipo-area/new.tipo.estructura.jsx";
+import Area from "@/components/Configuracion/Configuracion/Areas/new-area/new.area.jsx";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -108,7 +112,12 @@ const RUTAS_POR_MODULO = {
 	configuracion: [
 		{path: "1", element: <Placeholder/>},
 		{path: "2", element: <Placeholder/>},
-		{path: "4", element: <Placeholder/>}
+		{path: "tipo_areas", element: <IndexTipoEstrutura/>},
+		{path: "tipo_areas/create", element: <TipoArea/>},
+		{path: "tipo_areas/update/:id", element: <TipoArea/>},
+		{path: "areas", element: <IndexAreas/>},
+		{path: "area/create", element: <Area/>},
+		{path: "area/update/:id", element: <Area/>}
 	],
 	seguridad: [
 		{path: "instituciones", element: <IndexInstituciones/>},

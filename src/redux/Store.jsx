@@ -36,6 +36,8 @@ import {
 } from "@/components/Configuracion/Reservacion/ConfiguracionProceso/service/configuracion.proceso.reservacion.js";
 import {eventoApi} from "@/components/Configuracion/Distribucion/Evento/service/evento.service.js";
 import {clasificacioneventoApi} from "@/components/Configuracion/Distribucion/Evento/service/calsificacion.evento.js";
+import {tipoAreasApi,} from "@/components/Configuracion/Configuracion/TipoAreas/service/tipo.areas.service.js";
+import {areasApi,} from "@/components/Configuracion/Configuracion/Areas/service/areas.service.js";
 
 export const store = configureStore({
 	reducer: {
@@ -67,6 +69,8 @@ export const store = configureStore({
 		[procesoReservacionApi.reducerPath]: procesoReservacionApi.reducer,
 		[eventoApi.reducerPath]: eventoApi.reducer,
 		[clasificacioneventoApi.reducerPath]: clasificacioneventoApi.reducer,
+		[tipoAreasApi.reducerPath]: tipoAreasApi.reducer,
+		[areasApi.reducerPath]: areasApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({}).concat([
@@ -98,6 +102,8 @@ export const store = configureStore({
 			procesoReservacionApi.middleware,
 			eventoApi.middleware,
 			clasificacioneventoApi.middleware,
+			tipoAreasApi.middleware,
+			areasApi.middleware,
 		]),
 });
 

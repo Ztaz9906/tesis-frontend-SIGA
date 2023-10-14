@@ -5,7 +5,7 @@ import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import UserAvatar from "./UserAvatar";
-import {useLogoutMutation} from "../../services/login.service";
+import {useLogoutMutation} from "@/services/login.service.js";
 import {useRedirectForm} from "../../hooks/useRedirectForm";
 import useUser from "../../hooks/useUser";
 
@@ -42,12 +42,12 @@ export default function UserSettings() {
 		>
 			<Typography className="text-black text-sm">
 
-				{user.is_staff ? 'Admin' : user?.persona.nombre_completo}
+				{user.is_staff ? 'Admin' : user?.persona ? user?.persona.nombre_completo : user?.username}
 			</Typography>
 			<Tooltip title="Abrir Opciones de Usuario">
 				<IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
 					<UserAvatar
-						name={user.is_staff ? "Admin" : user?.persona.nombre_completo}
+						name={user.is_staff ? "Admin" : user?.persona ? user?.persona.nombre_completo : user?.username}
 					/>
 				</IconButton>
 			</Tooltip>

@@ -22,7 +22,7 @@ export const sectionsMap = {
 	'Facturacion': {
 		icon: 'fa-solid fa-circle-dollar-to-slot',
 		routes: [
-			{path: "/configuracion/facturacion/1", label: "Reglas a excluir"}
+			{path: "/configuracion/facturacion/1", label: "Configuracion cobro"}
 		],
 	},
 	'Distribucion': {
@@ -32,7 +32,6 @@ export const sectionsMap = {
 			{path: "/configuracion/distribucion/estructuras", label: "Estructuras"},
 			{path: "/configuracion/distribucion/eventos", label: "Eventos"},
 			{path: "/configuracion/distribucion/horarios", label: "Horarios"},
-			{path: "/configuracion/distribucion/5", label: "configuracion de reglas"}
 		],
 	},
 	'Reservacion': {
@@ -51,7 +50,8 @@ export const sectionsMap = {
 		routes: [
 			{path: "/configuracion/configuracion/1", label: "Configuracion de comensales"},
 			{path: "/configuracion/configuracion/2", label: "Comensales"},
-			{path: "/configuracion/configuracion/4", label: "Configuracion cobro"}
+			{path: "/configuracion/configuracion/tipo_areas", label: "Configuracion del Tipo de Areas"},
+			{path: "/configuracion/configuracion/areas", label: "Configuracion de Areas"}
 		],
 	},
 	'Seguridad': {
