@@ -64,7 +64,7 @@ export default function IndexEvento() {
 				id: "evento_padre",
 				accessorFn: (row) => row.evento_padre?.nombre_evento,
 				cell: (info) => info.getValue(),
-				header: "Activo",
+				header: "Evento Padre",
 				footer: (props) => props.column.id,
 			},
 			{

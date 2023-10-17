@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import {useDeleteHorarioMutation, useGetHorariosQuery,} from "./service/horario.service";
 import {Button} from "../../../ui/button";
 import Delete from "../../../auxiliar/delete";
-import {useRedirectForm} from "../../../../hooks/useRedirectForm";
+import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
 import {Tooltip} from "@mui/material";
 

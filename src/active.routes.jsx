@@ -49,6 +49,19 @@ import IndexTipoEstrutura from "@/components/Configuracion/Configuracion/TipoAre
 import IndexAreas from "@/components/Configuracion/Configuracion/Areas/index.jsx";
 import TipoArea from "@/components/Configuracion/Configuracion/TipoAreas/new-tipo-area/new.tipo.estructura.jsx";
 import Area from "@/components/Configuracion/Configuracion/Areas/new-area/new.area.jsx";
+import IndexConfiguracionComensales from "@/components/Configuracion/Configuracion/ConfiguracionComensales/index.jsx";
+import ConfiguracionComensal
+	from "@/components/Configuracion/Configuracion/ConfiguracionComensales/new-configuracion-comensales/new.configuracion.comensal.jsx";
+import AddComensal
+	from "@/components/Configuracion/Configuracion/ConfiguracionComensales/add-comensal/add.comensal.jsx";
+import ComensalesActivos from "@/components/Configuracion/Configuracion/ComensalesActivos/ComensalesActivos.jsx";
+import IndexAsignarResponsablesReservacion from "@/components/Configuracion/Reservacion/AsignarResponsables/index.jsx";
+import Responsable
+	from "@/components/Configuracion/Reservacion/AsignarResponsables/new-responsable/new.responsable.jsx";
+import AsociarPersonas
+	from "@/components/Configuracion/Reservacion/AsignarResponsables/aociar-personas/asociar.personas.areas.jsx";
+import Detalles from "@/components/Configuracion/Reservacion/AsignarResponsables/detalles/details.jsx";
+import AsociarPersonaTarjeta from "@/components/Configuracion/Cajero/Tarjetas/asociar-persona/asociar.persona.jsx";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -75,6 +88,7 @@ const RUTAS_POR_MODULO = {
 		{path: "tarjeta/create", element: <Tarjeta/>},
 		{path: "tarjeta/update/:id", element: <Tarjeta/>},
 		{path: "tarjeta/update-estado/:id", element: <Tarjeta/>},
+		{path: "tarjeta/asociar-persona/:id", element: <AsociarPersonaTarjeta/>},
 		{path: "asignar-ip", element: <IndexAsignarIP/>},
 		{path: "asignar-ip/:id", element: <AsignarIp/>},
 		{path: "configuraccion-acceso", element: <IndexConfiguracion/>},
@@ -107,14 +121,19 @@ const RUTAS_POR_MODULO = {
 	reservacion: [
 		{path: "configuracion-reservacion", element: <IndexConfiguracionReservacion/>},
 		{path: "configuracion-proceso-reservacion", element: <IndexConfiguracionProcesoReservacion/>},
-		{path: "3", element: <Placeholder/>}
+		{path: "responsable-areas", element: <IndexAsignarResponsablesReservacion/>},
+		{path: "responsable-areas/details/:id", element: <Detalles/>},
+		{path: "responsable-areas/asignar-responsable/:id", element: <Responsable/>},
+		{path: "responsable-areas/asociar-personas/:id", element: <AsociarPersonas/>},
 	],
 	configuracion: [
-		{path: "1", element: <Placeholder/>},
-		{path: "2", element: <Placeholder/>},
+		{path: "configuracion-comensales", element: <IndexConfiguracionComensales/>},
+		{path: "configurar-comensales/agregar-valores/:id", element: <ConfiguracionComensal/>},
+		{path: "configurar-comensales/asociar-personas/:id", element: <AddComensal/>},
+		{path: "2", element: <ComensalesActivos/>},
 		{path: "tipo_areas", element: <IndexTipoEstrutura/>},
-		{path: "tipo_areas/create", element: <TipoArea/>},
-		{path: "tipo_areas/update/:id", element: <TipoArea/>},
+		{path: "tipo_area/create", element: <TipoArea/>},
+		{path: "tipo_area/update/:id", element: <TipoArea/>},
 		{path: "areas", element: <IndexAreas/>},
 		{path: "area/create", element: <Area/>},
 		{path: "area/update/:id", element: <Area/>}

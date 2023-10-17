@@ -42,13 +42,13 @@ export const sectionsMap = {
 				path: "/configuracion/reservacion/configuracion-proceso-reservacion",
 				label: "Configuracion del proceso de reservacion"
 			},
-			{path: "/configuracion/reservacion/3", label: "Asignar responsable de reservacion"}
+			{path: "/configuracion/reservacion/responsable-areas", label: "Asignar responsable de reservacion"}
 		],
 	},
 	'Configuracion': {
 		icon: 'fa-solid fa-gear',
 		routes: [
-			{path: "/configuracion/configuracion/1", label: "Configuracion de comensales"},
+			{path: "/configuracion/configuracion/configuracion-comensales", label: "Configuracion de comensales"},
 			{path: "/configuracion/configuracion/2", label: "Comensales"},
 			{path: "/configuracion/configuracion/tipo_areas", label: "Configuracion del Tipo de Areas"},
 			{path: "/configuracion/configuracion/areas", label: "Configuracion de Areas"}

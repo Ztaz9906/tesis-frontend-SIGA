@@ -103,7 +103,8 @@ export default function Evento() {
 								getEventoById(id)
 									.unwrap()
 									.then((res) => {
-										setFieldValue(formField.active.name, res.active, true);
+										console.log(res)
+										setFieldValue(formField.activo.name, res.activo, true);
 										setFieldValue(
 											formField.descripcion_evento.name,
 											res.descripcion_evento,

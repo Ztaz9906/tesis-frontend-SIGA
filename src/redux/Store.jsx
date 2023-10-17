@@ -38,6 +38,19 @@ import {eventoApi} from "@/components/Configuracion/Distribucion/Evento/service/
 import {clasificacioneventoApi} from "@/components/Configuracion/Distribucion/Evento/service/calsificacion.evento.js";
 import {tipoAreasApi,} from "@/components/Configuracion/Configuracion/TipoAreas/service/tipo.areas.service.js";
 import {areasApi,} from "@/components/Configuracion/Configuracion/Areas/service/areas.service.js";
+import {
+	configuracionComensalesApi
+} from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/configuracion.comensales.service.js";
+import {
+	valoresconfiguracionComensalesApi
+} from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/valores.configuracion.comensales.js";
+import {
+	responsableReservacionApi
+} from "@/components/Configuracion/Reservacion/AsignarResponsables/service/responsable.reservacion.service.js";
+import {
+	asignaraPersonasAreasReservacionApi
+} from "@/components/Configuracion/Reservacion/AsignarResponsables/service/areas.personas.reservacion.service.js";
+import {asociarTarjetaApi} from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
 
 export const store = configureStore({
 	reducer: {
@@ -71,6 +84,11 @@ export const store = configureStore({
 		[clasificacioneventoApi.reducerPath]: clasificacioneventoApi.reducer,
 		[tipoAreasApi.reducerPath]: tipoAreasApi.reducer,
 		[areasApi.reducerPath]: areasApi.reducer,
+		[configuracionComensalesApi.reducerPath]: configuracionComensalesApi.reducer,
+		[valoresconfiguracionComensalesApi.reducerPath]: valoresconfiguracionComensalesApi.reducer,
+		[responsableReservacionApi.reducerPath]: responsableReservacionApi.reducer,
+		[asignaraPersonasAreasReservacionApi.reducerPath]: asignaraPersonasAreasReservacionApi.reducer,
+		[asociarTarjetaApi.reducerPath]: asociarTarjetaApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({}).concat([
@@ -104,6 +122,11 @@ export const store = configureStore({
 			clasificacioneventoApi.middleware,
 			tipoAreasApi.middleware,
 			areasApi.middleware,
+			configuracionComensalesApi.middleware,
+			valoresconfiguracionComensalesApi.middleware,
+			responsableReservacionApi.middleware,
+			asignaraPersonasAreasReservacionApi.middleware,
+			asociarTarjetaApi.middleware,
 		]),
 });
 
