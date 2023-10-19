@@ -10,6 +10,9 @@ import {Tooltip} from "@mui/material";
 import {useGetTipoTarjetasQuery} from "@/components/Configuracion/Cajero/TipoTarjetas/service/tipo.tarjeta.service.js";
 import {useGetEstadoTarjetasQuery} from "@/components/Configuracion/Cajero/Tarjetas/service/estado.tarjeta.service.js";
 import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
+import {
+	useGetAsociarTarjetasQuery
+} from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
 
 export default function IndexTarjeta() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
@@ -17,6 +20,12 @@ export default function IndexTarjeta() {
 	const {data} = useGetTarjetasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const {data: tarjetas_asociadas} = useGetAsociarTarjetasQuery(undefined, {
+		refetchOnReconnect: true,
+	});
+
+	const filterID = tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion);
+
 	const [
 		deleteTarjeta,
 		{
@@ -34,6 +43,9 @@ export default function IndexTarjeta() {
 		errorD,
 		"Tarjeta Eliminada"
 	);
+	React.useEffect(() => {
+
+	}, []);
 	const datadef = {
 		columns: [
 			{
@@ -82,13 +94,15 @@ export default function IndexTarjeta() {
 								<FileEditIcon size={15}/>
 							</Link>
 						</Tooltip>
-						<Tooltip title={'Editar estado'}>
-							<Link
-								to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
-							>
-								<UserPlus2 size={17}/>
-							</Link>
-						</Tooltip>
+						{filterID?.includes(row.id_tarjeta_alimentacion) ? null : (
+							<Tooltip title={'Asociar tarjeta'}>
+								<Link
+									to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
+								>
+									<UserPlus2 size={17}/>
+								</Link>
+							</Tooltip>
+						)}
 						<Delete
 							title={`Borrar tarjeta con numero de serie: ${row.numero_serie}`}
 							message="Esta seguro que desea eliminar esta Tarjeta"

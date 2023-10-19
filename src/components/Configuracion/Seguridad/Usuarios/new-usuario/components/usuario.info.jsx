@@ -22,7 +22,7 @@ export default function AddUsuario({formData}) {
 		password: passwordV,
 		password_confirm: password_confirmV,
 	} = values;
-	console.log(id)
+
 	return (
 		<div className="p-4">
 			<div className="flex flex-wrap -mx-3">

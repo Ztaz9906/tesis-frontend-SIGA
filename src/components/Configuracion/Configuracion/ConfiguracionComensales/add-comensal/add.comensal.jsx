@@ -67,11 +67,6 @@ export default function AddComensal() {
 			});
 	}
 
-
-	useEffect(() => {
-		console.log('ID', processingId)
-		console.log(isLoadingC)
-	}, [processingId])
 	const datadef = {
 		columns: [
 			{

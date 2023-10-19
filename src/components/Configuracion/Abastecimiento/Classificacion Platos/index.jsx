@@ -32,7 +32,6 @@ export default function IndexClassPlatos() {
 		errorD,
 		"Clasificacion de Platos Eliminada"
 	);
-	console.log(data);
 
 	const datadef = {
 		columns: [

@@ -36,7 +36,7 @@ export default function IndexAsignarIP() {
 
 	const puertas = getFlatDoors(data)
 
-	console.log(puertas)
+
 	const datadef = {
 		columns: [
 			{

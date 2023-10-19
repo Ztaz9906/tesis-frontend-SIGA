@@ -37,8 +37,8 @@ export default function IndexAsignarResponsablesReservacion() {
 			refetchOnReconnect: true,
 		});
 		setAsociadosIds(new Set(asociados?.map(aso => aso.id_estructura.id_estructura) || []));
-		console.log(asociadosIds);
-		console.log(asociadosIds.has(id));
+
+
 		return asociadosIds.has(id)
 	}
 
@@ -48,12 +48,9 @@ export default function IndexAsignarResponsablesReservacion() {
 		});
 		setResponsablesIds(new Set(responsables?.map(res => res.id_estructura.id_estructura) || []));
 
-		console.log(responsablesIds);
-		console.log(responsablesIds.has(id));
 		return responsablesIds.has(id)
 	}
 
-	console.log(data);
 	const datadef = {
 		columns: [
 			{
@@ -71,16 +68,16 @@ export default function IndexAsignarResponsablesReservacion() {
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "responsable",
-				accessorFn: (row) => getDataResponsables(row.id_estructura),
-				cell: (info) => info.getValue() ? "NO" : "SI",
+				id: "tiene_responsables_reservacion",
+				accessorFn: (row) => row.tiene_responsables_reservacion,
+				cell: (info) => info.getValue() ? "SI" : "NO",
 				header: "Tiene responsables",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "asociados",
-				accessorFn: (row) => getDataAsociados(row.id_estructura),
-				cell: (info) => info.getValue() ? "NO" : "SI",
+				id: "tiene_responsables_area",
+				accessorFn: (row) => row.tiene_responsables_area,
+				cell: (info) => info.getValue() ? "SI" : "NO",
 				header: "Tiene personas asociadas",
 				footer: (props) => props.column.id,
 			},
@@ -102,15 +99,15 @@ export default function IndexAsignarResponsablesReservacion() {
 								<UserPlus2 size={15}/>
 							</Link>
 						</Tooltip>
-						<Tooltip title={'Asignar personas'}>
-							<Link
-								to={`/configuracion/reservacion/responsable-areas/asociar-personas/${row.id_estructura}`}
-							>
-								<Users2 size={15}/>
-							</Link>
-						</Tooltip>
-
-
+						{row.tiene_responsables_reservacion ? (
+							<Tooltip title={'Asignar personas'}>
+								<Link
+									to={`/configuracion/reservacion/responsable-areas/asociar-personas/${row.id_estructura}`}
+								>
+									<Users2 size={15}/>
+								</Link>
+							</Tooltip>
+						) : ''}
 					</div>
 				),
 				cell: (info) => info.getValue(),
@@ -159,7 +156,7 @@ export default function IndexAsignarResponsablesReservacion() {
 							},
 							{
 								type: "select",
-								name: "responsables",
+								name: "tiene_responsables_reservacion",
 								label: "Tiene responsables",
 								options: [
 									{value: "", label: "--Seleccione--"},
@@ -169,7 +166,7 @@ export default function IndexAsignarResponsablesReservacion() {
 							},
 							{
 								type: "select",
-								name: "asociados",
+								name: "tiene_responsables_area",
 								label: "Tiene personas asociadas",
 								options: [
 									{value: "", label: "--Seleccione--"},

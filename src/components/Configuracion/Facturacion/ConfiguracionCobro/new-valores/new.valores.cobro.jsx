@@ -1,27 +1,30 @@
 import {Form, Formik} from "formik";
-import validations from "./schemas/validations";
+import {validacionConfiguracionCobro, validacionValoresConfiguracion} from "./schemas/validations";
 import form from "./schemas/form";
 import {useNavigate, useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {Button, Typography} from "@mui/material";
-import {initialValuesForm1} from "./schemas/initialValues";
+import {initialValuesForm1, initialValuesForm2} from "./schemas/initialValues";
 import useUser from "../../../../../hooks/useUser";
-import AddConfiguraciionComensales from "./components/configuracion.comensal.info.jsx";
 import {
-	useEditConfiguracionComensalesMutation,
-	useLazyGetConfiguracionComensalesByIdQuery
+	useEditConfiguracionComensalesMutation
 } from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/configuracion.comensales.service.js";
-import AddValoresConfiguraciionComensales
-	from "@/components/Configuracion/Configuracion/ConfiguracionComensales/new-configuracion-comensales/components/valores.configuracion.comensales.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Trash} from "lucide-react";
 import Delete from "@/components/auxiliar/delete.jsx";
-import {
-	useCreateValoresConfiguracionComensalesMutation,
-	useDeleteValoresConfiguracionComensalesMutation,
-	useGetValoresConfiguracionComensalesQuery,
-} from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/valores.configuracion.comensales.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
+import {
+	useCreateValoresConfiguracionCobroMutation,
+	useDeleteValoresConfiguracionCobroMutation,
+	useGetValoresConfiguracionCobrosQuery,
+} from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/valores.configuracion.cobro.service.js";
+import AddConfiguraciionCobro
+	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/components/configuracion.cobro.info.jsx";
+import AddValoresConfiguraciionCobro
+	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/components/valores.configuracion.comensales.jsx";
+import {
+	useLazyGetConfiguracionCobroByIdQuery
+} from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -31,28 +34,21 @@ const getModifiedFields = (originalData, newData) => {
 	);
 };
 
-export default function ConfiguracionComensal() {
+export default function AgregarValoresConfigurcionCobro() {
 	const {id} = useParams();
 	const {form1Id, formField} = form;
-	const currentValidationForm1 = validations[0];
 	const navigate = useNavigate();
-	const [IdValores, setIdValores] = useState()
-	const [redirect, setRedirect] = useState(true)
-	useEffect(() => {
-		if (!redirect) {
-			navigate(`/configuracion/configuracion/configuracion-comensales`)
-		}
-	}, [redirect])
-	const [getConfiguracionComensales, {data: congiguracion}] = useLazyGetConfiguracionComensalesByIdQuery();
+
+	const [getConfiguracionCobro, {data: congiguracion}] = useLazyGetConfiguracionCobroByIdQuery();
 	const [
-		CreateValoresConfiguracionComensales,
+		CreateValoresConfiguracionCobro,
 		{
 			isError: isErrorC,
 			isLoading: isLoadingC,
 			isSuccess: isSuccessC,
 			error: errorC,
 		},
-	] = useCreateValoresConfiguracionComensalesMutation();
+	] = useCreateValoresConfiguracionCobroMutation();
 	useRedirectForm(
 		isLoadingC,
 		isSuccessC,
@@ -62,14 +58,14 @@ export default function ConfiguracionComensal() {
 	);
 
 	const [
-		DeleteValoresConfiguracionComensales,
+		DeleteValoresConfiguracionCobro,
 		{
 			isError: isErrorD,
 			isLoading: isLoadingD,
 			isSuccess: isSuccessD,
 			error: errorD,
 		},
-	] = useDeleteValoresConfiguracionComensalesMutation();
+	] = useDeleteValoresConfiguracionCobroMutation();
 	useRedirectForm(
 		isLoadingD,
 		isSuccessD,
@@ -77,7 +73,7 @@ export default function ConfiguracionComensal() {
 		errorD,
 		"Valor de configuracion eliminado",
 	);
-	const {data} = useGetValoresConfiguracionComensalesQuery({id_configuracion_persona: IdValores}, {
+	const {data} = useGetValoresConfiguracionCobrosQuery({id_configuracion_cobro: id}, {
 		refetchOnReconnect: true,
 	});
 	const [
@@ -94,8 +90,8 @@ export default function ConfiguracionComensal() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Valores de la configuracion de comensales agregados",
-		'/configuracion/configuracion/configuracion-comensales'
+		"Valores de la configuracion de cobro agregados",
+		'/configuracion/facturacion/configuracion-cobro'
 	);
 	const submitForm = async (values) => {
 		const modifiedFields = getModifiedFields(congiguracion, values);
@@ -115,23 +111,37 @@ export default function ConfiguracionComensal() {
 		columns: [
 			{
 				id: "id_categoria",
-				accessorFn: (row) => row.id_categoria.nombre_categoria,
+				accessorFn: (row) => row.id_categoria?.nombre_categoria,
 				cell: (info) => info.getValue(),
 				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_categoria_residente",
-				accessorFn: (row) => row.id_categoria_residente.nombre_categoria_residente,
+				accessorFn: (row) => row.id_categoria_residente?.nombre_categoria_residente,
 				cell: (info) => info.getValue(),
 				header: "Descripción",
 				footer: (props) => props.column.id,
 			},
 			{
-				id: "id_estructura",
-				accessorFn: (row) => row.id_estructura.nombre_estructura,
+				id: "id_tipo_cobro",
+				accessorFn: (row) => row.id_tipo_cobro?.nombre_tipo_cobro,
 				cell: (info) => info.getValue(),
-				header: "Activo",
+				header: "Tipo de cobro",
+				footer: (props) => props.column.id,
+			},
+			{
+				id: "id_evento",
+				accessorFn: (row) => row.id_evento?.nombre_evento,
+				cell: (info) => info.getValue(),
+				header: "Evento",
+				footer: (props) => props.column.id,
+			},
+			{
+				id: "precio",
+				accessorFn: (row) => row.precio,
+				cell: (info) => info.getValue(),
+				header: "Precio",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -139,9 +149,9 @@ export default function ConfiguracionComensal() {
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
-							title={`Borrar el ID:${row.id_calores_configuracion_persona}`}
+							title={`Borrar el ID:${row.id_valores_configuracion_cobro}`}
 							message="Esta seguro que desea eliminar este valor de la configuracion"
-							action={() => DeleteValoresConfiguracionComensales(row.id_calores_configuracion_persona)}
+							action={() => DeleteValoresConfiguracionCobro(row.id_valores_configuracion_cobro)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
 								<Trash size={15}/>
@@ -158,11 +168,11 @@ export default function ConfiguracionComensal() {
 	};
 	const handleAsociar = (values, actions) => {
 
-		const {descripcion, activo, ...rest} = values
+		const {descripcion, nombre_configuracion_cobro, ...rest} = values
 
-		CreateValoresConfiguracionComensales({
-			id_configuracion_persona: IdValores,
-			...rest
+		CreateValoresConfiguracionCobro({
+			id_configuracion_cobro: id,
+			...values
 		})
 	}
 	return (
@@ -170,34 +180,32 @@ export default function ConfiguracionComensal() {
 
 			<div className="text-center mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{!id ? "Registrar Configuracion de Comensales" : `Editar Configuracion de Comensales`}
+					{`Valores de configuracion de cobro`}
 				</Typography>
 			</div>
 			<Formik
 				initialValues={{
 					...initialValuesForm1,
-					activo: true,
 					id_institucion: user.institucion.id,
 				}}
-				validationSchema={currentValidationForm1}
+				validationSchema={validacionConfiguracionCobro}
 				onSubmit={handleSubmit}
 			>
 				{({values, errors, touched, setFieldValue}) => {
 					useEffect(() => {
 						if (id) {
-							getConfiguracionComensales(id)
+							getConfiguracionCobro(id)
 								.unwrap()
 								.then((res) => {
 									setFieldValue(formField.descripcion.name, res.descripcion, true);
-									setIdValores(res.id_configuracion_persona);
-									setRedirect(res.activo);
+									setFieldValue(formField.nombre_configuracion_cobro.name, res.nombre_configuracion_cobro, true);
 								});
 						}
 					}, [id]);
 					return (
 						<div className={'flex flex-col p-3'}>
 							<Form id={form1Id} autoComplete="off">
-								<AddConfiguraciionComensales
+								<AddConfiguraciionCobro
 									formData={{
 										values,
 										touched,
@@ -205,21 +213,11 @@ export default function ConfiguracionComensal() {
 										errors,
 									}}
 								/>
-								<AddValoresConfiguraciionComensales
-									formData={{
-										formField,
-									}}
-								/>
-								<Button onClick={() => {
-									handleAsociar(values)
-								}} variant="outlined" color="success">
-									Asociar
-								</Button>
-								<SGTable data={datadef} setFilter={false} setPagination={false}/>
+
 								<div className="mt-6 w-full flex justify-start gap-2">
 									<Button
 										onClick={() => {
-											navigate("/configuracion/configuracion/configuracion-comensales");
+											navigate("/configuracion/facturacion/configuracion-cobro");
 										}}
 										variant="outlined"
 										color="error"
@@ -235,6 +233,33 @@ export default function ConfiguracionComensal() {
 					);
 				}}
 			</Formik>
+			<Formik
+				initialValues={{
+					...initialValuesForm2,
+					id_institucion: user.institucion.id,
+				}}
+				validationSchema={validacionValoresConfiguracion}
+				onSubmit={handleAsociar}
+			>
+				{({values, errors, touched}) => {
+					return (
+						<Form id={'form2Id'} autoComplete="off">
+							<AddValoresConfiguraciionCobro
+								formData={{
+									formField,
+									values,
+									touched,
+									errors,
+								}}
+							/>
+							<Button type={'submit'} variant="outlined" color="success">
+								Asociar
+							</Button>
+						</Form>
+					);
+				}}
+			</Formik>
+			<SGTable data={datadef} setFilter={false} setPagination={false}/>
 		</div>
 	);
 }

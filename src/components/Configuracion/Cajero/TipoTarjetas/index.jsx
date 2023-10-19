@@ -32,7 +32,7 @@ export default function IndexTipoTarjeta() {
 		errorD,
 		"Tipo de Tarjeta Eliminada"
 	);
-	console.log(data);
+
 	const datadef = {
 		columns: [
 			{

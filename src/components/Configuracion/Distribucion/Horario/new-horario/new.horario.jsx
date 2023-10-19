@@ -6,9 +6,9 @@ import {useEffect} from "react";
 import {Button, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {
-  useCreateHorarioMutation,
-  useEditHorarioMutation,
-  useLazyGetHorarioByIdQuery,
+	useCreateHorarioMutation,
+	useEditHorarioMutation,
+	useLazyGetHorarioByIdQuery,
 } from "../service/horario.service";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import AddHorario from "./components/horario.info";
@@ -108,7 +108,7 @@ export default function Horario() {
 								getHorarioById(id)
 									.unwrap()
 									.then((res) => {
-										console.log(res);
+
 										setFieldValue(formField.activo.name, res.activo, true);
 										setFieldValue(
 											formField.hora_inicio.name,

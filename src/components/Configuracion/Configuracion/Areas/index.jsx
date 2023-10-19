@@ -41,7 +41,7 @@ export default function IndexAreas() {
 		value: tipo.id_tipo_estructura.toString(),
 		label: tipo.nombre_tipo_estructura,
 	}));
-	console.log(data);
+
 	const datadef = {
 		columns: [
 			{

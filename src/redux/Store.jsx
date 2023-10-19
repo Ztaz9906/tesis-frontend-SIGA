@@ -51,6 +51,13 @@ import {
 	asignaraPersonasAreasReservacionApi
 } from "@/components/Configuracion/Reservacion/AsignarResponsables/service/areas.personas.reservacion.service.js";
 import {asociarTarjetaApi} from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
+import {uploadExelApi} from "@/components/Configuracion/Seguridad/CargarExel/service/entrada.datos.js";
+import {
+	valoresconfiguracionCobroApi
+} from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/valores.configuracion.cobro.service.js";
+import {
+	configuracionCobroApi
+} from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 
 export const store = configureStore({
 	reducer: {
@@ -89,6 +96,9 @@ export const store = configureStore({
 		[responsableReservacionApi.reducerPath]: responsableReservacionApi.reducer,
 		[asignaraPersonasAreasReservacionApi.reducerPath]: asignaraPersonasAreasReservacionApi.reducer,
 		[asociarTarjetaApi.reducerPath]: asociarTarjetaApi.reducer,
+		[uploadExelApi.reducerPath]: uploadExelApi.reducer,
+		[valoresconfiguracionCobroApi.reducerPath]: valoresconfiguracionCobroApi.reducer,
+		[configuracionCobroApi.reducerPath]: configuracionCobroApi.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({}).concat([
@@ -127,6 +137,9 @@ export const store = configureStore({
 			responsableReservacionApi.middleware,
 			asignaraPersonasAreasReservacionApi.middleware,
 			asociarTarjetaApi.middleware,
+			uploadExelApi.middleware,
+			valoresconfiguracionCobroApi.middleware,
+			configuracionCobroApi.middleware,
 		]),
 });
 

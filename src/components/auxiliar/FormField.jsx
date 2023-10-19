@@ -4,14 +4,15 @@ import {ErrorMessage, Field} from "formik";
 import {Box, IconButton, InputAdornment, TextField, Typography} from "@mui/material";
 import {MdOutlineVisibility, MdOutlineVisibilityOff} from "react-icons/md"; // Asumiendo que estás usando estos íconos
 
-export default function FormField({
-	                                  label,
-	                                  name,
-	                                  variant = "outlined",
-	                                  as = TextField,
-	                                  type, // Agrega type a las props
-	                                  ...rest
-                                  }) {
+export default function FormField(
+	{
+		label,
+		name,
+		variant = "outlined",
+		as = TextField,
+		type, // Agrega type a las props
+		...rest
+	}) {
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleClickShowPassword = () => setShowPassword((show) => !show);

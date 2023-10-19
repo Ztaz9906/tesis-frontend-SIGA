@@ -51,7 +51,7 @@ export default function AddSolapinPerdido() {
 		CreateSolapinPerdido(newValues)
 	}
 
-	console.log(data)
+
 	const datadef = {
 		columns: [
 			{

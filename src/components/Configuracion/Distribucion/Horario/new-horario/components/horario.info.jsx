@@ -27,7 +27,7 @@ export default function AddHorario({formData}) {
 	const {data} = useGetDiasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
-	console.log(data);
+
 	return (
 		<div className="p-4">
 			<div className="flex flex-wrap -mx-3">

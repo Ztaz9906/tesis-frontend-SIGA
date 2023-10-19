@@ -62,6 +62,10 @@ import AsociarPersonas
 	from "@/components/Configuracion/Reservacion/AsignarResponsables/aociar-personas/asociar.personas.areas.jsx";
 import Detalles from "@/components/Configuracion/Reservacion/AsignarResponsables/detalles/details.jsx";
 import AsociarPersonaTarjeta from "@/components/Configuracion/Cajero/Tarjetas/asociar-persona/asociar.persona.jsx";
+import EntradaDatos from "@/components/Configuracion/Seguridad/CargarExel/CargarExcel.jsx";
+import IndexConfiguracionCobro from "@/components/Configuracion/Facturacion/ConfiguracionCobro/index.jsx";
+import AgregarValoresConfigurcionCobro
+	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/new.valores.cobro.jsx";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -99,7 +103,9 @@ const RUTAS_POR_MODULO = {
 		{path: "solapin_perdido/create", element: <AddSolapinPerdido/>}
 	],
 	facturacion: [
-		{path: "1", element: <Placeholder/>}
+		{path: "configuracion-cobro", element: <IndexConfiguracionCobro/>},
+		{path: "configuracion-cobro/agregar-valores/:id", element: <AgregarValoresConfigurcionCobro/>}
+
 	],
 	distribucion: [
 		{path: "categorias", element: <Index/>},
@@ -147,7 +153,9 @@ const RUTAS_POR_MODULO = {
 		{path: "roles/update/:id", element: <Roles/>},
 		{path: "usuarios", element: <IndexUsuarioes/>},
 		{path: "usuario/create", element: <Usuario/>},
-		{path: "usuario/update/:id", element: <Usuario/>}
+		{path: "usuario/update/:id", element: <Usuario/>},
+		{path: "entrada-datos", element: <EntradaDatos/>}
+
 
 	]
 };

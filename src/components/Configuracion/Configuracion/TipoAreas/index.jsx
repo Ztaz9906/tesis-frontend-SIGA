@@ -32,7 +32,7 @@ export default function IndexTipoEstrutura() {
 		errorD,
 		"Tipo de area eliminada"
 	);
-	console.log(data);
+
 	const datadef = {
 		columns: [
 			{

@@ -32,7 +32,6 @@ export default function Index() {
 		errorD,
 		"Categoria Eliminada"
 	);
-	console.log(data);
 	const datadef = {
 		columns: [
 			{

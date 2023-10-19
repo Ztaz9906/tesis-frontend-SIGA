@@ -35,7 +35,6 @@ export default function IndexEvento() {
 		errorD,
 		"Evento Eliminado"
 	);
-	console.log(data);
 
 	const {data: calsificacion_evento} = useGetClasificacionEventosQuery(undefined, {
 		refetchOnReconnect: true,

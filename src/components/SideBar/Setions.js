@@ -22,7 +22,7 @@ export const sectionsMap = {
 	'Facturacion': {
 		icon: 'fa-solid fa-circle-dollar-to-slot',
 		routes: [
-			{path: "/configuracion/facturacion/1", label: "Configuracion cobro"}
+			{path: "/configuracion/facturacion/configuracion-cobro", label: "Configuracion del cobro"}
 		],
 	},
 	'Distribucion': {
@@ -60,6 +60,7 @@ export const sectionsMap = {
 			{path: "/configuracion/seguridad/instituciones", label: "Instituciones"},
 			{path: "/configuracion/seguridad/roles", label: "Roles y Permisos"},
 			{path: "/configuracion/seguridad/usuarios", label: "Usuarios"},
+			{path: "/configuracion/seguridad/entrada-datos", label: "Entrada de datos"},
 		],
 	},
 

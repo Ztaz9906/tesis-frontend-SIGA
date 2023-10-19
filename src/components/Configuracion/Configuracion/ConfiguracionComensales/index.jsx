@@ -18,7 +18,7 @@ export default function IndexConfiguracionComensales() {
 		refetchOnReconnect: true,
 	});
 	const [user] = useUser()
-	console.log(data);
+
 	const datadef = {
 		columns: [
 			{

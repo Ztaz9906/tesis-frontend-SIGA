@@ -31,7 +31,6 @@ export default function EstructuraPadre({formData}) {
 		}
 	}, []);
 	const renderTreeItem = (area) => {
-		console.log(area);
 		return (
 			<StyledTreeItem
 				nodeId={String(area.id)}

@@ -46,8 +46,6 @@ export default function Roles() {
 	] = useEditGrupoMutation();
 
 	const [getGrupoById, {data}] = useLazyGetGrupoByIdQuery();
-	// console.log("Permisos en roles new", permisos);
-	// console.log("Grupo en roles new", data);
 	useRedirectForm(
 		isLoadingC,
 		isSuccessC,
@@ -108,7 +106,7 @@ export default function Roles() {
 								getGrupoById(id)
 									.unwrap()
 									.then((res) => {
-										console.log(res);
+
 										setFieldValue(formField.name.name, res.name, true);
 										setPermisos(res.permissions);
 									});

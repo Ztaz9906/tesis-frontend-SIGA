@@ -36,7 +36,7 @@ export default function IndexSolapinPerdido() {
 		errorD,
 		"Persona con Solapin Perdido Eliminada"
 	);
-	console.log(data)
+
 	const datadef = {
 		columns: [
 			{

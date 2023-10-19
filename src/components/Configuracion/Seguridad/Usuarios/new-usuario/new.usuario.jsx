@@ -37,8 +37,8 @@ export default function Usuario() {
 		}
 	}, [id]);
 	const navigate = useNavigate();
-	console.log(currentInitialValues)
-	console.log(validation)
+
+
 	const [
 		createUsuario,
 		{
@@ -117,7 +117,7 @@ export default function Usuario() {
 								getUsuarioById(id)
 									.unwrap()
 									.then((res) => {
-										console.log(res)
+
 										setFieldValue(formField.username.name, res.username, true);
 										setFieldValue(
 											formField.email.name,

@@ -9,9 +9,9 @@ import initialValues from "./schemas/initialValues";
 
 import {useRedirectForm} from "../../../../../hooks/useRedirectForm";
 import {
-  useCreateEstructuraMutation,
-  useEditEstructuraMutation,
-  useLazyGetEstructuraByIdQuery,
+	useCreateEstructuraMutation,
+	useEditEstructuraMutation,
+	useLazyGetEstructuraByIdQuery,
 } from "../service/estructura.service";
 import AddEstructura from "./components/estructura.info";
 import EstructuraPadre from "./components/estructura.padre";
@@ -136,7 +136,7 @@ export default function Estructura() {
 								getEstructuraById(id)
 									.unwrap()
 									.then((res) => {
-										console.log(res);
+										(res);
 										setFieldValue(formField.active.name, res.active, true);
 										setFieldValue(
 											formField.description.name,

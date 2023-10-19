@@ -42,21 +42,18 @@ client.interceptors.request.use(
 					.replace(window.location.origin)
 					.then(() => window.location.reload());
 			}
-
+			if (config.data instanceof FormData) {
+				delete config.headers["Content-Type"];
+			} else {
+				config.headers["Content-Type"] = "application/json";
+			}
 			if (token) {
 				if (typeof token === "object") {
 					sessionStorage.setItem("token", token.data.access);
 					sessionStorage.setItem("refresh", token.data.refresh);
-
-					config.headers = {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token.data.access}`,
-					};
+					config.headers["Authorization"] = `Bearer ${token.data.access}`;
 				} else {
-					config.headers = {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`,
-					};
+					config.headers["Authorization"] = `Bearer ${token}`;
 				}
 			}
 		}
@@ -91,7 +88,7 @@ export function isRefreshNeeded(token) {
       window.open(_url, "_blank").focus();
     })
     .catch((err) => {
-      console.log(err);
+      (err);
     });
 } */
 
