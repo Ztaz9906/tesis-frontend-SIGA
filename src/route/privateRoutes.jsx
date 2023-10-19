@@ -13,7 +13,6 @@ export default function PrivateRoute({children}) {
 		}
 	}
 	return (<div>
-		RutaPrivatizada
 		{children}
 	</div>);
 }
