@@ -1,5 +1,6 @@
 export const sectionsMap = {
 	'Abastecimiento': {
+		title: 'Abastecimiento',
 		icon: 'fa-cart-shopping',
 		routes: [
 			{path: "/configuracion/abastecimiento/clasificacion_platos", label: "Clasificacion Platos"},
@@ -9,6 +10,7 @@ export const sectionsMap = {
 		],
 	},
 	'Cajero': {
+		title: 'Cajero',
 		icon: 'fa-sharp fa-solid fa-desktop',
 		routes: [
 			{path: "/configuracion/cajero/tipo_tarjetas", label: "Tipo de Tarjetas"},
@@ -20,12 +22,14 @@ export const sectionsMap = {
 		],
 	},
 	'Facturacion': {
+		title: 'Facturación',
 		icon: 'fa-solid fa-circle-dollar-to-slot',
 		routes: [
 			{path: "/configuracion/facturacion/configuracion-cobro", label: "Configuracion del cobro"}
 		],
 	},
 	'Distribucion': {
+		title: 'Distribución',
 		icon: 'fa-solid fa-maximize',
 		routes: [
 			{path: "/configuracion/distribucion/categorias", label: "Categoria"},
@@ -35,6 +39,7 @@ export const sectionsMap = {
 		],
 	},
 	'Reservacion': {
+		title: 'Reservación',
 		icon: 'fa-solid fa-calendar-days',
 		routes: [
 			{path: "/configuracion/reservacion/configuracion-reservacion", label: "Configuraciones de reservacion"},
@@ -46,6 +51,7 @@ export const sectionsMap = {
 		],
 	},
 	'Configuracion': {
+		title: 'Configuración',
 		icon: 'fa-solid fa-gear',
 		routes: [
 			{path: "/configuracion/configuracion/configuracion-comensales", label: "Configuracion de comensales"},
@@ -55,6 +61,7 @@ export const sectionsMap = {
 		],
 	},
 	'Seguridad': {
+		title: 'Seguridad',
 		icon: 'fa-solid fa-shield',
 		routes: [
 			{path: "/configuracion/seguridad/instituciones", label: "Instituciones"},

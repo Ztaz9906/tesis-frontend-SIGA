@@ -1,7 +1,7 @@
-import { useSnackbar } from "notistack";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { ErrorHandling, ErrorTrue } from "../lib/errorhandle";
+import {useSnackbar} from "notistack";
+import {useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {ErrorHandling, ErrorTrue} from "../lib/errorhandle";
 
 /**
  * Hook para el manejo de errores dentro de la app, así como el manejo de redirecciones una vez realizada
@@ -18,61 +18,61 @@ import { ErrorHandling, ErrorTrue } from "../lib/errorhandle";
  */
 
 export const useRedirectForm = (
-  isLoading,
-  isSuccess,
-  isError,
-  error,
-  successMessage,
-  customUrl
+	isLoading,
+	isSuccess,
+	isError = false, // Valor por defecto en caso de que no se pase isError
+	error = null,    // Valor por defecto en caso de que no se pase error
+	successMessage,
+	customUrl
 ) => {
-  const navigate = useNavigate();
-  const { enqueueSnackbar } = useSnackbar();
+	const navigate = useNavigate();
+	const {enqueueSnackbar} = useSnackbar();
 
-  useEffect(() => {
-    if (isSuccess) {
-      if (customUrl) navigate(customUrl);
+	useEffect(() => {
+		if (isSuccess) {
+			if (customUrl) navigate(customUrl);
 
-      successMessage &&
-        enqueueSnackbar(successMessage, {
-          variant: "success",
-        });
-    }
+			successMessage &&
+			enqueueSnackbar(successMessage, {
+				variant: "success",
+			});
+		}
 
-    if (isError) {
-      if (Array.isArray(error.data)) {
-        error.data.map((el) =>
-          typeof el === "object"
-            ? Object.entries(el).map(([k, v]) =>
-                enqueueSnackbar(
-                  `${k.charAt(0).toUpperCase() + k.slice(1)}: ${v[0]}`,
-                  {
-                    variant: "error",
-                    autoHideDuration: 1500,
-                  }
-                )
-              )
-            : enqueueSnackbar(el, { variant: "error", autoHideDuration: 1500 })
-        );
-      } else if (typeof error.data === "object") {
-        Object.entries(error.data).map(([key, value]) =>
-          enqueueSnackbar(
-            `${key.charAt(0).toUpperCase() + key.slice(1)}: ${
-              typeof value === "string"
-                ? value
-                : value.map((el) =>
-                    typeof el === "string"
-                      ? el
-                      : Object.values(el).map((v) => v)
-                  )
-            }`,
-            {
-              variant: "error",
-            }
-          )
-        );
-      } else if (ErrorTrue(error.status)) {
-        enqueueSnackbar(ErrorHandling(error.status), { variant: "error" });
-      }
-    }
-  }, [isLoading]);
+		if (isError) {
+			if (Array.isArray(error.data)) {
+				error.data.map((el) =>
+					typeof el === "object"
+						? Object.entries(el).map(([k, v]) =>
+							enqueueSnackbar(
+								`${k.charAt(0).toUpperCase() + k.slice(1)}: ${v[0]}`,
+								{
+									variant: "error",
+									autoHideDuration: 1500,
+								}
+							)
+						)
+						: enqueueSnackbar(el, {variant: "error", autoHideDuration: 1500})
+				);
+			} else if (typeof error.data === "object") {
+				Object.entries(error.data).map(([key, value]) =>
+					enqueueSnackbar(
+						`${key.charAt(0).toUpperCase() + key.slice(1)}: ${
+							typeof value === "string"
+								? value
+								: value.map((el) =>
+									typeof el === "string"
+										? el
+										: Object.values(el).map((v) => v)
+								)
+						}`,
+						{
+							variant: "error",
+						}
+					)
+				);
+			} else if (ErrorTrue(error.status)) {
+				enqueueSnackbar(ErrorHandling(error.status), {variant: "error"});
+			}
+		}
+	}, [isLoading]);
 };
