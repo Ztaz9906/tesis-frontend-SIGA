@@ -25,7 +25,7 @@ export default function SideBar({sectionsMap}) {
 			// Si no es staff, aplica el filtro
 			const activeModules = user?.institucion.active_modules.map((module) =>
 				module.toLowerCase()
-			); // Convertimos todo a minúsculas
+			);
 			filteredSections = Object.entries(sectionsMap).filter(
 				([sectionTitle]) =>
 					activeModules.includes(sectionTitle.toLowerCase()) ||
@@ -53,7 +53,7 @@ export default function SideBar({sectionsMap}) {
 						style={{minHeight: "45px"}}
 					>
 						<i className={`fa-solid ${config.icon} p-1`}></i>
-						<Typography>{title}</Typography>
+						<Typography>{config.title}</Typography>
 					</AccordionSummary>
 					<AccordionDetails
 						style={{backgroundColor: "#f5f5f5", padding: "8px 24px"}}
