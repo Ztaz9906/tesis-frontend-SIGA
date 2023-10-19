@@ -17,7 +17,7 @@ import * as Yup from "yup";
 import checkout from "./form";
 
 const {
-  formField: { name, active, description,color},
+  formField: { name, active, description,color,base},
 } = checkout;
 
 const validations = [
@@ -26,6 +26,7 @@ const validations = [
     [active.name]: Yup.string().required(active.errorMsg),
     [description.name]: Yup.string().required(description.errorMsg),
     [color.name]: Yup.string().required(color.errorMsg),
+    [base.name]: Yup.string().required(base.errorMsg),
   }),
 ];
 export default validations;

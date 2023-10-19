@@ -1,60 +1,74 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-type is a library for typechecking of props
 import PropTypes from "prop-types";
-// formik components
-import { ErrorMessage, Field } from "formik";
-import { Box, TextField, Typography } from "@mui/material";
+import {useState} from "react";
+import {ErrorMessage, Field} from "formik";
+import {Box, IconButton, InputAdornment, TextField, Typography} from "@mui/material";
+import {MdOutlineVisibility, MdOutlineVisibilityOff} from "react-icons/md"; // Asumiendo que estás usando estos íconos
 
-// Material Dashboard 2 PRO React components
+export default function FormField(
+	{
+		label,
+		name,
+		variant = "outlined",
+		as = TextField,
+		type, // Agrega type a las props
+		...rest
+	}) {
+	const [showPassword, setShowPassword] = useState(false);
 
-export default function FormField({
-  label,
-  name,
-  variant = "outlined",
-  as = TextField,
-  ...rest
-}) {
-  return (
-    <Box mb={1.5}>
-      <Field
-        {...rest}
-        name={name}
-        as={as}
-        variant={variant}
-        label={label}
-        fullWidth
-      />
-      <Box mt={0.75}>
-        <Typography
-          component="div"
-          variant="caption"
-          color="error"
-          fontWeight="regular"
-        >
-          <ErrorMessage name={name} />
-        </Typography>
-      </Box>
-    </Box>
-  );
+	const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+	const handleMouseDownPassword = (event) => {
+		event.preventDefault();
+	};
+
+	const isPasswordField = type === "password";
+	const fieldProps = {
+		...rest,
+		name: name,
+		variant: variant,
+		label: label,
+		fullWidth: true,
+		type: isPasswordField && showPassword ? "text" : type,
+	};
+
+	if (isPasswordField && as === TextField) {
+		fieldProps.InputProps = {
+			endAdornment: (
+				<InputAdornment position="end">
+					<IconButton
+						aria-label="toggle password visibility"
+						onClick={handleClickShowPassword}
+						onMouseDown={handleMouseDownPassword}
+					>
+						{showPassword ? <MdOutlineVisibilityOff/> : <MdOutlineVisibility/>}
+					</IconButton>
+				</InputAdornment>
+			),
+		};
+	}
+	return (
+		<Box mb={1.5}>
+			<Field
+				{...fieldProps}
+				as={as}
+			/>
+			<Box mt={0.75}>
+				<Typography
+					component="div"
+					variant="caption"
+					color="error"
+					fontWeight="regular"
+				>
+					<ErrorMessage name={name}/>
+				</Typography>
+			</Box>
+		</Box>
+	);
 }
 
-//typechecking props for FormField
 FormField.propTypes = {
-  variant: PropTypes.string,
-  label: PropTypes.string,
-  name: PropTypes.string.isRequired,
+	variant: PropTypes.string,
+	label: PropTypes.string,
+	name: PropTypes.string.isRequired,
+	type: PropTypes.string, // Agrega type a las propTypes
 };

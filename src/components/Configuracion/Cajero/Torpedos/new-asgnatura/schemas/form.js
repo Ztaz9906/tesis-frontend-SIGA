@@ -1,41 +1,49 @@
-/**
-=========================================================
-* Material Dashboard 2 PRO React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-dashboard-pro-react
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 const form = {
-  formId: "new-torpedo",
-  formField: {
-    nombre: {
-      name: "nombre",
-      label: "Nombre",
-      type: "text",
-      errorMsg: "El nombre es requerido.",
+    formId: "new-torpedo",
+    formField: {
+        nombre_completo: {
+            name: "nombre_completo",
+            label: "Nombre",
+            type: "text",
+            errorMsg: "El nombre es requerido.",
+        },
+        ci: {
+            name: "ci",
+            label: "CI",
+            type: "text",
+            errorMsg: "El carnet de identidad es requerido.",
+        },
+        descripcion: {
+            name: "descripcion",
+            label: "Descripcion",
+            type: "text",
+            errorMsg: "La descripcion es requerida.",
+        },
+        id_sexo: {
+            name: "id_sexo",
+            label: "Sexo",
+            type: "text",
+            errorMsg: "Seleccione un sexo.",
+        },
+        id_municipio: {
+            name: "id_municipio",
+            label: "Municipio",
+            type: "text",
+            errorMsg: "Seleccione un municipio.",
+        },
+        id_provincia: {
+            name: "id_provincia",
+            label: "Provincia",
+            type: "text",
+            errorMsg: "Seleccione un provincia.",
+        },
+        id_pais: {
+            name: "id_pais",
+            label: "Pais",
+            type: "text",
+            errorMsg: "Seleccione un pais.",
+        },
     },
-    clave: {
-      name: "clave",
-      label: "Descripcion",
-      type: "text",
-      errorMsg: "La clave es requerida.",
-    },
-
-    activo: {
-      name: "activo",
-      label: "Activo",
-      type: "text",
-      errorMsg: "Activo es requerido.",
-    },
-  },
 };
 
 export default form;
