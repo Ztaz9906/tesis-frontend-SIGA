@@ -1,21 +1,15 @@
-import {Formik, Form} from "formik";
+import {Form, Formik} from "formik";
 
 import {SettingsValidations} from "./schemas/validations";
 import form from "./schemas/form";
-import {useNavigate, useParams} from "react-router-dom";
-import {useEffect} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import {useEffect, useState} from "react";
 import {Button} from "@mui/material";
 
-import {useRedirectForm} from "../../../../../hooks/useRedirectForm";
-import {
-	useEditEstructuraMutation,
-	useLazyGetEstructuraByIdQuery,
-} from "../service/estructura.service";
-
-import {useState} from "react";
+import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
+import {useEditEstructuraMutation, useLazyGetEstructuraByIdQuery,} from "../service/estructura.service";
 
 import SettingsEstructura from "./configurar.estructura";
-import {Link} from "react-router-dom";
 import {List} from "lucide-react";
 import {initialValuesSettings} from "./schemas/initialValues";
 
@@ -157,17 +151,17 @@ export default function AddSettings() {
 									);
 									setFieldValue(
 										formField.id_tecnico_general.name,
-										res.id_tecnico_general.id_persona,
+										res.id_tecnico_general ? res.id_tecnico_general.id : '',
 										true
 									);
 									setFieldValue(
 										formField.id_especialista_complejo.name,
-										res.id_especialista_complejo.id_persona,
+										res.id_especialista_complejo ? res.id_especialista_complejo.id : '',
 										true
 									);
 									setFieldValue(
 										formField.id_sub_director.name,
-										res.id_sub_director.id_persona,
+										res.id_sub_director ? res.id_sub_director.id : '',
 										true
 									);
 								});

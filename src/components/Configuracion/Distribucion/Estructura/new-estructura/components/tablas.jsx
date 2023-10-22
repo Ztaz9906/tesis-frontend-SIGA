@@ -1,10 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {SGTable} from "../../../../../auxiliar/table";
 import {Avatar} from "@mui/material";
 import {Trash} from "lucide-react";
 import {useLazyGetEstructuraByIdQuery} from "../../service/estructura.service";
-import {useState} from "react";
-import {useEffect} from "react";
 
 export function TablaEstructura({id}) {
 	const [getEstructuraById, {data}] = useLazyGetEstructuraByIdQuery();
@@ -37,7 +35,7 @@ export function TablaEstructura({id}) {
 			{
 				id: "category",
 				cell: ({row}) => row.original.category.name,
-				header: "Solapín",
+				header: "Categoría",
 				footer: (props) => props.column.id,
 			},
 			{
