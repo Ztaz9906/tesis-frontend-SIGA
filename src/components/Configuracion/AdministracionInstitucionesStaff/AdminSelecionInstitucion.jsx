@@ -46,7 +46,7 @@ export default function ModalInstitucionSelecion() {
 				<Fade in={open}>
 					<Box sx={style}>
 						<Typography id="transition-modal-title" variant="h6" component="h2">
-							Sleciona una institucion para administrar
+							Seleciona una institución para administrar
 						</Typography>
 						<SelectInstitucion setOpen={setOpen}/>
 					</Box>

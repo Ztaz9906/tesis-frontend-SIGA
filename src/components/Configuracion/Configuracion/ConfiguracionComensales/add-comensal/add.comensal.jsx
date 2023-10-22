@@ -52,7 +52,7 @@ export default function AddComensal() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Comensal asignnado",
+		"Comensal asignado",
 	);
 
 	function handleSubmit(id_persona) {
