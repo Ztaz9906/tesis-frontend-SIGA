@@ -37,7 +37,7 @@ export default function IndexTipoProducto() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Clasificacion de Platos Eliminada"
+		"Tipo de producto eliminado"
 	);
 
 	const datadef = {
@@ -74,7 +74,7 @@ export default function IndexTipoProducto() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar este tipo de producto"
+							message="¿Está seguro que desea eliminar este tipo de producto?"
 							action={() => deleteTipoProducto(row.id_tipo_producto)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -125,7 +125,7 @@ export default function IndexTipoProducto() {
 							type: "text",
 							name: "nombre_tipo_producto",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

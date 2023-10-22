@@ -3,9 +3,9 @@ const form = {
 	formField: {
 		direccion: {
 			name: "direccion",
-			label: "Direccion",
+			label: "Dirección",
 			type: "text",
-			errorMsg: "Debe poner una direccion.",
+			errorMsg: "Debe poner una dirección.",
 		},
 		correo: {
 			name: "correo",
@@ -15,9 +15,9 @@ const form = {
 		},
 		telefono: {
 			name: "telefono",
-			label: "Telefono",
+			label: "Teléfono",
 			type: "phone",
-			errorMsg: "Debe poner un telefono.",
+			errorMsg: "Debe poner un teléfono.",
 		},
 	},
 };

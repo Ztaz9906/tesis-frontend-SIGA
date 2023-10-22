@@ -80,7 +80,7 @@ export default function Categoria() {
     isSuccessC,
     isErrorC,
     errorC,
-    "Categoria Creada",
+    "Categoría Creada",
     "/configuracion/distribucion/categorias"
   );
   useRedirectForm(
@@ -88,7 +88,7 @@ export default function Categoria() {
     isSuccessE,
     isErrorE,
     errorE,
-    "Categoria Editada",
+    "Categoría Editada",
     "/configuracion/distribucion/categorias"
   );
   const submitForm = async (values, actions) => {

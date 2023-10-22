@@ -34,7 +34,7 @@ export default function IndexSolapinPerdido() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Persona con Solapin Perdido Eliminada"
+		"Persona con Solapín Perdido Eliminada"
 	);
 
 	const datadef = {
@@ -43,7 +43,7 @@ export default function IndexSolapinPerdido() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.id_persona.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -57,14 +57,14 @@ export default function IndexSolapinPerdido() {
 				id: "solapin",
 				accessorFn: (row) => row.id_persona.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_solapin",
 				accessorFn: (row) => row.id_persona.codigo_solapin,
 				cell: (info) => info.getValue(),
-				header: "Codigo de Barras",
+				header: "Código",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -83,7 +83,7 @@ export default function IndexSolapinPerdido() {
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
 							title={`Borrar ${row.id_persona.nombre_completo}`}
-							message="Esta seguro que desea cancelar este Solapin Perdido?"
+							message="¿Está seguro que desea eliminar este Solapín Perdido?"
 							action={() => deleteSolapinPerdido(row.id_solapin_perdido)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -106,11 +106,11 @@ export default function IndexSolapinPerdido() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas con Solapin Perdido
+					Listado de Personas con Solapín Perdido
 				</h2>
 				<div className="flex">
 					<Tooltip
-						title="Añadir Solapin Perdido"
+						title="Añadir Solapín Perdido"
 					>
 						<Link
 							to={"/configuracion/cajero/solapin_perdido/create"}

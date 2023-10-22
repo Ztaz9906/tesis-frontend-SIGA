@@ -64,7 +64,7 @@ export default function IndexAsignarResponsablesReservacion() {
 				id: "id_tipo_estructura",
 				accessorFn: (row) => row.id_tipo_estructura.nombre_tipo_estructura,
 				cell: (info) => info.getValue(),
-				header: "Tipo de Area",
+				header: "Tipo de Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -121,7 +121,7 @@ export default function IndexAsignarResponsablesReservacion() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Areas
+					Listado de Áreas
 				</h2>
 				<div className="flex">
 					<Tooltip
@@ -148,7 +148,7 @@ export default function IndexAsignarResponsablesReservacion() {
 							{
 								type: "select",
 								name: "id_tipo_estructura",
-								label: "Tipo de area",
+								label: "Tipo de Área",
 								options: [
 									{value: "", label: "--Activo--"},
 									...tiposAreasOptions

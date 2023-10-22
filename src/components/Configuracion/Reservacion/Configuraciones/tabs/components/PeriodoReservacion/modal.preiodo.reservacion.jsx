@@ -51,7 +51,7 @@ const ModalPreiodoReservacion = ({id, title, edit}) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Tooltip title={'Editar PeridoReservacions'}>
+				<Tooltip title={'Editar Perído de Reservación'}>
 					<Button variant="ghost" size="icon">
 						<Pen size={15}/>
 					</Button>

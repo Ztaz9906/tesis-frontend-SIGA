@@ -55,21 +55,21 @@ export default function IndexAreas() {
 				id: "codigo_externo",
 				accessorFn: (row) => row.codigo_externo,
 				cell: (info) => info.getValue(),
-				header: "Codigo Externo",
+				header: "Código Externo",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_area",
 				accessorFn: (row) => row.codigo_area,
 				cell: (info) => info.getValue(),
-				header: "Codigo de Area",
+				header: "Código de Área",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_tipo_estructura",
 				accessorFn: (row) => row.id_tipo_estructura.nombre_tipo_estructura,
 				cell: (info) => info.getValue(),
-				header: "Tipo de Area",
+				header: "Tipo de Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -90,7 +90,7 @@ export default function IndexAreas() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_tipo_tarjeta}`}
-							message="Esta seguro que desea eliminar esta TipoEstrutura"
+							message="¿Está seguro que desea eliminar esta área?"
 							action={() => deleteTipoEstrutura(row.id_estructura)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -110,7 +110,7 @@ export default function IndexAreas() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Areas
+					Listado de Áreas
 				</h2>
 				<div className="flex">
 					<Link
@@ -121,7 +121,7 @@ export default function IndexAreas() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las los tipos de areas"
+						title="Filtro para los tipos de área"
 					>
 						<Button
 							variant={"ghost"}
@@ -144,19 +144,19 @@ export default function IndexAreas() {
 								type: "text",
 								name: "nombre_estructura",
 								label: "Nombre exacto",
-								placeholder: "Sensible a mayusculas y minusculas",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "text",
 								name: "codigo_area",
 								label: "Nombre exacto",
-								placeholder: "Sensible a mayusculas y minusculas",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "text",
 								name: "codigo_externo",
 								label: "Nombre exacto",
-								placeholder: "Sensible a mayusculas y minusculas",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "select",

@@ -50,7 +50,7 @@ export default function Area() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Area Creada",
+		"Área Creada",
 		"/configuracion/configuracion/areas"
 	);
 	useRedirectForm(
@@ -58,7 +58,7 @@ export default function Area() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Area Editada",
+		"Área Editada",
 		"/configuracion/configuracion/areas"
 	);
 	const submitForm = async (values, actions) => {

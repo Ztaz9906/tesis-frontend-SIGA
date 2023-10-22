@@ -122,7 +122,7 @@ export function SGTable({
                 {setPagination && (
                     <div className="flex flex-col sm:flex-row gap-5 justify-between items-center">
                         <div className="grid grid-cols-2 items-center gap-3 pl-2">
-                            <p className="text-xs font-medium">Filas por pagina</p>
+                            <p className="text-xs font-medium">Filas por página</p>
                             <Select
                                 value={table.getState().pagination.pageSize}
                                 onValueChange={(value) => {
@@ -244,9 +244,9 @@ export function SGTable({
                                 className="flex flex-row w-full md:justify-between justify-center items-center gap-3 pl-2">
                                 <div className="flex flex-row w-auto">
                                     <p className="w-full text-center sm:text-left text-xs">
-                                        Page{" "}
+                                        Página{" "}
                                         <strong className="text-xs">
-                                            {table.getState().pagination.pageIndex + 1} of{" "}
+                                            {table.getState().pagination.pageIndex + 1} de{" "}
                                             {table.getPageCount()}
                                         </strong>
                                     </p>

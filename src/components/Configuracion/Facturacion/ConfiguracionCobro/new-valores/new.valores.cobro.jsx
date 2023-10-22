@@ -54,7 +54,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Valor de configuracion asociado",
+		"Valor de configuración asociado",
 	);
 
 	const [
@@ -71,7 +71,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Valor de configuracion eliminado",
+		"Valor de configuración eliminado",
 	);
 	const {data} = useGetValoresConfiguracionCobrosQuery({id_configuracion_cobro: id}, {
 		refetchOnReconnect: true,
@@ -90,7 +90,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Valores de la configuracion de cobro agregados",
+		"Valores de la configuración de cobro agregados",
 		'/configuracion/facturacion/configuracion-cobro'
 	);
 	const submitForm = async (values) => {
@@ -150,7 +150,7 @@ export default function AgregarValoresConfigurcionCobro() {
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
 							title={`Borrar el ID:${row.id_valores_configuracion_cobro}`}
-							message="Esta seguro que desea eliminar este valor de la configuracion"
+							message="¿Está seguro que desea eliminar este valor de la configuración?"
 							action={() => DeleteValoresConfiguracionCobro(row.id_valores_configuracion_cobro)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -180,7 +180,7 @@ export default function AgregarValoresConfigurcionCobro() {
 
 			<div className="text-center mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{`Valores de configuracion de cobro`}
+					{`Valores de configuración de cobro`}
 				</Typography>
 			</div>
 			<Formik

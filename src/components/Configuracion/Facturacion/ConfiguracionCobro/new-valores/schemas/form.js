@@ -10,9 +10,9 @@ const form = {
 		},
 		descripcion: {
 			name: "descripcion",
-			label: "Descripcion",
+			label: "Descripción",
 			type: "text",
-			errorMsg: "La Descripcion es requerida.",
+			errorMsg: "La descripción es requerida.",
 		},
 		precio: {
 			name: "precio",
@@ -40,9 +40,9 @@ const form = {
 		},
 		id_categoria: {
 			name: "id_categoria",
-			label: "Categoria",
+			label: "Categoría",
 			type: "text",
-			errorMsg: "Categoria es requerida.",
+			errorMsg: "Categoría es requerida.",
 		}
 	},
 };

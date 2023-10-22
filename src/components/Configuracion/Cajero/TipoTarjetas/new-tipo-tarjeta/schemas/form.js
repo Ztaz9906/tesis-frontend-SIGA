@@ -24,9 +24,9 @@ const form = {
     },
     descripcion: {
       name: "descripcion",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La clave es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
     activo: {
       name: "activo",

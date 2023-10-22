@@ -83,7 +83,7 @@ export default function DetailEstructura() {
               <span className="font-bold">Siglas:</span> {estructura.initials}
             </p>
             <p className="font-semibold">
-              <span className="font-bold">Categoria:</span>
+              <span className="font-bold">Categoría:</span>
               {estructura.category ? estructura?.category.name : "---"}
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function DetailEstructura() {
                 : "---"}
             </p>
             <p className="font-semibold">
-              <span className="font-bold">Tecnico general:</span>
+              <span className="font-bold">Técnico general:</span>
               {estructura.id_tecnico_general
                 ? estructura.id_tecnico_general.name
                 : "---"}

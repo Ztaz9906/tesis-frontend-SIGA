@@ -71,7 +71,7 @@ export default function ClassPlatos() {
     isSuccessC,
     isErrorC,
     errorC,
-    "Clasificacion de Platos Creada",
+    "Clasificación de Platos Creada",
     "/configuracion/abastecimiento/clasificacion_platos"
   );
   useRedirectForm(
@@ -79,7 +79,7 @@ export default function ClassPlatos() {
     isSuccessE,
     isErrorE,
     errorE,
-    "Clasificacion de Platos Editada",
+    "Clasificación de Platos Editada",
     "/configuracion/abastecimiento/clasificacion_platos"
   );
   const submitForm = async (values, actions) => {
@@ -108,8 +108,8 @@ export default function ClassPlatos() {
         <div className="text-center mb-6">
           <Typography variant="h5" fontWeight="bold">
             {!id
-              ? "Registrar Clasificacion de Platos"
-              : `Editar Clasificacion de Platos`}
+              ? "Registrar Clasificación de Platos"
+              : `Editar Clasificación de Platos`}
           </Typography>
         </div>
         <Formik

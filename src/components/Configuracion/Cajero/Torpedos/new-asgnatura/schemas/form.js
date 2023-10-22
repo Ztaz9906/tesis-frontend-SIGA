@@ -15,9 +15,9 @@ const form = {
         },
         descripcion: {
             name: "descripcion",
-            label: "Descripcion",
+            label: "Descripción",
             type: "text",
-            errorMsg: "La descripcion es requerida.",
+            errorMsg: "La descripción es requerida.",
         },
         id_sexo: {
             name: "id_sexo",
@@ -35,13 +35,13 @@ const form = {
             name: "id_provincia",
             label: "Provincia",
             type: "text",
-            errorMsg: "Seleccione un provincia.",
+            errorMsg: "Seleccione una provincia.",
         },
         id_pais: {
             name: "id_pais",
-            label: "Pais",
+            label: "País",
             type: "text",
-            errorMsg: "Seleccione un pais.",
+            errorMsg: "Seleccione un país.",
         },
     },
 };

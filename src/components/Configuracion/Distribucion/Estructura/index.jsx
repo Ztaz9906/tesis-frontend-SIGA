@@ -35,7 +35,7 @@ export default function IndexEstructura() {
 					</Tooltip>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Clasificaciones de Platos"
+						title="Filtro para las Estructuras"
 					>
 						<Button
 							variant={"ghost"}
@@ -55,13 +55,13 @@ export default function IndexEstructura() {
 							type: "text",
 							name: "name",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
 							name: "initials",
 							label: "Iniciales",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

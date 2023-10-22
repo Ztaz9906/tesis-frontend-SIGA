@@ -37,7 +37,7 @@ export default function AddSolapinPerdido() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Persona con solapin perdido añadida",
+		"Persona con solapín perdido añadida",
 		'/configuracion/cajero/solapin-perdidos'
 	);
 	const [user] = useUser();
@@ -58,21 +58,21 @@ export default function AddSolapinPerdido() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_solapin",
 				accessorFn: (row) => row.codigo_solapin,
 				cell: (info) => info.getValue(),
-				header: "Codigo de Barras",
+				header: "Código",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -80,11 +80,11 @@ export default function AddSolapinPerdido() {
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
-							title={`Registrar solapin perdido de ${row.nombre_completo}`}
-							message={`Esta seguro que desea registrar este Solapin Perdido? ${row.solapin}`}
+							title={`Registrar solapín perdido de ${row.nombre_completo}`}
+							message={`¿Está seguro que desea registrar este Solapín Perdido? ${row.solapin}`}
 							action={() => handleSubmit(row.id)}
 						>
-							<Tooltip title={'Registrar solapin perdido'}>
+							<Tooltip title={'Registrar solapín perdido'}>
 								<Button variant={"ghost"} size={"icon"}
 								>
 									<PlusCircle size={15}/>

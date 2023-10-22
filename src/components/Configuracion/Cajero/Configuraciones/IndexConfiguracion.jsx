@@ -108,13 +108,13 @@ export default function IndexConfiguracion() {
                             }}
                             sx={{flex: 1}}
                         >
-                            <Tab label={'Configuracciones de acceso'} {...a11yProps(0)} sx={{
+                            <Tab label={'Configuraciones de acceso'} {...a11yProps(0)} sx={{
                                 color: 'gray',
                                 "&.Mui-selected": {color: 'gray'}
                             }}/>
                         </Tabs>
                         {(!data || Object.keys(data).length === 0) && (
-                            <Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
+                            <Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
                         )}
                     </div>
                 </Box>

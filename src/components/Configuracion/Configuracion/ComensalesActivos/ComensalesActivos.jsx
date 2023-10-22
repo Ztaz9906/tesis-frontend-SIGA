@@ -53,14 +53,14 @@ export default function ComensalesActivos() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -74,7 +74,7 @@ export default function ComensalesActivos() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{
