@@ -12,7 +12,7 @@ const form = {
             name: "id_tipo_tarjeta",
             label: "Tipo de tarjeta",
             type: "text",
-            errorMsg: "El tipo de tarjeta es requerida.",
+            errorMsg: "El tipo de tarjeta es requerido",
         },
         fecha_inicio: {
             name: "fecha_inicio",

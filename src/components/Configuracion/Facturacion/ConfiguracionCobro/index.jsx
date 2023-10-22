@@ -43,13 +43,13 @@ export default function IndexConfiguracionCobro() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Configuracion activada",
+		"Configuración activada",
 	);
 
 	function handleDefault() {
 		createConfiguracionCobro({
-			'nombre_configuracion_cobro': 'Configuracion por defecto',
-			'descripcion': 'Proceso de configuracion por defecto , añadir valores y activar para su uso',
+			'nombre_configuracion_cobro': 'Configuración por defecto',
+			'descripcion': 'Proceso de configuración por defecto , añadir valores y activar para su uso',
 			'activo': false,
 			'fecha_registro': getCurrentDate(),
 			'id_institucion': user.institucion.id,
@@ -80,21 +80,21 @@ export default function IndexConfiguracionCobro() {
 				id: "nombre_configuracion_cobro",
 				accessorFn: (row) => row.nombre_configuracion_cobro,
 				cell: (info) => info.getValue(),
-				header: "Nombre de la configuracion",
+				header: "Nombre de la configuración",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "descripcion",
 				accessorFn: (row) => row.descripcion,
 				cell: (info) => info.getValue(),
-				header: "Descripcion de la configuracion",
+				header: "Descripción de la configuración",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "activo",
 				accessorFn: (row) => row.activo,
 				cell: (info) => info.getValue() ? 'SI' : 'NO',
-				header: "Descripcion del proceso de reservacion",
+				header: "Descripción del proceso de reservación",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -102,7 +102,7 @@ export default function IndexConfiguracionCobro() {
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
 						<Tooltip
-							title="Agregar valores de configuracion"
+							title="Agregar valores de configuración"
 						>
 							<Link
 								to={`/configuracion/facturacion/configuracion-cobro/agregar-valores/${row.id_configuracion_cobro}`}
@@ -115,11 +115,11 @@ export default function IndexConfiguracionCobro() {
 							onClick={() => handleEdit(row.id_configuracion_cobro, row.activo)}
 						>
 							{row.activo ?
-								<Tooltip title="Desactivar configuracion">
+								<Tooltip title="Desactivar configuración">
 									<Ban size={16}/>
 								</Tooltip>
 								:
-								<Tooltip title="Activar configuracion">
+								<Tooltip title="Activar configuración">
 									<CheckCircle2 size={16}/>
 								</Tooltip>
 							}
@@ -137,10 +137,10 @@ export default function IndexConfiguracionCobro() {
 		<>
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Configuracion de proceso de reservacion
+					Configuración del proceso de reservación
 				</h2>
 				<div className="flex">
-					<Tooltip title={'Agregar configuracion por defecto'}>
+					<Tooltip title={'Agregar configuración por defecto'}>
 						<Button variant={'ghost'} onClick={handleDefault}><PlusCircle size={16}/></Button>
 					</Tooltip>
 				</div>

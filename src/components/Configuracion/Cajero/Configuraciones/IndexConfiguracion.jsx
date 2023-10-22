@@ -95,38 +95,37 @@ export default function IndexConfiguracion() {
 			'id_institucion': user.institucion.id,
 		})
 	}
-
-	return (
-		<div className="flex flex-col gap-2">
-			<Box sx={{width: '100%'}}>
-				<Box sx={{paddingBottom: 1}}>
-					<div className="flex"> {/* Contenedor Flex */}
-						<Tabs
-							value={value}
-							onChange={handleChange}
-							TabIndicatorProps={{
-								style: {
-									backgroundColor: 'gray'
-								}
-							}}
-							sx={{flex: 1}}
-						>
-							<Tab label={'Configuracciones de acceso'} {...a11yProps(0)} sx={{
-								color: 'gray',
-								"&.Mui-selected": {color: 'gray'}
-							}}/>
-						</Tabs>
-						{(!data || Object.keys(data).length === 0) && (
-							<Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
-						)}
-					</div>
-				</Box>
-				<CustomTabPanel value={value} index={0}>
-					<SGTable data={datadef} setFilter={false} setPagination={false}/>
-				</CustomTabPanel>
-			</Box>
-		</div>
-	);
+    return (
+        <div className="flex flex-col gap-2">
+            <Box sx={{width: '100%'}}>
+                <Box sx={{paddingBottom: 1}}>
+                    <div className="flex"> {/* Contenedor Flex */}
+                        <Tabs
+                            value={value}
+                            onChange={handleChange}
+                            TabIndicatorProps={{
+                                style: {
+                                    backgroundColor: 'gray'
+                                }
+                            }}
+                            sx={{flex: 1}}
+                        >
+                            <Tab label={'Configuraciones de acceso'} {...a11yProps(0)} sx={{
+                                color: 'gray',
+                                "&.Mui-selected": {color: 'gray'}
+                            }}/>
+                        </Tabs>
+                        {(!data || Object.keys(data).length === 0) && (
+                            <Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
+                        )}
+                    </div>
+                </Box>
+                <CustomTabPanel value={value} index={0}>
+                    <SGTable data={datadef} setFilter={false} setPagination={false}/>
+                </CustomTabPanel>
+            </Box>
+        </div>
+    );
 }
 
 function CustomTabPanel(props) {

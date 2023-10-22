@@ -24,9 +24,9 @@ const form = {
     },
     descripcion_clasificacion_plato: {
       name: "descripcion_clasificacion_plato",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La descripcion es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
 
     activo: {

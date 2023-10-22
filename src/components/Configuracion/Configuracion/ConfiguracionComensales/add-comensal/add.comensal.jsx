@@ -74,14 +74,14 @@ export default function AddComensal() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -95,7 +95,7 @@ export default function AddComensal() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -140,7 +140,7 @@ export default function AddComensal() {
 							<FilterIcon size={16}/>
 						</Button>
 					</Tooltip>
-					<Tooltip title={'Atras'}>
+					<Tooltip title={'Atrás'}>
 						<Button variant={'ghost'} size={'icon'} onClick={() => {
 							navigate('/configuracion/configuracion/configuracion-comensales')
 						}}>
@@ -153,14 +153,14 @@ export default function AddComensal() {
 			{configuracion && (
 				<div className="flex-col flex-wrap justify-center">
 					<h2 className="text-gray-600 font-semibold text-sm justify-center al">
-						Datos de la configuracion
+						Datos de la configuración
 					</h2>
 					<div className="flex gap-4 text-center items-center text-sm text-gray-500">
 						<p className="font-semibold">
 							<span className="font-bold">Fecha:</span> {configuracion.fecha_registro}
 						</p>
 						<p className="font-semibold">
-							<span className="font-bold">Descripcion:</span> {configuracion.descripcion}
+							<span className="font-bold">Descripción:</span> {configuracion.descripcion}
 						</p>
 						<p className="font-semibold">
 							<span className="font-bold">Activo: </span>

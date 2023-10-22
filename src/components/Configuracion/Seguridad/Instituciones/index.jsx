@@ -27,7 +27,7 @@ export default function IndexInstituciones() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Institucion Eliminada"
+		"Institución Eliminada"
 	);
 
 	const capitalizeFirstLetter = (string) => {
@@ -46,7 +46,7 @@ export default function IndexInstituciones() {
 				id: "description",
 				accessorFn: (row) => row.description,
 				cell: (info) => info.getValue(),
-				header: "Descripcion",
+				header: "Descripción",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -56,7 +56,7 @@ export default function IndexInstituciones() {
 						? row.active_modules.map(capitalizeFirstLetter).join(", ")
 						: "",
 				cell: (info) => info.getValue(),
-				header: "Modulos",
+				header: "Módulos",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -75,7 +75,7 @@ export default function IndexInstituciones() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar esta institución?"
 							action={() => deleteInstitucion(row.id)}
 						>
 							<Button variant={"ghost"} size={"icon"}>

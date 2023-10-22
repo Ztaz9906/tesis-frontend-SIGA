@@ -71,37 +71,37 @@ export default function Categoria() {
 
 	const [getCategoriaById, {data}] = useLazyGetCategoriaByIdQuery();
 
-	useRedirectForm(
-		isLoadingC,
-		isSuccessC,
-		isErrorC,
-		errorC,
-		"Categoria Creada",
-		"/configuracion/distribucion/categorias"
-	);
-	useRedirectForm(
-		isLoadingE,
-		isSuccessE,
-		isErrorE,
-		errorE,
-		"Categoria Editada",
-		"/configuracion/distribucion/categorias"
-	);
-	const submitForm = async (values, actions) => {
-		try {
-			if (!id) {
-				createCategoria(values);
-			} else {
-				const modifiedFields = getModifiedFields(data, values);
-				if (Object.keys(modifiedFields).length !== 0) {
-					editCategoria({id: id, ...modifiedFields});
-				}
-			}
-		} catch (error) {
-			console.error(error);
-			actions.setSubmitting(true);
-		}
-	};
+  useRedirectForm(
+    isLoadingC,
+    isSuccessC,
+    isErrorC,
+    errorC,
+    "Categoría Creada",
+    "/configuracion/distribucion/categorias"
+  );
+  useRedirectForm(
+    isLoadingE,
+    isSuccessE,
+    isErrorE,
+    errorE,
+    "Categoría Editada",
+    "/configuracion/distribucion/categorias"
+  );
+  const submitForm = async (values, actions) => {
+    try {
+      if (!id) {
+        createCategoria(values);
+      } else {
+        const modifiedFields = getModifiedFields(data, values);
+        if (Object.keys(modifiedFields).length !== 0) {
+          editCategoria({ id: id, ...modifiedFields });
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      actions.setSubmitting(true);
+    }
+  };
 
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);

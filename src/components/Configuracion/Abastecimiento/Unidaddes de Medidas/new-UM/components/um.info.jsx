@@ -9,7 +9,7 @@ export default function AddUM({ formData }) {
     nombre_unidad_medida,
     descripcion_unidad_medida,
     siglas,
-    clasificacion,
+    clasificación,
   } = formField;
   const {
     descripcion_unidad_medida: descripcion_unidad_medidaV,

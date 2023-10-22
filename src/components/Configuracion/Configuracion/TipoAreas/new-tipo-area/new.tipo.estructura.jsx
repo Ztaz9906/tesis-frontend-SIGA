@@ -54,7 +54,7 @@ export default function TipoArea() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tipo de Area Creada",
+		"Tipo de Área Creada",
 		"/configuracion/configuracion/tipo_areas"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function TipoArea() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tipo de Area Editada",
+		"Tipo de Área Editada",
 		"/configuracion/configuracion/tipo_areas"
 	);
 	const submitForm = async (values, actions) => {
@@ -90,7 +90,7 @@ export default function TipoArea() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Tipo de Area" : `Editar Tipo de Area`}
+						{!id ? "Registrar Tipo de Área" : `Editar Tipo de Área`}
 					</Typography>
 				</div>
 				<Formik

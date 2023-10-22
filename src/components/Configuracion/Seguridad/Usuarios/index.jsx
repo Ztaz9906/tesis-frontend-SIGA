@@ -54,7 +54,7 @@ export default function IndexUsuarioes() {
 					? row.groups.map((rol) => rol.name).join(", ")
 					: "",
 				cell: (info) => info.getValue(),
-				header: "Descripcion",
+				header: "Descripción",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -66,7 +66,7 @@ export default function IndexUsuarioes() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar este usuario?"
 							action={() => deleteUsuario(row.id)}
 						>
 							<Button variant={"ghost"} size={"icon"}>

@@ -35,7 +35,7 @@ export default function Index() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Categoria Eliminada"
+		"Categoría Eliminada"
 	);
 	const datadef = {
 		columns: [
@@ -73,7 +73,7 @@ export default function Index() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar esta categoría?"
 							action={() => deleteCategoria(row.id)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -93,7 +93,7 @@ export default function Index() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Categorias
+					Listado de Categorías
 				</h2>
 				<div className="flex">
 					<Link
@@ -104,7 +104,7 @@ export default function Index() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Clasificaciones de Platos"
+						title="Filtro para las Categorías"
 					>
 						<Button
 							variant={"ghost"}
@@ -124,7 +124,7 @@ export default function Index() {
 							type: "text",
 							name: "name",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

@@ -64,7 +64,7 @@ export default function IndexConfiguracionComensales() {
 										<PlusCircle size={16}/>
 									</Link>
 								</Tooltip>
-								<Tooltip title={'Asignar personas a la configuracion'}>
+								<Tooltip title={'Asignar personas a la configuración'}>
 									<Link
 										to={`/configuracion/configuracion/configurar-comensales/asociar-personas/${row.id_configuracion_persona}`}
 									>
@@ -78,11 +78,11 @@ export default function IndexConfiguracionComensales() {
 							onClick={() => handleEdit(row.id_configuracion_persona, row.activo)}
 						>
 							{row.activo ?
-								<Tooltip title="Desactivar configuracion">
+								<Tooltip title="Desactivar configuración">
 									<Ban size={16}/>
 								</Tooltip>
 								:
-								<Tooltip title="Activar configuracion">
+								<Tooltip title="Activar configuración">
 									<CheckCircle2 size={16}/>
 								</Tooltip>
 							}
@@ -120,7 +120,7 @@ export default function IndexConfiguracionComensales() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Estado de la configuracion cambiado",
+		"Estado de la configuración cambiado",
 	);
 
 	function handleEdit(id, activo) {
@@ -136,7 +136,7 @@ export default function IndexConfiguracionComensales() {
 	function handleDefault() {
 		createConfiguracionComensales({
 			"activo": false,
-			"descripcion": "Configuracion por defecto ",
+			"descripcion": "Configuración por defecto",
 			'fecha_registro': getCurrentDate(),
 			'id_institucion': user.institucion.id,
 			'id_usuario_registro': user.id,
@@ -147,11 +147,11 @@ export default function IndexConfiguracionComensales() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Configuracion de comensales
+					Configuración de comensales
 				</h2>
 				<div className="flex">
 					{(!data || Object.keys(data).length === 0) && (
-						<Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
+						<Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
 					)}
 				</div>
 			</div>

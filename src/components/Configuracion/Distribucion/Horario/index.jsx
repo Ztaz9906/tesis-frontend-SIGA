@@ -64,7 +64,7 @@ export default function IndexHorarios() {
 						? row.dias_semana.map((day) => day.dia_semana).join(", ")
 						: "",
 				cell: (info) => info.getValue(),
-				header: "Dias",
+				header: "Días",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -85,7 +85,7 @@ export default function IndexHorarios() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar este horario?"
 							action={() => deleteHorario(row.id_horario)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -140,7 +140,7 @@ export default function IndexHorarios() {
 							type: "text",
 							name: "nombre_horario",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

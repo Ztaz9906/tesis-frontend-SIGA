@@ -49,7 +49,7 @@ const ModalCalendario = ({id, title, edit}) => {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Tooltip title={'Editar reservacion por platos'}>
+				<Tooltip title={'Editar reservación por platos'}>
 					<Button variant="ghost" size="icon">
 						<Pen size={15}/>
 					</Button>

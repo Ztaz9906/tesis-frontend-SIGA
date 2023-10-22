@@ -29,7 +29,7 @@ export default function IndexConfiguracionReservacion() {
 							sx={{flex: 1}}
 						>
 
-							<Tab label={'Periodo de Reservacion'} {...a11yProps(0)} sx={{
+							<Tab label={'Período de Reservación'} {...a11yProps(0)} sx={{
 								color: 'gray',
 								"&.Mui-selected": {color: 'gray'}
 							}}/>

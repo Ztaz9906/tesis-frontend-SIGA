@@ -58,7 +58,7 @@ export default function ConfiguracionComensal() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Valor de configuracion asociado",
+		"Valor de configuración asociado",
 	);
 
 	const [
@@ -75,7 +75,7 @@ export default function ConfiguracionComensal() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Valor de configuracion eliminado",
+		"Valor de configuración eliminado",
 	);
 	const {data} = useGetValoresConfiguracionComensalesQuery({id_configuracion_persona: IdValores}, {
 		refetchOnReconnect: true,
@@ -94,7 +94,7 @@ export default function ConfiguracionComensal() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Valores de la configuracion de comensales agregados",
+		"Valores de la configuración de comensales agregados",
 		'/configuracion/configuracion/configuracion-comensales'
 	);
 	const submitForm = async (values) => {
@@ -140,7 +140,7 @@ export default function ConfiguracionComensal() {
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
 							title={`Borrar el ID:${row.id_calores_configuracion_persona}`}
-							message="Esta seguro que desea eliminar este valor de la configuracion"
+							message="¿Está seguro que desea eliminar este valor de la configuración?"
 							action={() => DeleteValoresConfiguracionComensales(row.id_calores_configuracion_persona)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -170,7 +170,7 @@ export default function ConfiguracionComensal() {
 
 			<div className="text-center mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{!id ? "Registrar Configuracion de Comensales" : `Editar Configuracion de Comensales`}
+					{!id ? "Registrar Configuración de Comensales" : `Editar Configuración de Comensales`}
 				</Typography>
 			</div>
 			<Formik
