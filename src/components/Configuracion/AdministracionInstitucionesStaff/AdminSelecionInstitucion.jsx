@@ -28,7 +28,7 @@ export default function ModalInstitucionSelecion() {
 				className="text-sm"
 				onClick={handleOpen}
 			>
-      Selecionar institucion
+      Selecionar institución
       </span>
 			<Modal
 				aria-labelledby="transition-modal-title"
