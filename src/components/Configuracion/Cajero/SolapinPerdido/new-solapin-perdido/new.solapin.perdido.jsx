@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import {FilterIcon, PlusCircle} from "lucide-react";
 import {Tooltip} from "@mui/material";
@@ -8,7 +8,7 @@ import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
 	useCreateSolapinPerdidoMutation
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import useUser from "@/hooks/useUser.jsx";
+import {useSelector} from "react-redux";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
@@ -19,10 +19,13 @@ export default function AddSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
 
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		CreateSolapinPerdido,
 		{
@@ -40,7 +43,6 @@ export default function AddSolapinPerdido() {
 		"Persona con solapin perdido añadida",
 		'/configuracion/cajero/solapin-perdidos'
 	);
-	const [user] = useUser();
 
 	function handleSubmit(id_persona) {
 		const newValues = {

@@ -1,10 +1,14 @@
 import React from 'react';
 import {Button, Typography} from '@mui/material';
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 export default function NotFound() {
 	const navigate = useNavigate();
-
+	const user = useSelector(state => state.user);
+	if (!user) {
+		return <Navigate to="/"/>;
+	}
 	const handleBack = () => {
 		navigate(-1);
 	};

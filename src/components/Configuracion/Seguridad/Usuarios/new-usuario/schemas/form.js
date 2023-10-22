@@ -43,5 +43,3 @@ const form = {
 	},
 };
 export default form;
-
-//Distribucion_TbNdiaSemana

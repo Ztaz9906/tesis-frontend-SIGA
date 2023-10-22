@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -9,14 +9,19 @@ import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Tooltip} from "@mui/material";
 import GenericFilter from "../../../auxiliar/GenericFilter";
 import {useGetTipoAreasQuery} from "@/components/Configuracion/Configuracion/TipoAreas/service/tipo.areas.service.js";
+import {useSelector} from "react-redux";
 
 export default function IndexAreas() {
 
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetAreasQuery(currentFilters, {
+	const {data, refetch} = useGetAreasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTipoEstrutura,
 		{

@@ -8,7 +8,7 @@ import form
 	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/PeriodoReservacion/schemas/form.js";
 import initialValues
 	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/PeriodoReservacion/schemas/initialValues.js";
-import useUser from "@/hooks/useUser.jsx";
+import {useSelector} from "react-redux";
 import validations
 	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/PeriodoReservacion/schemas/validations.js";
 import Tooltip from "@mui/material/Tooltip";
@@ -33,7 +33,7 @@ const ModalPreiodoReservacion = ({id, title, edit}) => {
 		{data: acceso}
 	] = useLazyGetPeriodoReservacionByIdQuery();
 
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const submitForm = async (values, actions) => {
 		try {
 			const modifiedFields = getModifiedFields(acceso, values);

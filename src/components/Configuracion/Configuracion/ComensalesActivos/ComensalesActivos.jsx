@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {FilterIcon, Trash} from "lucide-react";
 import {CircularProgress, Tooltip} from "@mui/material";
@@ -8,16 +8,20 @@ import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 import {useEditPersonaMutation, useGetPersonaQuery} from "@/services/persona.service.js";
+import {useSelector} from "react-redux";
 
 
 export default function ComensalesActivos() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
 	const [processingId, setProcessingId] = useState(null);
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		EditPersona,
 		{

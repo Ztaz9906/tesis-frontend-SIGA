@@ -1,27 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {SGTable} from "../../../auxiliar/table";
-import {Trash} from "lucide-react";
+import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
-import {PlusCircle} from "lucide-react";
-import {
-	useDeleteTipoProductoMutation,
-	useGetTipoProductoQuery,
-} from "./service/tipo.producto.service";
-import {Edit2Icon} from "lucide-react";
+import {useDeleteTipoProductoMutation, useGetTipoProductoQuery,} from "./service/tipo.producto.service";
 import {Button} from "../../../ui/button";
 import Delete from "../../../auxiliar/delete";
 import {useRedirectForm} from "../../../../hooks/useRedirectForm";
 import GenericFilter from "../../../auxiliar/GenericFilter";
 import {Tooltip} from "@mui/material";
-import {FilterIcon} from "lucide-react";
-import {useState} from "react";
+import {useSelector} from "react-redux";
 
 export default function IndexTipoProducto() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = useState(true);
-	const {data} = useGetTipoProductoQuery(currentFilters, {
+	const {data, refetch} = useGetTipoProductoQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTipoProducto,
 		{

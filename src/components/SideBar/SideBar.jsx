@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {Accordion, AccordionDetails, AccordionSummary, Typography,} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/material";
 import {ArrowDown} from "lucide-react";
-import useUser from "../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 export default function SideBar({sectionsMap}) {
 	const location = useLocation();
 	const [expandedAccordion, setExpandedAccordion] = useState(null);
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const isActiveRoute = (route) => {
 		return route === location.pathname;
 	};
@@ -19,10 +19,19 @@ export default function SideBar({sectionsMap}) {
 	let filteredSections = [];
 	if (user) {
 		if (user.is_staff) {
-			// Si el usuario es staff, usa todas las secciones sin filtrar
-			filteredSections = Object.entries(sectionsMap);
+			if (user.institucion) {
+				const activeModules = user?.institucion.active_modules.map((module) =>
+					module.toLowerCase()
+				);
+				filteredSections = Object.entries(sectionsMap).filter(
+					([sectionTitle]) =>
+						activeModules.includes(sectionTitle.toLowerCase()) ||
+						sectionTitle.toLowerCase() === "seguridad"
+				);
+			} else {
+				filteredSections = Object.entries(sectionsMap);
+			}
 		} else {
-			// Si no es staff, aplica el filtro
 			const activeModules = user?.institucion.active_modules.map((module) =>
 				module.toLowerCase()
 			);
@@ -46,7 +55,7 @@ export default function SideBar({sectionsMap}) {
 						backgroundColor: "#f5f5f5",
 						marginBottom: 0,
 						marginTop: 0,
-					}} // Estilo para quitar separación entre acordeones
+					}}
 				>
 					<AccordionSummary
 						expandIcon={<ArrowDown size={16}/>}

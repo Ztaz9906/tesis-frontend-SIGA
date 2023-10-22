@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import SelectInstitucion from "@/components/Configuracion/selectInstitucion.jsx";
+import SelectInstitucion from "@/components/Configuracion/AdministracionInstitucionesStaff/selectInstitucion.jsx";
 
 const style = {
 	position: 'absolute',

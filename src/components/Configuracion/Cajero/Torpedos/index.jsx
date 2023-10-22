@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -11,14 +11,19 @@ import {
 } from "@/components/Configuracion/Cajero/Torpedos/service/torpedo.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import FilterTorpedo from "@/components/Configuracion/Cajero/Torpedos/new-asgnatura/components/filter.jsx";
+import {useSelector} from "react-redux";
 
 
 export default function IndexTorpedo() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTorpedosQuery(currentFilters, {
+	const {data, refetch} = useGetTorpedosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTorpedo,
 		{

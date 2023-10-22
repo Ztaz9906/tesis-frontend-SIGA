@@ -90,7 +90,6 @@ export default function AddUsuario({formData}) {
 							error={errors.password_confirm && touched.password_confirm}
 						/>
 					</div>
-
 				</div>
 			)}
 		</div>

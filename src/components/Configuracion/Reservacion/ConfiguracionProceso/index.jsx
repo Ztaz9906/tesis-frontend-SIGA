@@ -1,6 +1,5 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateProcesoReservacionMutation,
 	useEditProcesoReservacionMutation,
@@ -10,6 +9,7 @@ import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Ban, CheckCircle2} from "lucide-react";
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
+import {useSelector} from "react-redux";
 
 export default function IndexConfiguracionProcesoReservacion() {
 	const {data} = useGetProcesoReservacionesQuery(undefined, {
@@ -28,7 +28,7 @@ export default function IndexConfiguracionProcesoReservacion() {
 		},
 	] = useEditProcesoReservacionMutation();
 
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const getCurrentDate = () => {
 		const date = new Date();
 		const year = date.getFullYear();

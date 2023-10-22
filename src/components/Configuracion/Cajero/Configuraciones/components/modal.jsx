@@ -7,7 +7,7 @@ import {Form, Formik} from "formik";
 import FormField from "@/components/auxiliar/FormField.jsx";
 import form from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/form.js";
 import initialValues from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/initialValues.js";
-import useUser from "@/hooks/useUser.jsx";
+import {useSelector} from "react-redux";
 import validations from "@/components/Configuracion/Cajero/Configuraciones/components/schemas/validations.js";
 import Tooltip from "@mui/material/Tooltip";
 
@@ -28,7 +28,7 @@ const Modal = ({id, title, edit}) => {
 		{data: acceso}
 	] = useLazyGetAccesoByIdQuery();
 
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const submitForm = async (values, actions) => {
 		try {
 			const modifiedFields = getModifiedFields(acceso, values);

@@ -6,20 +6,20 @@ import {useEffect, useState} from "react";
 import {Button, Tooltip, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 import {
-    useLazyGetEstructuraByIdQuery
+	useLazyGetEstructuraByIdQuery
 } from "@/components/Configuracion/Distribucion/Estructura/service/estructura.service.js";
 import FormField from "@/components/auxiliar/FormField.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 
 import Delete from "@/components/auxiliar/delete.jsx";
 import {
-    useCreateAsignarIpMutation,
-    useDeleteAsignarIpMutation,
-    useEditAsignarIpMutation,
-    useGetAsignarIpQuery,
-    useLazyGetAsignarIpByIdQuery
+	useCreateAsignarIpMutation,
+	useDeleteAsignarIpMutation,
+	useEditAsignarIpMutation,
+	useGetAsignarIpQuery,
+	useLazyGetAsignarIpByIdQuery
 } from "@/components/Configuracion/Cajero/AsignarIP/service/asignarip.service.js";
 import {Edit2Icon, ListEndIcon, Trash} from "lucide-react";
 import MyTypography from "@/components/auxiliar/MyTypography.jsx";
@@ -67,11 +67,14 @@ export default function AsignarIp() {
 			error: errorD,
 		},
 	] = useDeleteAsignarIpMutation();
-
-
-	const {data} = useGetAsignarIpQuery({id_puerta: id}, {
+	
+	const {data, refetch} = useGetAsignarIpQuery({id_puerta: id}, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [getAsignarIpById, {data: asinarIp}] = useLazyGetAsignarIpByIdQuery()
 	const [getEstructuraById, {data: structure}] = useLazyGetEstructuraByIdQuery()
 
@@ -123,7 +126,6 @@ export default function AsignarIp() {
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);
 	};
-	const [user] = useUser();
 	const datadef = {
 		columns: [
 			{

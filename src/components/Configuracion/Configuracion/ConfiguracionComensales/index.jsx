@@ -7,17 +7,16 @@ import {
 	useEditConfiguracionComensalesMutation,
 	useGetConfiguracionComensalesQuery
 } from "./service/configuracion.comensales.service.js";
-
+import {useSelector} from "react-redux";
 import {Tooltip} from "@mui/material";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 
 export default function IndexConfiguracionComensales() {
 	const {data} = useGetConfiguracionComensalesQuery(undefined, {
 		refetchOnReconnect: true,
 	});
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 
 	const datadef = {
 		columns: [

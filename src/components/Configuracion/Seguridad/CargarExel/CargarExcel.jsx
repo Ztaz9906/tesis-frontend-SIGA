@@ -7,8 +7,8 @@ import form from "./schema/form";
 import {Button, CircularProgress} from "@mui/material";
 import FileInput from "@/components/auxiliar/FieldInput.jsx";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {useSnackbar} from "notistack";
+import {useSelector} from "react-redux";
 
 export default function EntradaDatos() {
 	const {formId, formField} = form;
@@ -23,7 +23,7 @@ export default function EntradaDatos() {
 			error: errorC,
 		},
 	] = useCreateUploadExcelMutation();
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 
 	function handleSubmit(values, actions) {
 		const newValues = {
@@ -68,7 +68,6 @@ export default function EntradaDatos() {
 					);
 				}}
 			</Formik>
-
 		</div>
 	);
 }

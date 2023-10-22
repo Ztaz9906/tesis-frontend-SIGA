@@ -3,12 +3,17 @@ import {Link} from "react-router-dom";
 import {FileEditIcon} from "lucide-react";
 import {Tooltip} from "@mui/material";
 import {SGTable} from "@/components/auxiliar/table.jsx";
+import {useEffect} from "react";
+import {useSelector} from "react-redux";
 
 export default function IndexAsignarIP() {
-	const {data} = useGetEstructurasQuery(undefined, {
+	const {data, refetch} = useGetEstructurasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	if (!data) {
 		return;
 	}

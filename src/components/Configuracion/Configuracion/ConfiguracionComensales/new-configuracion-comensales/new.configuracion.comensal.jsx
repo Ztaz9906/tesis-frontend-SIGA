@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Button, Typography} from "@mui/material";
 import {initialValuesForm1} from "./schemas/initialValues";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 import AddConfiguraciionComensales from "./components/configuracion.comensal.info.jsx";
 import {
 	useEditConfiguracionComensalesMutation,
@@ -108,7 +108,7 @@ export default function ConfiguracionComensal() {
 		submitForm(values, actions);
 	};
 
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 
 
 	const datadef = {

@@ -1,9 +1,7 @@
-import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {Button} from "@mui/material";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Form, Formik} from "formik";
-import useUser from "@/hooks/useUser.jsx";
 import form from "@/components/Configuracion/Seguridad/Usuarios/new-usuario/schemas/form.js";
 import {
 	useEditUsuarioMutation,
@@ -13,6 +11,9 @@ import {
 	useGetInstitucionesQuery
 } from "@/components/Configuracion/Seguridad/Instituciones/service/institucion.service.js";
 import FormFieldAutoComplete from "@/components/auxiliar/FormFieldAutoComplete.jsx";
+import {useDispatch, useSelector} from 'react-redux';
+import {setUser} from "@/redux/userSlice.js";
+import {useNavigate} from "react-router-dom";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -23,11 +24,11 @@ const getModifiedFields = (originalData, newData) => {
 };
 
 export default function SelectInstitucion({setOpen}) {
-	const [user] = useUser()
+	const userRedux = useSelector(state => state.user);
 	const {formId, formField} = form;
-	const id = user.id
-	const navigate = useNavigate();
-
+	const id = userRedux.id
+	const dispatch = useDispatch();
+	const navigate = useNavigate()
 	const {
 		formField: {institucion},
 	} = form;
@@ -48,13 +49,21 @@ export default function SelectInstitucion({setOpen}) {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Usuario Editado",
+		"Institucion selecionada",
 	);
 	const submitForm = async (values, actions) => {
 		try {
 			const modifiedFields = getModifiedFields(data, values);
 			if (Object.keys(modifiedFields).length !== 0) {
-				editUsuario({id: id, ...modifiedFields}).then(() => setOpen(false));
+				editUsuario({id: id, ...modifiedFields}).then((res) => {
+					if (res.data) {
+						getUsuarioById(res.data.id + '?timestamp=' + new Date().getTime()).then((res) => {
+							dispatch(setUser(res.data));
+							navigate('/configuracion')
+						})
+					}
+					setOpen(false)
+				});
 			}
 		} catch (error) {
 			console.error(error);

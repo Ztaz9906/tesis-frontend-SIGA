@@ -1,6 +1,5 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import React from "react";
 import ModalContacto
@@ -11,6 +10,7 @@ import {
 	useEditContactoMutation,
 	useGetContactosQuery
 } from "@/components/Configuracion/Reservacion/Configuraciones/service/contacto.service.js";
+import {useSelector} from "react-redux";
 
 export default function DatosContacto() {
 	const {data} = useGetContactosQuery(undefined, {
@@ -35,7 +35,7 @@ export default function DatosContacto() {
 		},
 	] = useEditContactoMutation();
 
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const getCurrentDate = () => {
 		const date = new Date();
 		const year = date.getFullYear();

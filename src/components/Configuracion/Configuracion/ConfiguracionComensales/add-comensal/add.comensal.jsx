@@ -27,6 +27,7 @@ export default function AddComensal() {
 	});
 	const [getConfiguracionComensalesById, {data: configuraciondata}] = useLazyGetConfiguracionComensalesByIdQuery()
 
+
 	useEffect(() => {
 		getConfiguracionComensalesById(id)
 			.unwrap()
