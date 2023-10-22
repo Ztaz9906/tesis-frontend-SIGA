@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -8,13 +8,18 @@ import Delete from "../../../auxiliar/delete";
 import {useRedirectForm} from "../../../../hooks/useRedirectForm";
 import {Tooltip} from "@mui/material";
 import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
+import {useSelector} from "react-redux";
 
 export default function Index() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = useState(true);
-	const {data} = useGetCategoriasQuery(currentFilters, {
+	const {data, refetch} = useGetCategoriasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteCategoria,
 		{

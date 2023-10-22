@@ -1,4 +1,3 @@
-import useUser from "@/hooks/useUser.jsx";
 import {Outlet, Route, Routes} from 'react-router-dom';
 import IndexConfiguracion from "./components/Configuracion/Cajero/Configuraciones/IndexConfiguracion";
 import Torpedo from "./components/Configuracion/Cajero/Torpedos/new-asgnatura/new.torpedo.jsx";
@@ -66,6 +65,7 @@ import EntradaDatos from "@/components/Configuracion/Seguridad/CargarExel/Cargar
 import IndexConfiguracionCobro from "@/components/Configuracion/Facturacion/ConfiguracionCobro/index.jsx";
 import AgregarValoresConfigurcionCobro
 	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/new.valores.cobro.jsx";
+import {useSelector} from "react-redux";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -160,8 +160,7 @@ const RUTAS_POR_MODULO = {
 	]
 };
 export default function RutasDinamicas() {
-	const [user] = useUser();
-
+	const user = useSelector(state => state.user);
 	return (
 		<Routes>
 			<Route path="/" element={<Login/>}/>

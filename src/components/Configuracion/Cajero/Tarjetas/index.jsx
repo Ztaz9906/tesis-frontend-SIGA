@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FileEditIcon, FilterIcon, PlusCircle, Trash, UserPlus2} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -13,17 +13,21 @@ import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
 import {
 	useGetAsociarTarjetasQuery
 } from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
+import {useSelector} from "react-redux";
 
 export default function IndexTarjeta() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTarjetasQuery(currentFilters, {
+	const {data, refetch} = useGetTarjetasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
 	const {data: tarjetas_asociadas} = useGetAsociarTarjetasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const filterID = tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion);
 
 	const [

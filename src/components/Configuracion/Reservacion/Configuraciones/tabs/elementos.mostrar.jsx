@@ -1,6 +1,5 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateElementoMostrarMutation,
 	useEditElementoMostrarMutation,
@@ -11,7 +10,7 @@ import ModalReservacion
 	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/ElementosMostrar/modal.elementos.mostrar.reservacion.jsx";
 import ModalCalendario
 	from "@/components/Configuracion/Reservacion/Configuraciones/tabs/components/ElementosMostrar/modal.elementos.mostrar.calendario.jsx";
-
+import {useSelector} from "react-redux";
 
 export default function ElementosMostrar() {
 	const {data} = useGetElementoMostrarseQuery(undefined, {
@@ -36,7 +35,7 @@ export default function ElementosMostrar() {
 		},
 	] = useEditElementoMostrarMutation();
 
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const getCurrentDate = () => {
 		const date = new Date();
 		const year = date.getFullYear();

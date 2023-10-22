@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import {useSelector} from "react-redux";
 import {FilterIcon, PlusCircle, Trash, Undo2} from "lucide-react";
 import {CircularProgress, Tooltip} from "@mui/material";
 import {Button} from "@/components/ui/button.jsx";
@@ -13,7 +13,6 @@ import {useLazyGetAreaByIdQuery} from "@/components/Configuracion/Configuracion/
 import {
 	useGetResponsableReservacionesQuery
 } from "@/components/Configuracion/Reservacion/AsignarResponsables/service/responsable.reservacion.service.js";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateAsociarPersonasMutation,
 	useDeleteAsociarPersonasMutation,
@@ -28,7 +27,7 @@ export default function AsociarPersonas() {
 	const [processingId, setProcessingId] = useState(null);
 	const [processingIdR, setProcessingIdR] = useState(null);
 	const navigate = useNavigate()
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const {data} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});

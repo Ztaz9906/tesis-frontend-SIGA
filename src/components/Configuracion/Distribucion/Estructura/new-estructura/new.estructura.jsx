@@ -15,7 +15,7 @@ import {
 } from "../service/estructura.service";
 import AddEstructura from "./components/estructura.info";
 import EstructuraPadre from "./components/estructura.padre";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -112,7 +112,7 @@ export default function Estructura() {
 			actions.setSubmitting(false);
 		}
 	};
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 
 	return (
 		<div className="flex justify-center items-center bg-gray-100 h-full">

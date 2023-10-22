@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -8,13 +8,18 @@ import Delete from "../../../auxiliar/delete";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Tooltip} from "@mui/material";
 import GenericFilter from "../../../auxiliar/GenericFilter";
+import {useSelector} from "react-redux";
 
 export default function IndexTipoTarjeta() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTipoTarjetasQuery(currentFilters, {
+	const {data, refetch} = useGetTipoTarjetasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTipoTarjeta,
 		{

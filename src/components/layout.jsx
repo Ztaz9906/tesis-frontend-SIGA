@@ -19,7 +19,6 @@ export default function Layout() {
 	}, []);
 
 	const location = useLocation();
-
 	return (
 		<div className="app-container flex flex-col min-h-screen">
 			<div className="sticky top-0 z-50">

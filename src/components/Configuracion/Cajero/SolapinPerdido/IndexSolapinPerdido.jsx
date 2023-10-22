@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -13,13 +13,18 @@ import {
 import FilterSolapinPerdido
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.jsx";
 import {format, parseISO} from 'date-fns';
+import {useSelector} from "react-redux";
 
 export default function IndexSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetSolapinPerdidosQuery(currentFilters, {
+	const {data, refetch} = useGetSolapinPerdidosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteSolapinPerdido,
 		{

@@ -8,13 +8,12 @@ import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 import {useGetPersonaQuery} from "@/services/persona.service.js";
 import {useNavigate, useParams} from "react-router-dom";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateAsociarTarjetaMutation,
 	useGetAsociarTarjetasQuery
 } from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
 import {useLazyGetTarjetaByIdQuery} from "@/components/Configuracion/Cajero/Tarjetas/service/tarjeta.service.js";
-
+import {useSelector} from "react-redux";
 
 export default function AsociarPersonaTarjeta() {
 	const {id} = useParams()
@@ -22,10 +21,13 @@ export default function AsociarPersonaTarjeta() {
 	const [active, setActive] = React.useState(true);
 	const [processingId, setProcessingId] = useState(null);
 	const navigate = useNavigate()
-	const [user] = useUser()
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const user = useSelector(state => state.user);
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const {data: persona_asociadas} = useGetAsociarTarjetasQuery(undefined, {
 		refetchOnReconnect: true,
 	});

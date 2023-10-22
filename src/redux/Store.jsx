@@ -58,9 +58,11 @@ import {
 import {
 	configuracionCobroApi
 } from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
+import userReducer from './userSlice.js';
 
 export const store = configureStore({
 	reducer: {
+		user: userReducer,
 		[genericApi.reducerPath]: genericApi.reducer,
 		[categoriaApi.reducerPath]: categoriaApi.reducer,
 		[estructuraApi.reducerPath]: estructuraApi.reducer,

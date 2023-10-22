@@ -12,7 +12,7 @@ import {
 } from "../service/horario.service";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import AddHorario from "./components/horario.info";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -23,7 +23,7 @@ const getModifiedFields = (originalData, newData) => {
 };
 
 export default function Horario() {
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const {id} = useParams();
 	const {formId, formField} = form;
 	const currentValidation = validations[0];

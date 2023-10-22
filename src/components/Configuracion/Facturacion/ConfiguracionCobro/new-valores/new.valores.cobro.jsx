@@ -5,10 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import {Button, Typography} from "@mui/material";
 import {initialValuesForm1, initialValuesForm2} from "./schemas/initialValues";
-import useUser from "../../../../../hooks/useUser";
-import {
-	useEditConfiguracionComensalesMutation
-} from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/configuracion.comensales.service.js";
+import {useSelector} from "react-redux";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Trash} from "lucide-react";
 import Delete from "@/components/auxiliar/delete.jsx";
@@ -23,6 +20,7 @@ import AddConfiguraciionCobro
 import AddValoresConfiguraciionCobro
 	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/components/valores.configuracion.comensales.jsx";
 import {
+	useEditConfiguracionCobroMutation,
 	useLazyGetConfiguracionCobroByIdQuery
 } from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 
@@ -77,14 +75,14 @@ export default function AgregarValoresConfigurcionCobro() {
 		refetchOnReconnect: true,
 	});
 	const [
-		EditConfiguracionComensales,
+		EditConfiguracionCobro,
 		{
 			isError: isErrorE,
 			isLoading: isLoadingE,
 			isSuccess: isSuccessE,
 			error: errorE,
 		},
-	] = useEditConfiguracionComensalesMutation();
+	] = useEditConfiguracionCobroMutation();
 	useRedirectForm(
 		isLoadingE,
 		isSuccessE,
@@ -96,7 +94,7 @@ export default function AgregarValoresConfigurcionCobro() {
 	const submitForm = async (values) => {
 		const modifiedFields = getModifiedFields(congiguracion, values);
 		if (Object.keys(modifiedFields).length !== 0) {
-			EditConfiguracionComensales({id: id, ...modifiedFields});
+			EditConfiguracionCobro({id: id, ...modifiedFields});
 		}
 	};
 
@@ -104,7 +102,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		submitForm(values, actions);
 	};
 
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 
 
 	const datadef = {

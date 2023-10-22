@@ -1,6 +1,5 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Ban, CheckCircle2, PenSquare, PlusCircle} from "lucide-react";
 import Tooltip from "@mui/material/Tooltip";
@@ -11,6 +10,7 @@ import {
 } from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 import {Link} from "react-router-dom";
 import React from "react";
+import {useSelector} from "react-redux";
 
 export default function IndexConfiguracionCobro() {
 	const {data} = useGetConfiguracionCobrosQuery(undefined, {
@@ -29,7 +29,7 @@ export default function IndexConfiguracionCobro() {
 		},
 	] = useEditConfiguracionCobroMutation();
 
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 
 	const getCurrentDate = () => {
 		const date = new Date();
