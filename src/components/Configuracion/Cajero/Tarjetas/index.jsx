@@ -28,8 +28,11 @@ export default function IndexTarjeta() {
 	useEffect(() => {
 		refetch()
 	}, [user, refetch]);
-	const filterID = tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion);
+	const [filterID, setFilterID] = React.useState();
 
+	useEffect(() => {
+		setFilterID(tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion) || []);
+	}, [tarjetas_asociadas]);
 	const [
 		deleteTarjeta,
 		{
@@ -98,15 +101,17 @@ export default function IndexTarjeta() {
 								<FileEditIcon size={15}/>
 							</Link>
 						</Tooltip>
-						{filterID?.includes(row.id_tarjeta_alimentacion) ? null : (
-							<Tooltip title={'Asociar tarjeta'}>
-								<Link
-									to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
-								>
-									<UserPlus2 size={17}/>
-								</Link>
-							</Tooltip>
-						)}
+						{
+							filterID && filterID.length > 0 && !filterID.includes(row.id_tarjeta_alimentacion) ? (
+								<Tooltip title={'Asociar tarjeta'}>
+									<Link
+										to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
+									>
+										<UserPlus2 size={17}/>
+									</Link>
+								</Tooltip>
+							) : null
+						}
 						<Delete
 							title={`Borrar tarjeta con número de serie: ${row.numero_serie}`}
 							message="¿Está seguro que desea eliminar esta tarjeta?"

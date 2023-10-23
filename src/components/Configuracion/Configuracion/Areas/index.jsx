@@ -154,13 +154,13 @@ export default function IndexAreas() {
 							{
 								type: "text",
 								name: "codigo_area",
-								label: "Nombre exacto",
+								label: "Código área",
 								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "text",
 								name: "codigo_externo",
-								label: "Nombre exacto",
+								label: "Código externo",
 								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{

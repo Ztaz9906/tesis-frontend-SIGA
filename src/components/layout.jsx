@@ -5,6 +5,7 @@ import {Outlet, useLocation} from "react-router-dom";
 import {sectionsMap} from "./SideBar/Setions";
 import MovilSideBar from "./SideBar/Drawer";
 import PrivateRoute from "@/route/privateRoutes.jsx";
+import Footer from "@/components/Footer.jsx";
 
 export default function Layout() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -50,6 +51,7 @@ export default function Layout() {
 					</PrivateRoute>
 				</div>
 			</div>
+			<div className="sticky bottom-0 z-50"><Footer/></div>
 		</div>
 	);
 }

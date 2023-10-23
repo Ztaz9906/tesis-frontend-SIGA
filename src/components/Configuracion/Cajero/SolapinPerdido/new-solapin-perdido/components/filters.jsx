@@ -57,12 +57,6 @@ export default function FilterSolapinPerdido({filter}) {
 							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
-							type: "text",
-							name: "id_persona__username",
-							label: "Nombre de Usuario",
-							placeholder: "Sensible a mayúsculas y minúsculas",
-						},
-						{
 							type: "select",
 							name: "id_persona__id_sexo",
 							label: "Sexo",

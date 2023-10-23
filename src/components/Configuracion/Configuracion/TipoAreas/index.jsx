@@ -117,7 +117,7 @@ export default function IndexTipoEstrutura() {
 					fieldsConfig={[
 						{
 							type: "text",
-							name: "nombre_tipo_tarjeta",
+							name: "nombre_tipo_estructura",
 							label: "Nombre exacto",
 							placeholder: "Sensible a mayúsculas y minúsculas",
 						},

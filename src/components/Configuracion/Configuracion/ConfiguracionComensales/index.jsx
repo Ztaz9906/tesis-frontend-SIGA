@@ -1,6 +1,6 @@
 import React from "react";
 import {SGTable} from "../../../auxiliar/table";
-import {Ban, CheckCircle2, List, PlusCircle, UserPlus2} from "lucide-react";
+import {Ban, CheckCircle2, PlusCircle, UserPlus2} from "lucide-react";
 import {Link} from "react-router-dom";
 import {
 	useCreateConfiguracionComensalesMutation,
@@ -45,14 +45,6 @@ export default function IndexConfiguracionComensales() {
 				id: "Opciones",
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
-						<Tooltip title={'Detalles'}>
-							<Link
-								to={`/configuracion/configuracion/configurar-comensales/details/${row.id_configuracion_persona}`}
-							>
-
-								<List size={16}/>
-							</Link>
-						</Tooltip>
 						{row.activo && (
 							<>
 								<Tooltip

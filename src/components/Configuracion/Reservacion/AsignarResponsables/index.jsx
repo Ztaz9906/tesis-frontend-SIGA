@@ -7,23 +7,17 @@ import {Tooltip} from "@mui/material";
 import GenericFilter from "../../../auxiliar/GenericFilter";
 import {useGetTipoAreasQuery} from "@/components/Configuracion/Configuracion/TipoAreas/service/tipo.areas.service.js";
 import {useGetAreasQuery} from "@/components/Configuracion/Configuracion/Areas/service/areas.service.js";
-import {
-	useGetResponsableReservacionesQuery
-} from "@/components/Configuracion/Reservacion/AsignarResponsables/service/responsable.reservacion.service.js";
-import {
-	useGetAsociarPersonasQuery
-} from "@/components/Configuracion/Reservacion/AsignarResponsables/service/areas.personas.reservacion.service.js";
 
 export default function IndexAsignarResponsablesReservacion() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const [responsablesIds, setResponsablesIds] = React.useState(new Set());
-	const [asociadosIds, setAsociadosIds] = React.useState(new Set());
 
-	const {data} = useGetAreasQuery(currentFilters, {
+	const {data, refetch} = useGetAreasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
-
+	React.useEffect(() => {
+		refetch();
+	}, []);
 	const {data: tipo_areas} = useGetTipoAreasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
@@ -32,24 +26,6 @@ export default function IndexAsignarResponsablesReservacion() {
 		label: tipo.nombre_tipo_estructura,
 	}));
 
-	function getDataAsociados(id) {
-		const {data: asociados, isLoading: isLoadingA} = useGetAsociarPersonasQuery(undefined, {
-			refetchOnReconnect: true,
-		});
-		setAsociadosIds(new Set(asociados?.map(aso => aso.id_estructura.id_estructura) || []));
-
-
-		return asociadosIds.has(id)
-	}
-
-	function getDataResponsables(id) {
-		const {data: responsables, isLoading: isLoadingR} = useGetResponsableReservacionesQuery(undefined, {
-			refetchOnReconnect: true,
-		});
-		setResponsablesIds(new Set(responsables?.map(res => res.id_estructura.id_estructura) || []));
-
-		return responsablesIds.has(id)
-	}
 
 	const datadef = {
 		columns: [

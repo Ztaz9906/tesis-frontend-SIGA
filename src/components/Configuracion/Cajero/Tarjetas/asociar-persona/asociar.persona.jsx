@@ -31,14 +31,21 @@ export default function AsociarPersonaTarjeta() {
 	const {data: persona_asociadas} = useGetAsociarTarjetasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
+
 	const PersonasasociadasIds = persona_asociadas?.map(res => res.id_persona.id);
 	const filteredData = data?.filter(persona =>
 		!PersonasasociadasIds?.includes(persona.id)
 	) || [];
 	const [getTarjetasById, {data: tarjeta}] = useLazyGetTarjetaByIdQuery();
+	const [filterID, setFilterID] = React.useState();
+
 	useEffect(() => {
+		setFilterID(persona_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion) || []);
+		if (filterID && filterID.length > 0 && filterID.includes(Number(id))) {
+			navigate('/configuracion/cajero/tarjetas')
+		}
 		getTarjetasById(id)
-	}, [id]);
+	}, [persona_asociadas, id, filterID]);
 	const [
 		CreateResponsable,
 		{
