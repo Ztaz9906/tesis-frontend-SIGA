@@ -10,6 +10,7 @@ import GenericFilter from "../../../auxiliar/GenericFilter";
 import {Tooltip} from "@mui/material";
 import {useGetTipoProductoQuery} from "../Tipos de Productos/service/tipo.producto.service";
 import {useGetUMQuery} from "../Unidaddes de Medidas/service/um.service";
+import {useSelector} from "react-redux";
 
 export default function IndexProductos() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
@@ -36,7 +37,7 @@ export default function IndexProductos() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Clasificacion de Platos Eliminada"
+		"Producto Eliminado"
 	);
 	const {data: tipo_producto} = useGetTipoProductoQuery(undefined, {
 		refetchOnReconnect: true,
@@ -94,7 +95,7 @@ export default function IndexProductos() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_producto}`}
-							message="Esta seguro que desea eliminar este  de producto"
+							message="¿Está seguro que desea eliminar este producto?"
 							action={() => deleteProducto(row.id_producto)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -143,7 +144,7 @@ export default function IndexProductos() {
 								type: "text",
 								name: "nombre_producto",
 								label: "Nombre exacto",
-								placeholder: "Sensible a mayusculas y minusculas",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "select",

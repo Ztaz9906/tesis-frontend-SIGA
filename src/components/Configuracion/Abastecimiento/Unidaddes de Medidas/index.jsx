@@ -56,7 +56,7 @@ export default function IndexUM() {
         id: "clasificacion",
         accessorFn: (row) => row.clasificacion,
         cell: (info) => info.getValue(),
-        header: "Clasificacion",
+        header: "Clasificación",
         footer: (props) => props.column.id,
       },
       {
@@ -84,7 +84,7 @@ export default function IndexUM() {
             </Link>
             <Delete
               title={`Borrar ${row.name}`}
-              message="Esta seguro que desea eliminar esta UM"
+              message="¿Está seguro que desea eliminar esta UM?"
               action={() => deleteUM(row.id_unidad_medida)}
             >
               <Button variant={"ghost"} size={"icon"}>
@@ -136,7 +136,7 @@ export default function IndexUM() {
               type: "text",
               name: "nombre_unidad_medida",
               label: "Nombre exacto",
-              placeholder: "Sensible a mayusculas y minusculas",
+              placeholder: "Sensible a mayúsculas y minúsculas",
             },
             {
               type: "select",

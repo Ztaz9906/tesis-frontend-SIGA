@@ -50,7 +50,7 @@ export default function Evento() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Evento Creada",
+		"Evento Creado",
 		"/configuracion/distribucion/eventos"
 	);
 	useRedirectForm(
@@ -58,7 +58,7 @@ export default function Evento() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Evento Editada",
+		"Evento Editado",
 		"/configuracion/distribucion/eventos"
 	);
 	const submitForm = async (values, actions) => {

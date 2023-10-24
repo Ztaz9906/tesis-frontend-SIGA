@@ -42,7 +42,7 @@ export default function FilterSolapinPerdido({filter}) {
 							type: "text",
 							name: "id_persona__nombre_completo",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
@@ -53,14 +53,8 @@ export default function FilterSolapinPerdido({filter}) {
 						{
 							type: "text",
 							name: "id_persona__solapin",
-							label: "Solapin",
-							placeholder: "Sensible a mayusculas y minusculas",
-						},
-						{
-							type: "text",
-							name: "id_persona__username",
-							label: "Nombre de Usuario",
-							placeholder: "Sensible a mayusculas y minusculas",
+							label: "Solapín",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",
@@ -74,7 +68,7 @@ export default function FilterSolapinPerdido({filter}) {
 						{
 							type: "select",
 							name: "id_persona__id_pais",
-							label: "Pais",
+							label: "País",
 							options: [
 								{value: "", label: "--Todos--"},
 								...paisOptions

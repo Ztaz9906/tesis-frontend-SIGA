@@ -76,21 +76,21 @@ export default function DatosContacto() {
 				id: "direccion",
 				accessorFn: (row) => row.direccion,
 				cell: (info) => info.getValue(),
-				header: "Direccion",
+				header: "Dirección",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "telefono",
 				accessorFn: (row) => row.telefono,
 				cell: (info) => info.getValue(),
-				header: "Telefono",
+				header: "Teléfono",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "correo",
 				accessorFn: (row) => row.correo,
 				cell: (info) => info.getValue(),
-				header: "Correo electronico",
+				header: "Correo electrónico",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -111,7 +111,7 @@ export default function DatosContacto() {
 		rows: data ?? []
 	};
 	return (<>{(!data || Object.keys(data).length === 0) && (
-		<Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
+		<Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
 	)}
 		<SGTable data={datadef} setFilter={false} setPagination={false}/></>)
 }

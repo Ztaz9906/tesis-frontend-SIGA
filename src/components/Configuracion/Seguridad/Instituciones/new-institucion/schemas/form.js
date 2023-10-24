@@ -24,9 +24,9 @@ const form = {
     },
     description: {
       name: "description",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La descripcion es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
 
     active: {
@@ -38,9 +38,9 @@ const form = {
     
     active_modules: {
       name: "active_modules",
-      label: "Modulos",
+      label: "Módulos",
       type: "text",
-      errorMsg: "Seleccione los modulos activos para esta institucion.",
+      errorMsg: "Seleccione los módulos activos para esta institución.",
     },
   },
 };

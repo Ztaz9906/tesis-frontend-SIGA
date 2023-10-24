@@ -61,7 +61,7 @@ export default function EntradaDatos() {
 							<Field name="file" component={FileInput}/>
 							<div className="mt-6 w-full flex justify-between">
 								<Button type="submit" variant="outlined" color="success">
-									{isLoadingC ? (<CircularProgress size={20}/>) : 'Cargar Exel'}
+									{isLoadingC ? (<CircularProgress size={20}/>) : 'Cargar ExCel'}
 								</Button>
 							</div>
 						</Form>

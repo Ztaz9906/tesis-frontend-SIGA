@@ -27,9 +27,9 @@ const form = {
     
     descripcion: {
       name: "descripcion",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La descripcion es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
     
     precio_cup: {

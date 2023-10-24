@@ -36,7 +36,7 @@ export default function IndexClassPlatos() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Clasificacion de Platos Eliminada"
+		"Clasificación de Platos Eliminada"
 	);
 
 	const datadef = {
@@ -73,7 +73,7 @@ export default function IndexClassPlatos() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_clasificacion_plato}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar esta clasificación?"
 							action={() => deleteClassPlatos(row.id_clasificacion_plato)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -124,7 +124,7 @@ export default function IndexClassPlatos() {
 							type: "text",
 							name: "nombre_clasificacion_plato",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

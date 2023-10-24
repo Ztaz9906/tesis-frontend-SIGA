@@ -73,20 +73,20 @@ export default function PeriodoReservacion() {
 					<div className="flex items-center justify-evenly">
 						<span>{info.getValue()}</span>
 						<ModalPreiodoReservacion
-							title={"Editar Periodo Reservaciones"}
+							title={"Editar Período de Reservación"}
 							id={info.row.original.id_periodo_reservacion}
 							edit={editPeriodoReservacion}/>
 
 					</div>
 				),
-				header: "Periodo de reservacion",
+				header: "Período de reservación",
 				footer: (props) => props.column.id,
 			},
 		],
 		rows: data ?? []
 	};
 	return (<>{(!data || Object.keys(data).length === 0) && (
-		<Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
+		<Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
 	)}
 		<SGTable data={datadef} setFilter={false} setPagination={false}/></>)
 }

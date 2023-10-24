@@ -28,8 +28,11 @@ export default function IndexTarjeta() {
 	useEffect(() => {
 		refetch()
 	}, [user, refetch]);
-	const filterID = tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion);
+	const [filterID, setFilterID] = React.useState();
 
+	useEffect(() => {
+		setFilterID(tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion) || []);
+	}, [tarjetas_asociadas]);
 	const [
 		deleteTarjeta,
 		{
@@ -56,14 +59,14 @@ export default function IndexTarjeta() {
 				id: "numero_serie",
 				accessorFn: (row) => row.numero_serie,
 				cell: (info) => info.getValue(),
-				header: "Numero de serie",
+				header: "Número de serie",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo",
 				accessorFn: (row) => row.codigo,
 				cell: (info) => info.getValue(),
-				header: "Codigo",
+				header: "Código",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -98,18 +101,20 @@ export default function IndexTarjeta() {
 								<FileEditIcon size={15}/>
 							</Link>
 						</Tooltip>
-						{filterID?.includes(row.id_tarjeta_alimentacion) ? null : (
-							<Tooltip title={'Asociar tarjeta'}>
-								<Link
-									to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
-								>
-									<UserPlus2 size={17}/>
-								</Link>
-							</Tooltip>
-						)}
+						{
+							filterID && filterID.length > 0 && !filterID.includes(row.id_tarjeta_alimentacion) ? (
+								<Tooltip title={'Asociar tarjeta'}>
+									<Link
+										to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
+									>
+										<UserPlus2 size={17}/>
+									</Link>
+								</Tooltip>
+							) : null
+						}
 						<Delete
-							title={`Borrar tarjeta con numero de serie: ${row.numero_serie}`}
-							message="Esta seguro que desea eliminar esta Tarjeta"
+							title={`Borrar tarjeta con número de serie: ${row.numero_serie}`}
+							message="¿Está seguro que desea eliminar esta tarjeta?"
 							action={() => deleteTarjeta(row.id_tarjeta_alimentacion)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -161,7 +166,7 @@ export default function IndexTarjeta() {
 					</Tooltip>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las las tarjetas"
+						title="Filtro para las tarjetas"
 					>
 						<Button
 							variant={"ghost"}
@@ -182,14 +187,14 @@ export default function IndexTarjeta() {
 							{
 								type: "text",
 								name: "numero_serie",
-								label: "Numero de serie",
-								placeholder: "Sensible a mayusculas y minusculas",
+								label: "Número de serie",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "text",
 								name: "codigo",
-								label: "Codigo",
-								placeholder: "Sensible a mayusculas y minusculas",
+								label: "Código",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "select",

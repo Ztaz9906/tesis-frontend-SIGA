@@ -42,7 +42,7 @@ export default function FilterUsuarios({filter}) {
 							type: "text",
 							name: "nombre_completo",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
@@ -53,14 +53,14 @@ export default function FilterUsuarios({filter}) {
 						{
 							type: "text",
 							name: "solapin",
-							label: "Solapin",
-							placeholder: "Sensible a mayusculas y minusculas",
+							label: "Solapín",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
 							name: "username",
 							label: "Nombre de Usuario",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",
@@ -74,7 +74,7 @@ export default function FilterUsuarios({filter}) {
 						{
 							type: "select",
 							name: "id_pais",
-							label: "Pais",
+							label: "País",
 							options: [
 								{value: "", label: "--Todos--"},
 								...paisOptions

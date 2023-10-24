@@ -30,7 +30,7 @@ export default function IndexTipoEstrutura() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Tipo de area eliminada"
+		"Tipo de área eliminada"
 	);
 
 	const datadef = {
@@ -67,7 +67,7 @@ export default function IndexTipoEstrutura() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_tipo_tarjeta}`}
-							message="Esta seguro que desea eliminar esta TipoEstrutura"
+							message="¿Está seguro que desea eliminar este tipo de área?"
 							action={() => deleteTipoEstrutura(row.id_tipo_estructura)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -87,7 +87,7 @@ export default function IndexTipoEstrutura() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Tipos de Area
+					Listado de Tipos de Área
 				</h2>
 				<div className="flex">
 					<Link
@@ -98,7 +98,7 @@ export default function IndexTipoEstrutura() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las los tipos de estructuras"
+						title="Filtro para los tipos de estructuras"
 					>
 						<Button
 							variant={"ghost"}
@@ -117,9 +117,9 @@ export default function IndexTipoEstrutura() {
 					fieldsConfig={[
 						{
 							type: "text",
-							name: "nombre_tipo_tarjeta",
+							name: "nombre_tipo_estructura",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

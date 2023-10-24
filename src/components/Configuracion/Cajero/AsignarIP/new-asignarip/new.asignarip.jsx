@@ -149,7 +149,7 @@ export default function AsignarIp() {
 						</Tooltip>
 						<Delete
 							title={`Borrar ${row.ip_puerta}`}
-							message="Esta seguro que desea eliminar este IP"
+							message="¿Está seguro que desea eliminar este IP?"
 							action={() => deleteAsignarIp(row.id_ip_puerta)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -173,7 +173,7 @@ export default function AsignarIp() {
 				<Typography variant="h5" fontWeight="bold">
 					{`Asignar IP a Puerta`}
 				</Typography>
-				<Tooltip title={"Atras"}>
+				<Tooltip title={"Atrás"}>
 					<Link to={'/configuracion/cajero/asignar-ip'}>
 						<ListEndIcon size={15}/>
 					</Link>

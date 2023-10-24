@@ -168,14 +168,8 @@ export default function RutasDinamicas() {
 				<Route path="/configuracion" element={<Outlet/>}>
 					{
 						// Si el usuario es "is_staff", pintar todas las rutas
-						user && user.is_staff
-							? Object.keys(RUTAS_POR_MODULO).flatMap(modulo =>
-								RUTAS_POR_MODULO[modulo].map(ruta => (
-									<Route key={ruta.path} path={modulo} element={<Outlet/>}>
-										<Route path={ruta.path} element={ruta.element}/>
-									</Route>
-								))
-							)
+						user && user.institucion === null
+							? null
 							// Si no es "is_staff", pintar sólo rutas de módulos activos
 							: user && user.institucion.active_modules.map(modulo =>
 							RUTAS_POR_MODULO[modulo].map(ruta => (

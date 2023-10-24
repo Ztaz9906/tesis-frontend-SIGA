@@ -3,9 +3,9 @@ const form = {
 	formField: {
 		id_tipo_estructura: {
 			name: "id_tipo_estructura",
-			label: "Tipo de area",
+			label: "Tipo de área",
 			type: "text",
-			errorMsg: "Tipo de area requerida.",
+			errorMsg: "Tipo de área requerida.",
 		},
 		nombre_estructura: {
 			name: "nombre_estructura",
@@ -15,27 +15,27 @@ const form = {
 		},
 		codigo_externo: {
 			name: "codigo_externo",
-			label: "Codigo Externo",
+			label: "Código Externo",
 			type: "text",
-			errorMsg: "Codigo externo requerido.",
+			errorMsg: "Código externo requerido.",
 		},
 		codigo_area: {
 			name: "codigo_area",
-			label: "Codigo Area",
+			label: "Código Area",
 			type: "text",
-			errorMsg: "Codigo area requerido.",
+			errorMsg: "Código Área requerido.",
 		},
 		estructura_consejo: {
 			name: "estructura_consejo",
-			label: "Area consejo",
+			label: "Área consejo",
 			type: "text",
-			errorMsg: "Area consejo requerido.",
+			errorMsg: "Área consejo requerido.",
 		},
 		estructura_credencial: {
 			name: "estructura_credencial",
-			label: "Area credencial",
+			label: "Área credencial",
 			type: "text",
-			errorMsg: "Area credencial requerido.",
+			errorMsg: "Área credencial requerido.",
 		},
 		activo: {
 			name: "activo",

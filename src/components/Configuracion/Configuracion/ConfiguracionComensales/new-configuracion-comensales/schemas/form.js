@@ -4,27 +4,27 @@ const form = {
 	formField: {
 		descripcion: {
 			name: "descripcion",
-			label: "Descripcion",
+			label: "Descripción",
 			type: "text",
-			errorMsg: "La Descripcion es requerida.",
+			errorMsg: "La descripción es requerida.",
 		},
 		id_estructura: {
 			name: "id_estructura",
-			label: "Areas",
+			label: "Áreas",
 			type: "text",
-			errorMsg: "Areas es requerido.",
+			errorMsg: "Seleccione un área",
 		},
 		id_categoria_residente: {
 			name: "id_categoria_residente",
 			label: "Residente",
 			type: "text",
-			errorMsg: "Residente es requerido.",
+			errorMsg: "Seleccione un residente",
 		},
 		id_categoria: {
 			name: "id_categoria",
-			label: "Categoria",
+			label: "Categoría",
 			type: "text",
-			errorMsg: "Categoria es requerida.",
+			errorMsg: "La categoría es requerida.",
 		}
 	},
 };

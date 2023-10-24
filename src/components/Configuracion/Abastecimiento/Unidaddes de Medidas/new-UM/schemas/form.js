@@ -24,9 +24,9 @@ const form = {
     },
     descripcion_unidad_medida: {
       name: "descripcion_unidad_medida",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La descripcion es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
 
     activo: {
@@ -43,9 +43,9 @@ const form = {
     },
     clasificacion: {
       name: "clasificacion",
-      label: "Clasificacion",
+      label: "Clasificación",
       type: "text",
-      errorMsg: "la clasificacion es requerido.",
+      errorMsg: "La clasificación es requerida",
     },
 
     

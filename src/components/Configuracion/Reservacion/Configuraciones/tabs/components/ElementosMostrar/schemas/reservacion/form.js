@@ -3,7 +3,7 @@ const form = {
 	formField: {
 		elementos_mostrar_reservacion: {
 			name: "elementos_mostrar_reservacion",
-			label: "Reservacion por platos",
+			label: "Reservación por platos",
 			type: "phone",
 			errorMsg: "Seleccione una cantidad.",
 		},

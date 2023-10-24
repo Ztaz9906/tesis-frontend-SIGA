@@ -5,6 +5,8 @@ import {Outlet, useLocation} from "react-router-dom";
 import {sectionsMap} from "./SideBar/Setions";
 import MovilSideBar from "./SideBar/Drawer";
 import PrivateRoute from "@/route/privateRoutes.jsx";
+import Footer from "@/components/Footer.jsx";
+import {useSelector} from "react-redux";
 
 export default function Layout() {
 	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -17,6 +19,7 @@ export default function Layout() {
 			window.removeEventListener("resize", handleResize);
 		};
 	}, []);
+	const user = useSelector((state) => state.user)
 
 	const location = useLocation();
 	return (
@@ -50,6 +53,8 @@ export default function Layout() {
 					</PrivateRoute>
 				</div>
 			</div>
+			{user && (<div className="sticky bottom-0 z-50"><Footer/></div>)}
+
 		</div>
 	);
 }
