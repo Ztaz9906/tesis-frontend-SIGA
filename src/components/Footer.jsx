@@ -10,7 +10,7 @@ const Footer = () => {
 				© {user.institucion.name}
 			</p>
 			<p className=" text-center">
-				{new Date().getFullYear()} Version 2.0
+				{new Date().getFullYear()} Sistema de Gestión de Alimentación Version 2.0
 			</p>
 		</footer>
 	);

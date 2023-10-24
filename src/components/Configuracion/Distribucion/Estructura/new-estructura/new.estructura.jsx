@@ -7,7 +7,7 @@ import {useEffect, useState} from "react";
 import {Button, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 
-import {useRedirectForm} from "../../../../../hooks/useRedirectForm";
+import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
 	useCreateEstructuraMutation,
 	useEditEstructuraMutation,
@@ -157,7 +157,7 @@ export default function Estructura() {
 										);
 										setFieldValue(
 											formField.estructura_parent.name,
-											res.estructura_parent.id,
+											res.estructura_parent?.id,
 											true
 										);
 									});
