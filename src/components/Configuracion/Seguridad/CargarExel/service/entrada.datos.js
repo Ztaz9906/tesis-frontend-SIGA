@@ -19,9 +19,22 @@ export const uploadExelApi = createApi({
 			},
 			invalidatesTags: [{type: "uploadExel", id: "LIST"}],
 		}),
+		downloadExcelTemplate: builder.query({
+			query: () => ({
+				url: "/descargar-plantilla/",
+				method: "GET",
+				responseType: 'blob'
+			}),
+			transformResponse: (response) => {
+				// Transform the blob into an Object URL
+				const objectUrl = URL.createObjectURL(response.data);
+				return {data: objectUrl};
+			}
+		}),
 	}),
 });
 
 export const {
 	useCreateUploadExcelMutation,
+	useDownloadExcelTemplateQuery,
 } = uploadExelApi;

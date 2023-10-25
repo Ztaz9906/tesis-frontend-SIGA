@@ -50,9 +50,7 @@ export default function IndexTarjeta() {
 		errorD,
 		"Tarjeta Eliminada"
 	);
-	React.useEffect(() => {
 
-	}, []);
 	const datadef = {
 		columns: [
 			{
@@ -101,17 +99,17 @@ export default function IndexTarjeta() {
 								<FileEditIcon size={15}/>
 							</Link>
 						</Tooltip>
-						{
-							filterID && filterID.length > 0 && !filterID.includes(row.id_tarjeta_alimentacion) ? (
-								<Tooltip title={'Asociar tarjeta'}>
-									<Link
-										to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
-									>
-										<UserPlus2 size={17}/>
-									</Link>
-								</Tooltip>
-							) : null
-						}
+						{!row.has_persona && (
+
+							<Tooltip title={'Asociar tarjeta'}>
+								<Link
+									to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
+								>
+									<UserPlus2 size={17}/>
+								</Link>
+							</Tooltip>
+						)}
+
 						<Delete
 							title={`Borrar tarjeta con número de serie: ${row.numero_serie}`}
 							message="¿Está seguro que desea eliminar esta tarjeta?"
