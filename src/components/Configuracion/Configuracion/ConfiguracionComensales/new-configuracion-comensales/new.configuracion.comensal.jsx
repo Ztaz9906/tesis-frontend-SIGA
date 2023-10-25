@@ -131,7 +131,7 @@ export default function ConfiguracionComensal() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Activo",
+				header: "Áreas",
 				footer: (props) => props.column.id,
 			},
 			{

@@ -45,7 +45,7 @@ export default function AsociarPersonaTarjeta() {
 			navigate('/configuracion/cajero/tarjetas')
 		}
 		getTarjetasById(id)
-	}, [persona_asociadas, id, filterID]);
+	}, [persona_asociadas, id]);
 	const [
 		CreateResponsable,
 		{
