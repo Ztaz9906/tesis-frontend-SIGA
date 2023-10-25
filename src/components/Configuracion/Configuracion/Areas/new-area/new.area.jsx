@@ -8,7 +8,7 @@ import initialValues from "./schemas/initialValues";
 import AddArea from "./components/tipo.area.info.jsx";
 import {useCreateAreaMutation, useEditAreaMutation, useLazyGetAreaByIdQuery,} from "../service/areas.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -50,7 +50,7 @@ export default function Area() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Area Creada",
+		"Área Creada",
 		"/configuracion/configuracion/areas"
 	);
 	useRedirectForm(
@@ -58,7 +58,7 @@ export default function Area() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Area Editada",
+		"Área Editada",
 		"/configuracion/configuracion/areas"
 	);
 	const submitForm = async (values, actions) => {
@@ -80,7 +80,7 @@ export default function Area() {
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);
 	};
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	return (
 		<div className="flex justify-center items-center bg-gray-100 h-full">
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">

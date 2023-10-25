@@ -94,7 +94,7 @@ const RenderTreeView = ({data}) => {
 								<p>{item.initials}</p>
 							</div>
 							<div className="flex-grow">
-								<h4 className="text-gray-500 mb-1">Categoria</h4>
+								<h4 className="text-gray-500 mb-1">Categoría</h4>
 								<p>{item.category.name}</p>
 							</div>
 							<div className="flex-grow">
@@ -145,7 +145,7 @@ const RenderTreeView = ({data}) => {
 
 							<Delete
 								title={`Borrar ${item.name}`}
-								message="Esta seguro que desea eliminar esta categoria"
+								message="¿Está seguro que desea eliminar esta estructura?"
 								action={() => deleteEstructura(item.id)}
 							>
 								<Button variant={"ghost"} size={"icon"} className={`items-end`}>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -9,11 +9,18 @@ import {
 	useDeleteUsuarioMutation,
 	useGetUsuariosQuery
 } from "@/components/Configuracion/Seguridad/Usuarios/service/usuario.service.js";
+import {useSelector} from "react-redux";
 
 export default function IndexUsuarioes() {
-	const {data} = useGetUsuariosQuery(undefined, {
+	const {data, refetch} = useGetUsuariosQuery(undefined, {
 		refetchOnReconnect: true,
 	});
+
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
+
 
 	const [
 		deleteUsuario,
@@ -47,7 +54,7 @@ export default function IndexUsuarioes() {
 					? row.groups.map((rol) => rol.name).join(", ")
 					: "",
 				cell: (info) => info.getValue(),
-				header: "Descripcion",
+				header: "Descripción",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -59,7 +66,7 @@ export default function IndexUsuarioes() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.name}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar este usuario?"
 							action={() => deleteUsuario(row.id)}
 						>
 							<Button variant={"ghost"} size={"icon"}>

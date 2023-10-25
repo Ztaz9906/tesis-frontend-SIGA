@@ -23,7 +23,7 @@ const form = {
 
 		institucion: {
 			name: "institucion",
-			label: "Institucion",
+			label: "Institución",
 			type: "text",
 			errorMsg: "Seleccione una institucion.",
 		},
@@ -43,5 +43,3 @@ const form = {
 	},
 };
 export default form;
-
-//Distribucion_TbNdiaSemana

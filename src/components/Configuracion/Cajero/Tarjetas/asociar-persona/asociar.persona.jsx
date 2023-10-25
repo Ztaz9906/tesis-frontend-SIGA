@@ -8,13 +8,12 @@ import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 import {useGetPersonaQuery} from "@/services/persona.service.js";
 import {useNavigate, useParams} from "react-router-dom";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateAsociarTarjetaMutation,
 	useGetAsociarTarjetasQuery
 } from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
 import {useLazyGetTarjetaByIdQuery} from "@/components/Configuracion/Cajero/Tarjetas/service/tarjeta.service.js";
-
+import {useSelector} from "react-redux";
 
 export default function AsociarPersonaTarjeta() {
 	const {id} = useParams()
@@ -22,21 +21,31 @@ export default function AsociarPersonaTarjeta() {
 	const [active, setActive] = React.useState(true);
 	const [processingId, setProcessingId] = useState(null);
 	const navigate = useNavigate()
-	const [user] = useUser()
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const user = useSelector(state => state.user);
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const {data: persona_asociadas} = useGetAsociarTarjetasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
+
 	const PersonasasociadasIds = persona_asociadas?.map(res => res.id_persona.id);
 	const filteredData = data?.filter(persona =>
 		!PersonasasociadasIds?.includes(persona.id)
 	) || [];
 	const [getTarjetasById, {data: tarjeta}] = useLazyGetTarjetaByIdQuery();
+	const [filterID, setFilterID] = React.useState();
+
 	useEffect(() => {
+		setFilterID(persona_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion) || []);
+		if (filterID && filterID.length > 0 && filterID.includes(Number(id))) {
+			navigate('/configuracion/cajero/tarjetas')
+		}
 		getTarjetasById(id)
-	}, [id]);
+	}, [persona_asociadas, id]);
 	const [
 		CreateResponsable,
 		{
@@ -82,14 +91,14 @@ export default function AsociarPersonaTarjeta() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -103,7 +112,7 @@ export default function AsociarPersonaTarjeta() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -133,7 +142,7 @@ export default function AsociarPersonaTarjeta() {
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
 					Asignar persona a tarjeta
 				</h2>
-				<Tooltip title={'Atras'}>
+				<Tooltip title={'Atrás'}>
 					<Button variant={'ghost'} size={'icon'} onClick={() => {
 						navigate('/configuracion/cajero/tarjetas')
 					}}>
@@ -148,7 +157,7 @@ export default function AsociarPersonaTarjeta() {
 					</h2>
 					<div className="flex gap-4 text-center items-center text-sm text-gray-500 p-2">
 						<p className="font-semibold">
-							<span className="font-bold">Codigo:</span> {tarjeta.codigo}
+							<span className="font-bold">Código:</span> {tarjeta.codigo}
 						</p>
 						<p className="font-semibold">
 							<span className="font-bold">No.Serie:</span> {tarjeta.numero_serie ? 'SI' : "NO"}

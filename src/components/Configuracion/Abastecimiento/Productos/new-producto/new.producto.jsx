@@ -1,4 +1,4 @@
-import {Formik, Form} from "formik";
+import {Form, Formik} from "formik";
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import {useNavigate, useParams} from "react-router-dom";
@@ -11,7 +11,7 @@ import {
 	useLazyGetProductoByIdQuery,
 } from "../service/producto.service";
 import {useRedirectForm} from "../../../../../hooks/useRedirectForm";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 import AddProducto from "./components/producto.info";
 
 const getModifiedFields = (originalData, newData) => {
@@ -84,7 +84,7 @@ export default function Producto() {
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);
 	};
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	return (
 		<div className="flex justify-center items-center bg-gray-100 h-full">
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">

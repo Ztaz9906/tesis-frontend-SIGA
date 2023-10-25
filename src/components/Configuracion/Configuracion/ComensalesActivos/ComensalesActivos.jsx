@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {FilterIcon, Trash} from "lucide-react";
 import {CircularProgress, Tooltip} from "@mui/material";
@@ -8,16 +8,20 @@ import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 import {useEditPersonaMutation, useGetPersonaQuery} from "@/services/persona.service.js";
+import {useSelector} from "react-redux";
 
 
 export default function ComensalesActivos() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
 	const [processingId, setProcessingId] = useState(null);
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		EditPersona,
 		{
@@ -53,14 +57,14 @@ export default function ComensalesActivos() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -74,7 +78,7 @@ export default function ComensalesActivos() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{

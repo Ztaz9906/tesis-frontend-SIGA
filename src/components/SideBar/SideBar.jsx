@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Link, useLocation} from "react-router-dom";
-import {Accordion, AccordionDetails, AccordionSummary, Typography,} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Typography} from "@mui/material";
 import {ArrowDown} from "lucide-react";
-import useUser from "../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 export default function SideBar({sectionsMap}) {
 	const location = useLocation();
 	const [expandedAccordion, setExpandedAccordion] = useState(null);
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const isActiveRoute = (route) => {
 		return route === location.pathname;
 	};
@@ -19,13 +19,22 @@ export default function SideBar({sectionsMap}) {
 	let filteredSections = [];
 	if (user) {
 		if (user.is_staff) {
-			// Si el usuario es staff, usa todas las secciones sin filtrar
-			filteredSections = Object.entries(sectionsMap);
+			if (user.institucion) {
+				const activeModules = user?.institucion.active_modules.map((module) =>
+					module.toLowerCase()
+				);
+				filteredSections = Object.entries(sectionsMap).filter(
+					([sectionTitle]) =>
+						activeModules.includes(sectionTitle.toLowerCase()) ||
+						sectionTitle.toLowerCase() === "seguridad"
+				);
+			} else {
+				null;
+			}
 		} else {
-			// Si no es staff, aplica el filtro
 			const activeModules = user?.institucion.active_modules.map((module) =>
 				module.toLowerCase()
-			); // Convertimos todo a minúsculas
+			);
 			filteredSections = Object.entries(sectionsMap).filter(
 				([sectionTitle]) =>
 					activeModules.includes(sectionTitle.toLowerCase()) ||
@@ -36,44 +45,49 @@ export default function SideBar({sectionsMap}) {
 
 	return (
 		<div>
-			{filteredSections.map(([title, config], index) => (
-				<Accordion
-					key={index}
-					expanded={expandedAccordion === `panel${index}`}
-					onChange={handleAccordionChange(`panel${index}`)}
-					style={{
-						boxShadow: "none",
-						backgroundColor: "#f5f5f5",
-						marginBottom: 0,
-						marginTop: 0,
-					}} // Estilo para quitar separación entre acordeones
-				>
-					<AccordionSummary
-						expandIcon={<ArrowDown size={16}/>}
-						style={{minHeight: "45px"}}
+			{user && user.institucion && filteredSections ? (
+				filteredSections.map(([title, config], index) => (
+					<Accordion
+						key={index}
+						expanded={expandedAccordion === `panel${index}`}
+						onChange={handleAccordionChange(`panel${index}`)}
+						style={{
+							boxShadow: "none",
+							backgroundColor: "#f5f5f5",
+							marginBottom: 0,
+							marginTop: 0,
+						}}
 					>
-						<i className={`fa-solid ${config.icon} p-1`}></i>
-						<Typography>{title}</Typography>
-					</AccordionSummary>
-					<AccordionDetails
-						style={{backgroundColor: "#f5f5f5", padding: "8px 24px"}}
-					>
-						<div className="flex flex-col justify-between py-1 text-gray-500">
-							{config.routes.map((route, routeIndex) => (
-								<Link
-									key={routeIndex}
-									to={route.path}
-									className={`${
-										isActiveRoute(route.path) ? "active-text" : ""
-									} p-1 transition-colors duration-200 hover:text-red-500`}
-								>
-									{route.label}
-								</Link>
-							))}
-						</div>
-					</AccordionDetails>
-				</Accordion>
-			))}
+						<AccordionSummary
+							expandIcon={<ArrowDown size={16}/>}
+							style={{minHeight: "45px"}}
+						>
+							<i className={`fa-solid ${config.icon} p-1`}></i>
+							<Typography>{config.title}</Typography>
+						</AccordionSummary>
+						<AccordionDetails
+							style={{backgroundColor: "#f5f5f5", padding: "8px 24px"}}
+						>
+							<div className="flex flex-col justify-between py-1 text-gray-500">
+								{config.routes.map((route, routeIndex) => (
+									<Link
+										key={routeIndex}
+										to={route.path}
+										className={`${
+											isActiveRoute(route.path) ? "active-text" : ""
+										} p-1 transition-colors duration-200 hover:text-red-500`}
+									>
+										{route.label}
+									</Link>
+								))}
+							</div>
+						</AccordionDetails>
+					</Accordion>
+				))
+			) : (
+				<h1>Debes seleccionar una institucion para administrar</h1>
+			)}
+
 		</div>
 	);
 }

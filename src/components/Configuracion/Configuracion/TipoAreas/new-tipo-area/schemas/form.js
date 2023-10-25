@@ -9,9 +9,9 @@ const form = {
 		},
 		descripcion_tipo_estructura: {
 			name: "descripcion_tipo_estructura",
-			label: "Descripcion",
+			label: "Descripción",
 			type: "text",
-			errorMsg: "La clave es requerida.",
+			errorMsg: "La descripción es requerida.",
 		},
 		activo: {
 			name: "activo",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FileEditIcon, FilterIcon, PlusCircle, Trash, UserPlus2} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -13,19 +13,26 @@ import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
 import {
 	useGetAsociarTarjetasQuery
 } from "@/components/Configuracion/Cajero/Tarjetas/service/persona.tarjeta.service.js";
+import {useSelector} from "react-redux";
 
 export default function IndexTarjeta() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTarjetasQuery(currentFilters, {
+	const {data, refetch} = useGetTarjetasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
 	const {data: tarjetas_asociadas} = useGetAsociarTarjetasQuery(undefined, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
+	const [filterID, setFilterID] = React.useState();
 
-	const filterID = tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion);
-
+	useEffect(() => {
+		setFilterID(tarjetas_asociadas?.map(res => res.id_tarjeta.id_tarjeta_alimentacion) || []);
+	}, [tarjetas_asociadas]);
 	const [
 		deleteTarjeta,
 		{
@@ -43,23 +50,21 @@ export default function IndexTarjeta() {
 		errorD,
 		"Tarjeta Eliminada"
 	);
-	React.useEffect(() => {
 
-	}, []);
 	const datadef = {
 		columns: [
 			{
 				id: "numero_serie",
 				accessorFn: (row) => row.numero_serie,
 				cell: (info) => info.getValue(),
-				header: "Numero de serie",
+				header: "Número de serie",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo",
 				accessorFn: (row) => row.codigo,
 				cell: (info) => info.getValue(),
-				header: "Codigo",
+				header: "Código",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -94,7 +99,8 @@ export default function IndexTarjeta() {
 								<FileEditIcon size={15}/>
 							</Link>
 						</Tooltip>
-						{filterID?.includes(row.id_tarjeta_alimentacion) ? null : (
+						{!row.has_persona && (
+
 							<Tooltip title={'Asociar tarjeta'}>
 								<Link
 									to={`/configuracion/cajero/tarjeta/asociar-persona/${row.id_tarjeta_alimentacion}`}
@@ -103,9 +109,10 @@ export default function IndexTarjeta() {
 								</Link>
 							</Tooltip>
 						)}
+
 						<Delete
-							title={`Borrar tarjeta con numero de serie: ${row.numero_serie}`}
-							message="Esta seguro que desea eliminar esta Tarjeta"
+							title={`Borrar tarjeta con número de serie: ${row.numero_serie}`}
+							message="¿Está seguro que desea eliminar esta tarjeta?"
 							action={() => deleteTarjeta(row.id_tarjeta_alimentacion)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -157,7 +164,7 @@ export default function IndexTarjeta() {
 					</Tooltip>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las las tarjetas"
+						title="Filtro para las tarjetas"
 					>
 						<Button
 							variant={"ghost"}
@@ -178,14 +185,14 @@ export default function IndexTarjeta() {
 							{
 								type: "text",
 								name: "numero_serie",
-								label: "Numero de serie",
-								placeholder: "Sensible a mayusculas y minusculas",
+								label: "Número de serie",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "text",
 								name: "codigo",
-								label: "Codigo",
-								placeholder: "Sensible a mayusculas y minusculas",
+								label: "Código",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "select",

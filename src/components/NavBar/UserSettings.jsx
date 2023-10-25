@@ -7,7 +7,9 @@ import MenuItem from "@mui/material/MenuItem";
 import UserAvatar from "./UserAvatar";
 import {useLogoutMutation} from "@/services/login.service.js";
 import {useRedirectForm} from "../../hooks/useRedirectForm";
-import useUser from "../../hooks/useUser";
+import ModalInstitucionSelecion
+	from "@/components/Configuracion/AdministracionInstitucionesStaff/AdminSelecionInstitucion.jsx";
+import {useSelector} from "react-redux";
 
 export default function UserSettings() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -18,14 +20,16 @@ export default function UserSettings() {
 		setAnchorElUser(null);
 	};
 
-	const [user] = useUser();
-
+	const user = useSelector(state => state.user);
+	
 	const [logout, {isError, isLoading, isSuccess, error}] =
 		useLogoutMutation();
 	const settings = [
-		<span className="text-sm" onClick={() => logout()}>
+		(user && user.is_staff) ? <ModalInstitucionSelecion/> : null,
+		<span key={'logout'} className="text-sm" onClick={() => logout()}>
       Desconectarse
-    </span>,
+      </span>
+
 	];
 	useRedirectForm(
 		isLoading,
@@ -67,8 +71,8 @@ export default function UserSettings() {
 				open={Boolean(anchorElUser)}
 				onClose={handleCloseUserMenu}
 			>
-				{settings.map((setting) => (
-					<MenuItem key={setting} onClick={handleCloseUserMenu}>
+				{settings.filter((item) => item).map((setting, index) => (
+					<MenuItem key={index} onClick={handleCloseUserMenu}>
 						{setting}
 					</MenuItem>
 				))}

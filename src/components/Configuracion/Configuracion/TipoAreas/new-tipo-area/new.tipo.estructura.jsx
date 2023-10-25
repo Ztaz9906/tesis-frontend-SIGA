@@ -11,7 +11,7 @@ import {
 	useLazyGetTipoAreaByIdQuery,
 } from "../service/tipo.areas.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 import AddTipoArea from "./components/tipo.area.info.jsx";
 
 const getModifiedFields = (originalData, newData) => {
@@ -54,7 +54,7 @@ export default function TipoArea() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tipo de Area Creada",
+		"Tipo de Área Creada",
 		"/configuracion/configuracion/tipo_areas"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function TipoArea() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tipo de Area Editada",
+		"Tipo de Área Editada",
 		"/configuracion/configuracion/tipo_areas"
 	);
 	const submitForm = async (values, actions) => {
@@ -84,13 +84,13 @@ export default function TipoArea() {
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);
 	};
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	return (
 		<div className="flex justify-center items-center bg-gray-100 h-full">
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Tipo de Area" : `Editar Tipo de Area`}
+						{!id ? "Registrar Tipo de Área" : `Editar Tipo de Área`}
 					</Typography>
 				</div>
 				<Formik

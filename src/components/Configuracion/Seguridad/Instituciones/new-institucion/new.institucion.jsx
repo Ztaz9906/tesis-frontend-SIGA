@@ -1,7 +1,4 @@
-// formik components
 import {Form, Formik} from "formik";
-
-// NewAsignatura layout schemas for form and form feilds
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import {useNavigate, useParams} from "react-router-dom";
@@ -10,9 +7,9 @@ import {Button, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
-  useCreateInstitucionMutation,
-  useEditInstitucionMutation,
-  useLazyGetInstitucionByIdQuery,
+	useCreateInstitucionMutation,
+	useEditInstitucionMutation,
+	useLazyGetInstitucionByIdQuery,
 } from "../service/institucion.service";
 import AddInstitucion from "./components/institucion.info";
 

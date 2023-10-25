@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-
+import {useSelector} from "react-redux";
 import {FilterIcon, PlusCircle, Trash, Undo2} from "lucide-react";
 import {CircularProgress, Tooltip} from "@mui/material";
 import {Button} from "@/components/ui/button.jsx";
@@ -15,7 +15,6 @@ import {
 	useDeleteResponsableReservacionMutation,
 	useGetResponsableReservacionesQuery
 } from "@/components/Configuracion/Reservacion/AsignarResponsables/service/responsable.reservacion.service.js";
-import useUser from "@/hooks/useUser.jsx";
 
 
 export default function Responsable() {
@@ -25,7 +24,7 @@ export default function Responsable() {
 	const [processingId, setProcessingId] = useState(null);
 	const [processingIdR, setProcessingIdR] = useState(null);
 	const navigate = useNavigate()
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const {data} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
@@ -97,14 +96,14 @@ export default function Responsable() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -118,7 +117,7 @@ export default function Responsable() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -161,7 +160,7 @@ export default function Responsable() {
 				id: "solapin",
 				accessorFn: (row) => row.id_persona?.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -175,7 +174,7 @@ export default function Responsable() {
 				id: "id_estructura",
 				accessorFn: (row) => row.id_persona?.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
-				header: "Area",
+				header: "Área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -205,9 +204,9 @@ export default function Responsable() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Asignar responsables de area
+					Asignar responsable de área
 				</h2>
-				<Tooltip title={'Atras'}>
+				<Tooltip title={'Atrás'}>
 					<Button variant={'ghost'} size={'icon'} onClick={() => {
 						navigate('/configuracion/reservacion/responsable-areas')
 					}}>
@@ -218,7 +217,7 @@ export default function Responsable() {
 			{area && (
 				<div className="flex-col flex-wrap justify-center">
 					<h2 className="text-gray-600 font-semibold text-sm justify-center al">
-						Detalles del area
+						Detalles del área
 					</h2>
 					<div className="flex gap-4 text-center items-center text-sm text-gray-500">
 						<p className="font-semibold">
@@ -232,11 +231,11 @@ export default function Responsable() {
 							{area.activo ? 'SI' : "NO"}
 						</p>
 						<p className="font-semibold">
-							<span className="font-bold">Codigo esxterno: </span>
+							<span className="font-bold">Código externo: </span>
 							{area.codigo_externo}
 						</p>
 						<p className="font-semibold">
-							<span className="font-bold">Codigo de area: </span>
+							<span className="font-bold">Código de área: </span>
 							{area.codigo_area ? 'SI' : "NO"}
 						</p>
 					</div>

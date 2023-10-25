@@ -8,7 +8,7 @@ import initialValues from "./schemas/initialValues";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {useCreateGrupoMutation, useEditGrupoMutation, useLazyGetGrupoByIdQuery,} from "../service/roles.service";
 import AddGrupo from "./components/roles.info";
-import useUser from "../../../../../hooks/useUser";
+import {useSelector} from "react-redux";
 
 const getModifiedFields = (originalData, newData) => {
 	return Object.fromEntries(
@@ -24,7 +24,7 @@ export default function Roles() {
 	const {formId, formField} = form;
 	const currentValidation = validations[0];
 	const navigate = useNavigate();
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const [
 		createGrupo,
 		{

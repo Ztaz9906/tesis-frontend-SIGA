@@ -9,9 +9,9 @@ const form = {
 		},
 		descripcion_evento: {
 			name: "descripcion_evento",
-			label: "Descripcion",
+			label: "Descripción",
 			type: "text",
-			errorMsg: "La descripcion es requerida.",
+			errorMsg: "La descripción es requerida.",
 		},
 		activo: {
 			name: "activo",
@@ -21,9 +21,9 @@ const form = {
 		},
 		id_clasificacion_evento: {
 			name: "id_clasificacion_evento",
-			label: "Clasificacion",
+			label: "Clasificación",
 			type: "text",
-			errorMsg: "Clasificacion requerida.",
+			errorMsg: "Clasificación requerida.",
 		},
 		id_horario: {
 			name: "id_horario",

@@ -1,8 +1,9 @@
 import {Navigate, useLocation} from 'react-router-dom';
-import useUser from "@/hooks/useUser.jsx";
+import {useSelector} from "react-redux";
+
 
 export default function PrivateRoute({children}) {
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 	const location = useLocation();
 	if (!user) {
 		return <Navigate to="/"/>;
@@ -13,7 +14,6 @@ export default function PrivateRoute({children}) {
 		}
 	}
 	return (<div>
-		RutaPrivatizada
 		{children}
 	</div>);
 }

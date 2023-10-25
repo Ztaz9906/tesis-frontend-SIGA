@@ -84,7 +84,7 @@ export default function AddHorario({formData}) {
 			</div>
 			<div className="flex flex-wrap -mx-3">
 				<div className="w-full px-3">
-					<InputLabel id="dias_semanas">Dias</InputLabel>
+					<InputLabel id="dias_semanas">Días</InputLabel>
 					<FormField
 						labelId="dias_semanas"
 						as={Select}

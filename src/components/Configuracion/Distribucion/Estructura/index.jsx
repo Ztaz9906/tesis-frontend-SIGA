@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useGetEstructurasQuery} from "./service/estructura.service";
 import {Link} from "react-router-dom";
 import {FilterIcon, PlusCircle} from "lucide-react";
@@ -6,14 +6,19 @@ import RenderTreeView from "./TreeView";
 import Tooltip from "@mui/material/Tooltip";
 import {Button} from "@/components/ui/button.jsx";
 import GenericFilter from "@/components/auxiliar/GenericFilter.jsx";
+import {useSelector} from "react-redux";
 
 export default function IndexEstructura() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = useState(true);
-	const {data} = useGetEstructurasQuery(currentFilters, {
+	const {data, refetch} = useGetEstructurasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
 
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	if (!data) {
 		return;
 	}
@@ -35,7 +40,7 @@ export default function IndexEstructura() {
 					</Tooltip>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Clasificaciones de Platos"
+						title="Filtro para las Estructuras"
 					>
 						<Button
 							variant={"ghost"}
@@ -55,13 +60,13 @@ export default function IndexEstructura() {
 							type: "text",
 							name: "name",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
 							name: "initials",
 							label: "Iniciales",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

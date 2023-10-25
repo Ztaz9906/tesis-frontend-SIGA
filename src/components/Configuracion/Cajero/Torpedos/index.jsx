@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -11,14 +11,19 @@ import {
 } from "@/components/Configuracion/Cajero/Torpedos/service/torpedo.service.js";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import FilterTorpedo from "@/components/Configuracion/Cajero/Torpedos/new-asgnatura/components/filter.jsx";
+import {useSelector} from "react-redux";
 
 
 export default function IndexTorpedo() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTorpedosQuery(currentFilters, {
+	const {data, refetch} = useGetTorpedosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTorpedo,
 		{
@@ -56,7 +61,7 @@ export default function IndexTorpedo() {
 				id: "id_pais",
 				accessorFn: (row) => row.id_pais?.nombre_pais,
 				cell: (info) => info.getValue(),
-				header: "Pais",
+				header: "País",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -93,7 +98,7 @@ export default function IndexTorpedo() {
 						</Tooltip>
 						<Delete
 							title={`Borrar ${row.nombre_completo}`}
-							message="Esta seguro que desea eliminar este Torpedo"
+							message="¿Está seguro que desea eliminar este Torpedo?"
 							action={() => deleteTorpedo(row.id_persona_torpedo)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -116,7 +121,7 @@ export default function IndexTorpedo() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Tarjetas
+					Listado de Torpedos
 				</h2>
 				<div className="flex">
 					<Tooltip

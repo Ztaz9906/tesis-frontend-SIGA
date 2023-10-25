@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 
 import {FilterIcon, PlusCircle} from "lucide-react";
 import {Tooltip} from "@mui/material";
@@ -8,7 +8,7 @@ import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
 	useCreateSolapinPerdidoMutation
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
-import useUser from "@/hooks/useUser.jsx";
+import {useSelector} from "react-redux";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
@@ -19,10 +19,13 @@ export default function AddSolapinPerdido() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
 
-	const {data} = useGetPersonaQuery(currentFilters, {
+	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
-
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		CreateSolapinPerdido,
 		{
@@ -37,10 +40,9 @@ export default function AddSolapinPerdido() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Persona con solapin perdido añadida",
+		"Persona con solapín perdido añadida",
 		'/configuracion/cajero/solapin-perdidos'
 	);
-	const [user] = useUser();
 
 	function handleSubmit(id_persona) {
 		const newValues = {
@@ -58,21 +60,21 @@ export default function AddSolapinPerdido() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "solapin",
 				accessorFn: (row) => row.solapin,
 				cell: (info) => info.getValue(),
-				header: "Solapin",
+				header: "Solapín",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_solapin",
 				accessorFn: (row) => row.codigo_solapin,
 				cell: (info) => info.getValue(),
-				header: "Codigo de Barras",
+				header: "Código",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -80,11 +82,11 @@ export default function AddSolapinPerdido() {
 				accessorFn: (row) => (
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
-							title={`Registrar solapin perdido de ${row.nombre_completo}`}
-							message={`Esta seguro que desea registrar este Solapin Perdido? ${row.solapin}`}
+							title={`Registrar solapín perdido de ${row.nombre_completo}`}
+							message={`¿Está seguro que desea registrar este Solapín Perdido? ${row.solapin}`}
 							action={() => handleSubmit(row.id)}
 						>
-							<Tooltip title={'Registrar solapin perdido'}>
+							<Tooltip title={'Registrar solapín perdido'}>
 								<Button variant={"ghost"} size={"icon"}
 								>
 									<PlusCircle size={15}/>

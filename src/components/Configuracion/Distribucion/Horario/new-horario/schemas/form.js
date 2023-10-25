@@ -43,7 +43,7 @@ const form = {
     },
     dias_semana: {
       name: "dias_semana",
-      label: "Dias",
+      label: "Días",
       type: "text",
       errorMsg: "Seleccione dias de la semana para este horario.",
     },

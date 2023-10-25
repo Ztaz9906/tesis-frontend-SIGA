@@ -1,6 +1,5 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Button} from "@/components/ui/button.jsx";
-import useUser from "@/hooks/useUser.jsx";
 import {
 	useCreateProcesoReservacionMutation,
 	useEditProcesoReservacionMutation,
@@ -10,6 +9,7 @@ import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Ban, CheckCircle2} from "lucide-react";
 import React from "react";
 import Tooltip from "@mui/material/Tooltip";
+import {useSelector} from "react-redux";
 
 export default function IndexConfiguracionProcesoReservacion() {
 	const {data} = useGetProcesoReservacionesQuery(undefined, {
@@ -28,7 +28,7 @@ export default function IndexConfiguracionProcesoReservacion() {
 		},
 	] = useEditProcesoReservacionMutation();
 
-	const [user] = useUser()
+	const user = useSelector(state => state.user);
 	const getCurrentDate = () => {
 		const date = new Date();
 		const year = date.getFullYear();
@@ -41,7 +41,7 @@ export default function IndexConfiguracionProcesoReservacion() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Proceso de reservacion cambiado exitosamente",
+		"Proceso de reservación cambiado exitosamente",
 	);
 
 	function handleDefault() {
@@ -80,7 +80,7 @@ export default function IndexConfiguracionProcesoReservacion() {
 					return (
 						<div className="flex items-center">
 							<div className={'flex justify-end w-1/2'}>
-								<span>{info.row.original.flujo ? 'Proceso con reservacion' : 'Proceso sin reservacion'}</span>
+								<span>{info.row.original.flujo ? 'Proceso con reservación' : 'Proceso sin reservación'}</span>
 							</div>
 							<div className={'flex justify-end w-1/2'}>
 								<Button
@@ -88,11 +88,11 @@ export default function IndexConfiguracionProcesoReservacion() {
 									onClick={() => handleEdit(info.row.original.id_configuracion_proceso, info.row.original.flujo)}
 								>
 									{info.row.original.flujo ?
-										<Tooltip title="Establecer proceso sin reservacion">
+										<Tooltip title="Establecer proceso sin reservación">
 											<Ban size={15}/>
 										</Tooltip>
 										:
-										<Tooltip title="Establecer proceso con reservacion">
+										<Tooltip title="Establecer proceso con reservación">
 											<CheckCircle2 size={15}/>
 										</Tooltip>
 									}
@@ -101,7 +101,7 @@ export default function IndexConfiguracionProcesoReservacion() {
 						</div>
 					)
 				},
-				header: "Descripcion del proceso de reservacion",
+				header: "Descripción del proceso de reservación",
 				footer: (props) => props.column.id,
 			},
 		],
@@ -110,11 +110,11 @@ export default function IndexConfiguracionProcesoReservacion() {
 	return (<>
 		<div className="flex border-b border-gray-300 justify-between">
 			<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-				Configuracion de proceso de reservacion
+				Configuración de proceso de reservación
 			</h2>
 			<div className="flex">
 				{(!data || Object.keys(data).length === 0) && (
-					<Button variant={'ghost'} onClick={handleDefault}>Añadir configuracion por defecto</Button>
+					<Button variant={'ghost'} onClick={handleDefault}>Añadir configuración por defecto</Button>
 				)}
 			</div>
 		</div>

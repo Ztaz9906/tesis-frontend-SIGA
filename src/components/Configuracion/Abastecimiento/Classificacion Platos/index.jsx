@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -8,13 +8,19 @@ import Delete from "../../../auxiliar/delete";
 import {useRedirectForm} from "../../../../hooks/useRedirectForm";
 import GenericFilter from "../../../auxiliar/GenericFilter";
 import {Tooltip} from "@mui/material";
+import {useSelector} from "react-redux";
 
 export default function IndexClassPlatos() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = useState(true);
-	const {data} = useGetClassPlatosQuery(currentFilters, {
+	const {data, refetch} = useGetClassPlatosQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteClassPlatos,
 		{
@@ -30,7 +36,7 @@ export default function IndexClassPlatos() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Clasificacion de Platos Eliminada"
+		"Clasificación de Platos Eliminada"
 	);
 
 	const datadef = {
@@ -67,7 +73,7 @@ export default function IndexClassPlatos() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_clasificacion_plato}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar esta clasificación?"
 							action={() => deleteClassPlatos(row.id_clasificacion_plato)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -118,7 +124,7 @@ export default function IndexClassPlatos() {
 							type: "text",
 							name: "nombre_clasificacion_plato",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

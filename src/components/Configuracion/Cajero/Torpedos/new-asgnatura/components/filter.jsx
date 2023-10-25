@@ -41,7 +41,7 @@ export default function FilterTorpedo({filter}) {
 							type: "text",
 							name: "nombre_completo",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "text",
@@ -61,7 +61,7 @@ export default function FilterTorpedo({filter}) {
 						{
 							type: "select",
 							name: "id_pais",
-							label: "Pais",
+							label: "País",
 							options: [
 								{value: "", label: "--Todos--"},
 								...paisOptions

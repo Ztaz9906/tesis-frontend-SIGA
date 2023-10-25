@@ -56,7 +56,7 @@ export default function IndexEvento() {
 				id: "id_clasificacion_evento",
 				accessorFn: (row) => row.id_clasificacion_evento.nombre_clasificacion_evento,
 				cell: (info) => info.getValue(),
-				header: "Clasificacion",
+				header: "Clasificación",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -86,7 +86,7 @@ export default function IndexEvento() {
 						</Tooltip>
 						<Delete
 							title={`Borrar ${row.nombre_evento}`}
-							message="Esta seguro que desea eliminar esta categoria"
+							message="¿Está seguro que desea eliminar este evento?"
 							action={() => deleteEvento(row.id_evento)}
 						>
 							<Tooltip title={'Eliminar'}>
@@ -143,12 +143,12 @@ export default function IndexEvento() {
 								type: "text",
 								name: "nombre_clasificacion_plato",
 								label: "Nombre exacto",
-								placeholder: "Sensible a mayusculas y minusculas",
+								placeholder: "Sensible a mayúsculas y minúsculas",
 							},
 							{
 								type: "select",
 								name: "id_clasificacion_evento",
-								label: "Clasificaion de Evento",
+								label: "Clasificación de Evento",
 								options: [
 									{value: "", label: "--Seleccione--"},
 									...calsificacionEventoOptions,

@@ -24,9 +24,9 @@ const form = {
     },
     descripcion_tipo_producto: {
       name: "descripcion_tipo_producto",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La descripcion es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
 
     activo: {

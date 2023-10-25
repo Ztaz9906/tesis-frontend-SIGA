@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SGTable} from "../../../auxiliar/table";
 import {Edit2Icon, FilterIcon, PlusCircle, Trash} from "lucide-react";
 import {Link} from "react-router-dom";
@@ -8,13 +8,18 @@ import Delete from "../../../auxiliar/delete";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {Tooltip} from "@mui/material";
 import GenericFilter from "../../../auxiliar/GenericFilter";
+import {useSelector} from "react-redux";
 
 export default function IndexTipoTarjeta() {
 	const [currentFilters, setCurrentFilters] = React.useState({});
 	const [active, setActive] = React.useState(true);
-	const {data} = useGetTipoTarjetasQuery(currentFilters, {
+	const {data, refetch} = useGetTipoTarjetasQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const user = useSelector((state) => state.user);
+	useEffect(() => {
+		refetch()
+	}, [user, refetch]);
 	const [
 		deleteTipoTarjeta,
 		{
@@ -67,7 +72,7 @@ export default function IndexTipoTarjeta() {
 						</Link>
 						<Delete
 							title={`Borrar ${row.nombre_tipo_tarjeta}`}
-							message="Esta seguro que desea eliminar esta TipoTarjeta"
+							message="¿Está seguro que desea eliminar este tipo de tarjeta?"
 							action={() => deleteTipoTarjeta(row.id_tipo_tarjeta)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -98,7 +103,7 @@ export default function IndexTipoTarjeta() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las los tipos de tarjetas"
+						title="Filtro para los tipos de tarjetas"
 					>
 						<Button
 							variant={"ghost"}
@@ -119,7 +124,7 @@ export default function IndexTipoTarjeta() {
 							type: "text",
 							name: "nombre_tipo_tarjeta",
 							label: "Nombre exacto",
-							placeholder: "Sensible a mayusculas y minusculas",
+							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
 							type: "select",

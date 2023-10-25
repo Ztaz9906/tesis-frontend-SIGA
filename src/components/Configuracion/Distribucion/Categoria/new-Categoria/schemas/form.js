@@ -24,9 +24,9 @@ const form = {
     },
     description: {
       name: "description",
-      label: "Descripcion",
+      label: "Descripción",
       type: "text",
-      errorMsg: "La clave es requerida.",
+      errorMsg: "La descripción es requerida.",
     },
 
     active: {
@@ -43,9 +43,9 @@ const form = {
     },
      base: {
       name: "base",
-      label: "Categoria Base",
+      label: "Categoría Base",
       type: "text",
-      errorMsg: "Categoria Base es requerido.",
+      errorMsg: "La categoría base es requerida.",
     },
   },
 };

@@ -5,10 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import {Button, Typography} from "@mui/material";
 import {initialValuesForm1, initialValuesForm2} from "./schemas/initialValues";
-import useUser from "../../../../../hooks/useUser";
-import {
-	useEditConfiguracionComensalesMutation
-} from "@/components/Configuracion/Configuracion/ConfiguracionComensales/service/configuracion.comensales.service.js";
+import {useSelector} from "react-redux";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import {Trash} from "lucide-react";
 import Delete from "@/components/auxiliar/delete.jsx";
@@ -23,6 +20,7 @@ import AddConfiguraciionCobro
 import AddValoresConfiguraciionCobro
 	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/components/valores.configuracion.comensales.jsx";
 import {
+	useEditConfiguracionCobroMutation,
 	useLazyGetConfiguracionCobroByIdQuery
 } from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 
@@ -54,7 +52,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Valor de configuracion asociado",
+		"Valor de configuración asociado",
 	);
 
 	const [
@@ -71,32 +69,32 @@ export default function AgregarValoresConfigurcionCobro() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Valor de configuracion eliminado",
+		"Valor de configuración eliminado",
 	);
 	const {data} = useGetValoresConfiguracionCobrosQuery({id_configuracion_cobro: id}, {
 		refetchOnReconnect: true,
 	});
 	const [
-		EditConfiguracionComensales,
+		EditConfiguracionCobro,
 		{
 			isError: isErrorE,
 			isLoading: isLoadingE,
 			isSuccess: isSuccessE,
 			error: errorE,
 		},
-	] = useEditConfiguracionComensalesMutation();
+	] = useEditConfiguracionCobroMutation();
 	useRedirectForm(
 		isLoadingE,
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Valores de la configuracion de cobro agregados",
+		"Valores de la configuración de cobro agregados",
 		'/configuracion/facturacion/configuracion-cobro'
 	);
 	const submitForm = async (values) => {
 		const modifiedFields = getModifiedFields(congiguracion, values);
 		if (Object.keys(modifiedFields).length !== 0) {
-			EditConfiguracionComensales({id: id, ...modifiedFields});
+			EditConfiguracionCobro({id: id, ...modifiedFields});
 		}
 	};
 
@@ -104,7 +102,7 @@ export default function AgregarValoresConfigurcionCobro() {
 		submitForm(values, actions);
 	};
 
-	const [user] = useUser();
+	const user = useSelector(state => state.user);
 
 
 	const datadef = {
@@ -150,7 +148,7 @@ export default function AgregarValoresConfigurcionCobro() {
 					<div className="flex gap-2 justify-center items-center">
 						<Delete
 							title={`Borrar el ID:${row.id_valores_configuracion_cobro}`}
-							message="Esta seguro que desea eliminar este valor de la configuracion"
+							message="¿Está seguro que desea eliminar este valor de la configuración?"
 							action={() => DeleteValoresConfiguracionCobro(row.id_valores_configuracion_cobro)}
 						>
 							<Button variant={"ghost"} size={"icon"}>
@@ -180,7 +178,7 @@ export default function AgregarValoresConfigurcionCobro() {
 
 			<div className="text-center mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{`Valores de configuracion de cobro`}
+					{`Valores de configuración de cobro`}
 				</Typography>
 			</div>
 			<Formik

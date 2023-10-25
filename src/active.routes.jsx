@@ -1,4 +1,3 @@
-import useUser from "@/hooks/useUser.jsx";
 import {Outlet, Route, Routes} from 'react-router-dom';
 import IndexConfiguracion from "./components/Configuracion/Cajero/Configuraciones/IndexConfiguracion";
 import Torpedo from "./components/Configuracion/Cajero/Torpedos/new-asgnatura/new.torpedo.jsx";
@@ -66,6 +65,7 @@ import EntradaDatos from "@/components/Configuracion/Seguridad/CargarExel/Cargar
 import IndexConfiguracionCobro from "@/components/Configuracion/Facturacion/ConfiguracionCobro/index.jsx";
 import AgregarValoresConfigurcionCobro
 	from "@/components/Configuracion/Facturacion/ConfiguracionCobro/new-valores/new.valores.cobro.jsx";
+import {useSelector} from "react-redux";
 
 const Placeholder = () => <div>Componente en construcción</div>;
 
@@ -160,8 +160,7 @@ const RUTAS_POR_MODULO = {
 	]
 };
 export default function RutasDinamicas() {
-	const [user] = useUser();
-
+	const user = useSelector(state => state.user);
 	return (
 		<Routes>
 			<Route path="/" element={<Login/>}/>
@@ -169,14 +168,8 @@ export default function RutasDinamicas() {
 				<Route path="/configuracion" element={<Outlet/>}>
 					{
 						// Si el usuario es "is_staff", pintar todas las rutas
-						user && user.is_staff
-							? Object.keys(RUTAS_POR_MODULO).flatMap(modulo =>
-								RUTAS_POR_MODULO[modulo].map(ruta => (
-									<Route key={ruta.path} path={modulo} element={<Outlet/>}>
-										<Route path={ruta.path} element={ruta.element}/>
-									</Route>
-								))
-							)
+						user && user.institucion === null
+							? null
 							// Si no es "is_staff", pintar sólo rutas de módulos activos
 							: user && user.institucion.active_modules.map(modulo =>
 							RUTAS_POR_MODULO[modulo].map(ruta => (
