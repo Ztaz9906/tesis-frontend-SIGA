@@ -36,7 +36,7 @@ export default function IndexClassPlatos() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Clasificación de Platos Eliminada"
+		"Clasificación de platos eliminada"
 	);
 
 	const datadef = {
@@ -93,7 +93,7 @@ export default function IndexClassPlatos() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Clasificaciones de Platos
+					Listado de clasificaciones de platos
 				</h2>
 				<div className="flex">
 					<Link
@@ -104,7 +104,7 @@ export default function IndexClassPlatos() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Clasificaciones de Platos"
+						title="Filtro para las clasificaciones de platos"
 					>
 						<Button
 							variant={"ghost"}

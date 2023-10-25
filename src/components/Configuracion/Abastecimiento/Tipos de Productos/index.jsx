@@ -92,7 +92,7 @@ export default function IndexTipoProducto() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Tipos de Productos
+					Listado de tipos de productos
 				</h2>
 				<div className="flex">
 					<Link
@@ -103,7 +103,7 @@ export default function IndexTipoProducto() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para los Tipos de Productos"
+						title="Filtro para los tipos de productos"
 					>
 						<Button
 							variant={"ghost"}

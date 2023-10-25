@@ -54,7 +54,7 @@ export default function TipoProducto() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tipo de Producto Creado",
+		"Tipo de producto creado",
 		"/configuracion/abastecimiento/tipo_productos"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function TipoProducto() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tipo de Producto Editado",
+		"Tipo de producto editado",
 		"/configuracion/abastecimiento/tipo_productos"
 	);
 	const submitForm = async (values, actions) => {
@@ -90,7 +90,7 @@ export default function TipoProducto() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Tipo de Producto" : `Editar Tipo de Producto`}
+						{!id ? "Registrar tipo de producto" : `Editar tipo de producto`}
 					</Typography>
 				</div>
 				<Formik

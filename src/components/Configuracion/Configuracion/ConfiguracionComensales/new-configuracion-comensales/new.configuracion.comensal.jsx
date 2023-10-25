@@ -170,7 +170,7 @@ export default function ConfiguracionComensal() {
 
 			<div className="text-center mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{!id ? "Registrar Configuración de Comensales" : `Editar Configuración de Comensales`}
+					{!id ? "Registrar configuración de comensales" : `Editar configuración de comensales`}
 				</Typography>
 			</div>
 			<Formik

@@ -41,16 +41,16 @@ const form = {
     
     id_tipo_producto: {
       name: "id_tipo_producto",
-      label: "Tipo Producto",
+      label: "Tipo de producto",
       type: "text",
-      errorMsg: "Seleccione un Tipo Producto.",
+      errorMsg: "Seleccione un tipo de producto.",
     },
     
     id_unidad_medida: {
       name: "id_unidad_medida",
-      label: "Unidad Medida",
+      label: "Unidad de medida",
       type: "text",
-      errorMsg: "Seleccione una Unidad Medida.",
+      errorMsg: "Seleccione una unidad de medida.",
     },
   },
 };

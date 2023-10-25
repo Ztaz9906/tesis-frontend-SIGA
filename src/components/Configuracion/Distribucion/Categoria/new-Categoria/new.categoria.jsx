@@ -76,7 +76,7 @@ export default function Categoria() {
     isSuccessC,
     isErrorC,
     errorC,
-    "Categoría Creada",
+    "Categoría creada",
     "/configuracion/distribucion/categorias"
   );
   useRedirectForm(
@@ -84,7 +84,7 @@ export default function Categoria() {
     isSuccessE,
     isErrorE,
     errorE,
-    "Categoría Editada",
+    "Categoría editada",
     "/configuracion/distribucion/categorias"
   );
   const submitForm = async (values, actions) => {
@@ -112,7 +112,7 @@ export default function Categoria() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Categoría" : `Editar Categoría`}
+						{!id ? "Registrar categoría" : `Editar categoría`}
 					</Typography>
 				</div>
 				<Formik

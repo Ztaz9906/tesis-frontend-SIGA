@@ -36,7 +36,7 @@ export default function UserSettings() {
 		isSuccess,
 		isError,
 		error,
-		"Usuario Desconectado",
+		"Usuario desconectado",
 		"/"
 	);
 	return (
@@ -48,7 +48,7 @@ export default function UserSettings() {
 
 				{user.is_staff ? 'Admin' : user?.persona ? user?.persona.nombre_completo : user?.username}
 			</Typography>
-			<Tooltip title="Abrir Opciones de Usuario">
+			<Tooltip title="Abrir opciones de usuario">
 				<IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
 					<UserAvatar
 						name={user.is_staff ? "Admin" : user?.persona ? user?.persona.nombre_completo : user?.username}

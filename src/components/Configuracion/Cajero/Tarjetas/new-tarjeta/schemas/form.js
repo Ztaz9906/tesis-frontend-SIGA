@@ -16,13 +16,13 @@ const form = {
         },
         fecha_inicio: {
             name: "fecha_inicio",
-            label: "Fecha de Inicio",
+            label: "Fecha de inicio",
             type: "date",
             errorMsg: "Seleccione una fecha de inicio.",
         },
         fecha_fin: {
             name: "fecha_fin",
-            label: "Fecha de Fin",
+            label: "Fecha de fin",
             type: "date",
             errorMsg: "Seleccione una fecha de fin.",
         },

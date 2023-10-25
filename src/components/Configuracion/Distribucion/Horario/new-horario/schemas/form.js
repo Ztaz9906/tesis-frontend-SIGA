@@ -24,7 +24,7 @@ const form = {
     },
     hora_inicio: {
       name: "hora_inicio",
-      label: "Hora de Inicio",
+      label: "Hora de inicio",
       type: "time",
       errorMsg: "Seleccione una hora de inicio.",
     },
@@ -37,7 +37,7 @@ const form = {
     },
     hora_fin: {
       name: "hora_fin",
-      label: "Hora de Fin",
+      label: "Hora de fin",
       type: "time",
       errorMsg: "Seleccione una hora de fin.",
     },
@@ -45,7 +45,7 @@ const form = {
       name: "dias_semana",
       label: "Días",
       type: "text",
-      errorMsg: "Seleccione dias de la semana para este horario.",
+      errorMsg: "Seleccione días de la semana para este horario.",
     },
   },
 };

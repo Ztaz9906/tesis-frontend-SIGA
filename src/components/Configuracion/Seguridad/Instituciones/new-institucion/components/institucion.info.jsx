@@ -102,7 +102,7 @@ export default function AddInstitucion({ formData }) {
       </div>
       <div className="flex flex-wrap -mx-3">
         <div className="w-full px-3">
-          <InputLabel id="active_modules">Modulos</InputLabel>
+          <InputLabel id="active_modules">Módulos</InputLabel>
           <FormField
             labelId="active_modules"
             as={Select}

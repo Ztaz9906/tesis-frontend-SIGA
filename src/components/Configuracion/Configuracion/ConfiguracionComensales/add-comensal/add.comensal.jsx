@@ -125,7 +125,7 @@ export default function AddComensal() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas
+					Listado de personas
 				</h2>
 				<div className="flex">
 					<Tooltip

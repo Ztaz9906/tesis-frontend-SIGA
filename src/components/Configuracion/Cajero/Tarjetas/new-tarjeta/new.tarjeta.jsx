@@ -55,7 +55,7 @@ export default function Tarjeta() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tarjeta Creada",
+		"Tarjeta creada",
 		"/configuracion/cajero/tarjetas"
 	);
 	useRedirectForm(
@@ -63,7 +63,7 @@ export default function Tarjeta() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tarjeta Editada",
+		"Tarjeta editada",
 		"/configuracion/cajero/tarjetas"
 	);
 	const submitForm = async (values, actions) => {
@@ -91,7 +91,7 @@ export default function Tarjeta() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar  de Tarjeta" : location.pathname.includes('update-estado') ? `Editar estado de tarjeta` : `Editar  de Tarjeta`}
+						{!id ? "Registrar tarjeta" : location.pathname.includes('update-estado') ? `Editar estado de tarjeta` : `Editar tarjeta`}
 					</Typography>
 				</div>
 				<Formik

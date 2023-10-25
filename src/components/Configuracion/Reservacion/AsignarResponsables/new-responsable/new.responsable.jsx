@@ -153,7 +153,7 @@ export default function Responsable() {
 				id: "nombre_completo",
 				accessorFn: (row) => row.id_persona?.nombre_completo,
 				cell: (info) => info.getValue(),
-				header: "nombre",
+				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{

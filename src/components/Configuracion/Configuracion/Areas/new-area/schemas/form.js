@@ -15,15 +15,15 @@ const form = {
 		},
 		codigo_externo: {
 			name: "codigo_externo",
-			label: "Código Externo",
+			label: "Código externo",
 			type: "text",
 			errorMsg: "Código externo requerido.",
 		},
 		codigo_area: {
 			name: "codigo_area",
-			label: "Código Area",
+			label: "Código área",
 			type: "text",
-			errorMsg: "Código Área requerido.",
+			errorMsg: "Código área requerido.",
 		},
 		estructura_consejo: {
 			name: "estructura_consejo",
