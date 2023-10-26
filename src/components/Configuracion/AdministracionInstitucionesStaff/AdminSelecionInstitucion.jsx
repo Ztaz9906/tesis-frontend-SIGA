@@ -5,6 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import SelectInstitucion from "@/components/Configuracion/AdministracionInstitucionesStaff/selectInstitucion.jsx";
+import {Building2} from "lucide-react";
 
 const style = {
 	position: 'absolute',
@@ -23,11 +24,12 @@ export default function ModalInstitucionSelecion() {
 	const handleClose = () => setOpen(false);
 
 	return (
-		<div>
+		<>
 			<span
-				className="text-sm"
+				className=" flex justify-start items-center text-center text-sm gap-1"
 				onClick={handleOpen}
 			>
+			<span><Building2 size={16}/></span>
       Selecionar institución
       </span>
 			<Modal
@@ -52,6 +54,6 @@ export default function ModalInstitucionSelecion() {
 					</Box>
 				</Fade>
 			</Modal>
-		</div>
+		</>
 	);
 }

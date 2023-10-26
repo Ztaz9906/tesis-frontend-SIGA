@@ -33,7 +33,7 @@ const form = {
 		},
 		evento_padre: {
 			name: "evento_padre",
-			label: "Evento Padre",
+			label: "Evento padre",
 			type: "text",
 		},
 	},

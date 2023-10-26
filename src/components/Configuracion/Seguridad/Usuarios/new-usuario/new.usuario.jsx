@@ -66,7 +66,7 @@ export default function Usuario() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Usuario Creado",
+		"Usuario creado",
 		"/configuracion/seguridad/usuarios"
 	);
 	useRedirectForm(
@@ -74,7 +74,7 @@ export default function Usuario() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Usuario Editado",
+		"Usuario editado",
 		"/configuracion/seguridad/usuarios"
 	);
 	const submitForm = async (values, actions) => {
@@ -103,7 +103,7 @@ export default function Usuario() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Usuario" : `Editar Usuario`}
+						{!id ? "Registrar usuario" : `Editar usuario`}
 					</Typography>
 				</div>
 				<Formik

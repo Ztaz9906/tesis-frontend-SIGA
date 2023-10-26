@@ -50,7 +50,7 @@ export default function Evento() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Evento Creado",
+		"Evento creado",
 		"/configuracion/distribucion/eventos"
 	);
 	useRedirectForm(
@@ -58,7 +58,7 @@ export default function Evento() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Evento Editado",
+		"Evento editado",
 		"/configuracion/distribucion/eventos"
 	);
 	const submitForm = async (values, actions) => {
@@ -86,7 +86,7 @@ export default function Evento() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Evento" : `Editar Evento`}
+						{!id ? "Registrar evento" : `Editar evento`}
 					</Typography>
 				</div>
 				<Formik

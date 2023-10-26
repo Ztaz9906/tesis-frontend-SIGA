@@ -106,7 +106,7 @@ export default function ComensalesActivos() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Comensales Activos
+					Listado de comensales activos
 				</h2>
 				<div className="flex">
 					<Tooltip

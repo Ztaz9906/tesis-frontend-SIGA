@@ -35,7 +35,7 @@ export default function IndexTipoTarjeta() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Tipo de Tarjeta Eliminada"
+		"Tipo de tarjeta eliminada"
 	);
 
 	const datadef = {
@@ -92,7 +92,7 @@ export default function IndexTipoTarjeta() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Tipos de Tarjetas
+					Listado de tipos de tarjetas
 				</h2>
 				<div className="flex">
 					<Link

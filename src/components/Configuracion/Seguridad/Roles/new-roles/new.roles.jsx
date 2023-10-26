@@ -51,7 +51,7 @@ export default function Roles() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Rol Creado",
+		"Rol creado",
 		"/configuracion/seguridad/roles"
 	);
 	useRedirectForm(
@@ -59,7 +59,7 @@ export default function Roles() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Rol Editada",
+		"Rol editado",
 		"/configuracion/seguridad/roles"
 	);
 	const submitForm = async (values, actions) => {
@@ -89,7 +89,7 @@ export default function Roles() {
 			<div className="w-full lg:w-full bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Rol" : `Editar Rol`}
+						{!id ? "Registrar rol" : `Editar rol`}
 					</Typography>
 				</div>
 				<Formik

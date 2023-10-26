@@ -2,7 +2,7 @@ import {Form, Formik} from "formik";
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import {Link, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Tooltip, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
@@ -21,7 +21,7 @@ import {
 	useGetAsignarIpQuery,
 	useLazyGetAsignarIpByIdQuery
 } from "@/components/Configuracion/Cajero/AsignarIP/service/asignarip.service.js";
-import {Edit2Icon, ListEndIcon, Trash} from "lucide-react";
+import {Edit2Icon, Trash, Undo2} from "lucide-react";
 import MyTypography from "@/components/auxiliar/MyTypography.jsx";
 
 
@@ -67,7 +67,7 @@ export default function AsignarIp() {
 			error: errorD,
 		},
 	] = useDeleteAsignarIpMutation();
-	
+
 	const {data, refetch} = useGetAsignarIpQuery({id_puerta: id}, {
 		refetchOnReconnect: true,
 	});
@@ -91,21 +91,21 @@ export default function AsignarIp() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Ip Asignado",
+		"Ip asignado",
 	);
 	useRedirectForm(
 		isLoadingE,
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Ip Editado",
+		"Ip editado",
 	);
 	useRedirectForm(
 		isLoadingD,
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"IP Eliminado"
+		"IP eliminado"
 	);
 	const submitForm = async (values, actions) => {
 		try {
@@ -171,11 +171,11 @@ export default function AsignarIp() {
 		<div className="flex flex-col  bg-gray-100 h-full p-5">
 			<div className="flex flex-row justify-between items-center text-start mb-6">
 				<Typography variant="h5" fontWeight="bold">
-					{`Asignar IP a Puerta`}
+					{`Asignar IP a puerta`}
 				</Typography>
 				<Tooltip title={"Atrás"}>
 					<Link to={'/configuracion/cajero/asignar-ip'}>
-						<ListEndIcon size={15}/>
+						<Undo2 size={16}/>
 					</Link>
 				</Tooltip>
 			</div>
@@ -189,7 +189,7 @@ export default function AsignarIp() {
 							              data={estructura.category ? estructura.category.name : null}/>
 						</div>
 						<div className="gap-1">
-							<MyTypography label="Estructura Padre" data={estructura?.estructura_parent?.name}/>
+							<MyTypography label="Estructura padre" data={estructura?.estructura_parent?.name}/>
 							<MyTypography label="Capacidad" data={estructura.capacidad}/>
 							<MyTypography label="Activo" data={estructura.active ? "Si" : "No"}/>
 						</div>

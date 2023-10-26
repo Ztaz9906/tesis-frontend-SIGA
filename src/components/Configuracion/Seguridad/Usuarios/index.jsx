@@ -37,7 +37,7 @@ export default function IndexUsuarioes() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Usuario Eliminado"
+		"Usuario eliminado"
 	);
 	const datadef = {
 		columns: [

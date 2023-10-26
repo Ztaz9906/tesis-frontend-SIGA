@@ -27,7 +27,7 @@ export default function IndexInstituciones() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Institución Eliminada"
+		"Institución eliminada"
 	);
 
 	const capitalizeFirstLetter = (string) => {

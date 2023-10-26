@@ -37,7 +37,7 @@ export default function IndexAreas() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Area Eliminada"
+		"Área eliminada"
 	);
 	const {data: tipo_areas} = useGetTipoAreasQuery(undefined, {
 		refetchOnReconnect: true,
@@ -60,21 +60,21 @@ export default function IndexAreas() {
 				id: "codigo_externo",
 				accessorFn: (row) => row.codigo_externo,
 				cell: (info) => info.getValue(),
-				header: "Código Externo",
+				header: "Código externo",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "codigo_area",
 				accessorFn: (row) => row.codigo_area,
 				cell: (info) => info.getValue(),
-				header: "Código de Área",
+				header: "Código de área",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_tipo_estructura",
 				accessorFn: (row) => row.id_tipo_estructura.nombre_tipo_estructura,
 				cell: (info) => info.getValue(),
-				header: "Tipo de Área",
+				header: "Tipo de área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -115,7 +115,7 @@ export default function IndexAreas() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Áreas
+					Listado de áreas
 				</h2>
 				<div className="flex">
 					<Link
@@ -126,7 +126,7 @@ export default function IndexAreas() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para los tipos de área"
+						title="Filtro para las áreas"
 					>
 						<Button
 							variant={"ghost"}
@@ -176,7 +176,7 @@ export default function IndexAreas() {
 							{
 								type: "select",
 								name: "id_tipo_estructura",
-								label: "Tipo de Estructura",
+								label: "Tipo de estructura",
 								options: [
 									{value: "", label: "--Activo--"},
 									...tiposAreasOptions

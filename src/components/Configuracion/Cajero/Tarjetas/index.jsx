@@ -48,7 +48,7 @@ export default function IndexTarjeta() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Tarjeta Eliminada"
+		"Tarjeta eliminada"
 	);
 
 	const datadef = {
@@ -71,7 +71,7 @@ export default function IndexTarjeta() {
 				id: "id_tipo_tarjeta",
 				accessorFn: (row) => row.id_tipo_tarjeta.nombre_tipo_tarjeta,
 				cell: (info) => info.getValue(),
-				header: "Tipo de Tarjeta",
+				header: "Tipo de tarjeta",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -148,7 +148,7 @@ export default function IndexTarjeta() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Tarjetas
+					Listado de tarjetas
 				</h2>
 				<div className="flex">
 					<Tooltip
@@ -197,7 +197,7 @@ export default function IndexTarjeta() {
 							{
 								type: "select",
 								name: "id_tipo_tarjeta",
-								label: "Tipo de Tarjeta",
+								label: "Tipo de tarjeta",
 								options: [
 									{value: "", label: "--Todos--"},
 									...tipoTarjetaOptions,

@@ -138,7 +138,7 @@ export default function AgregarValoresConfigurcionCobro() {
 			{
 				id: "precio",
 				accessorFn: (row) => row.precio,
-				cell: (info) => info.getValue(),
+				cell: (info) => info.getValue() + ' ' + ' CUP',
 				header: "Precio",
 				footer: (props) => props.column.id,
 			},
@@ -171,6 +171,8 @@ export default function AgregarValoresConfigurcionCobro() {
 		CreateValoresConfiguracionCobro({
 			id_configuracion_cobro: id,
 			...values
+		}).then(() => {
+			actions.resetForm()
 		})
 	}
 	return (

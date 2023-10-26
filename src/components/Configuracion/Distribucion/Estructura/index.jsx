@@ -27,7 +27,7 @@ export default function IndexEstructura() {
 		<>
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Lista de Estructuras
+					Lista de estructuras
 				</h2>
 				<div className="flex">
 					<Tooltip title={'Crear'}>
@@ -40,7 +40,7 @@ export default function IndexEstructura() {
 					</Tooltip>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Estructuras"
+						title="Filtro para las estructuras"
 					>
 						<Button
 							variant={"ghost"}

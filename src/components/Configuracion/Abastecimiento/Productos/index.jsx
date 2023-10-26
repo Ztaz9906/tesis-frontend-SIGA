@@ -37,7 +37,7 @@ export default function IndexProductos() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Producto Eliminado"
+		"Producto eliminado"
 	);
 	const {data: tipo_producto} = useGetTipoProductoQuery(undefined, {
 		refetchOnReconnect: true,
@@ -74,14 +74,14 @@ export default function IndexProductos() {
 				id: "id_tipo_producto",
 				accessorFn: (row) => row.id_tipo_producto.nombre_tipo_producto,
 				cell: (info) => info.getValue(),
-				header: "Tipo Producto",
+				header: "Tipo de producto",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_unidad_medida",
 				accessorFn: (row) => row.id_unidad_medida.nombre_unidad_medida,
 				cell: (info) => info.getValue(),
-				header: "Unidad Medida",
+				header: "Unidad de medida",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -115,7 +115,7 @@ export default function IndexProductos() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Productos
+					Listado de productos
 				</h2>
 				<div className="flex">
 					<Link
@@ -124,7 +124,7 @@ export default function IndexProductos() {
 					>
 						<PlusCircle size={15}/>
 					</Link>
-					<Tooltip placement="bottom" title="Filtro para los Productos">
+					<Tooltip placement="bottom" title="Filtro para los productos">
 						<Button
 							variant={"ghost"}
 							size={"icon"}
@@ -149,7 +149,7 @@ export default function IndexProductos() {
 							{
 								type: "select",
 								name: "id_tipo_producto",
-								label: "Tipo de Producto",
+								label: "Tipo de producto",
 								options: [
 									{value: "", label: "--Todos--"},
 									...tiposProductosOptions,
@@ -158,7 +158,7 @@ export default function IndexProductos() {
 							{
 								type: "select",
 								name: "id_unidad_medida",
-								label: "Unidad de Medida",
+								label: "Unidad de medida",
 								options: [
 									{value: "", label: "--Todos--"},
 									...unidadesMedidaOptions,

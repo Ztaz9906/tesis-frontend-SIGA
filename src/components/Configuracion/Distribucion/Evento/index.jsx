@@ -33,7 +33,7 @@ export default function IndexEvento() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Evento Eliminado"
+		"Evento eliminado"
 	);
 
 	const {data: calsificacion_evento} = useGetClasificacionEventosQuery(undefined, {
@@ -63,7 +63,7 @@ export default function IndexEvento() {
 				id: "evento_padre",
 				accessorFn: (row) => row.evento_padre?.nombre_evento,
 				cell: (info) => info.getValue(),
-				header: "Evento Padre",
+				header: "Evento padre",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -108,7 +108,7 @@ export default function IndexEvento() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Eventos
+					Listado de eventos
 				</h2>
 				<div className="flex">
 					<Tooltip
@@ -148,7 +148,7 @@ export default function IndexEvento() {
 							{
 								type: "select",
 								name: "id_clasificacion_evento",
-								label: "Clasificación de Evento",
+								label: "Clasificación de evento",
 								options: [
 									{value: "", label: "--Seleccione--"},
 									...calsificacionEventoOptions,

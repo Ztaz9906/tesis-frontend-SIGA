@@ -53,7 +53,7 @@ export default function Institucion() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Institucion Creada",
+		"Institucion creada",
 		"/configuracion/seguridad/instituciones"
 	);
 	useRedirectForm(
@@ -61,7 +61,7 @@ export default function Institucion() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Institucion Editada",
+		"Institucion editada",
 		"/configuracion/seguridad/instituciones"
 	);
 	const submitForm = async (values, actions) => {
@@ -89,7 +89,7 @@ export default function Institucion() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Institucion" : `Editar Institucion`}
+						{!id ? "Registrar institución" : `Editar institución`}
 					</Typography>
 				</div>
 				<Formik

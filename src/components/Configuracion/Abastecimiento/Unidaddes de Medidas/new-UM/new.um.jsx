@@ -51,7 +51,7 @@ export default function UM() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Unidad de Medida Creada",
+		"Unidad de medida creada",
 		"/configuracion/abastecimiento/unidad_medidas"
 	);
 	useRedirectForm(
@@ -59,7 +59,7 @@ export default function UM() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Unidad de Medida Editada",
+		"Unidad de medida editada",
 		"/configuracion/abastecimiento/unidad_medidas"
 	);
 	const submitForm = async (values, actions) => {
@@ -87,7 +87,7 @@ export default function UM() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Unidad de Medida" : `Editar Unidad de Medida`}
+						{!id ? "Registrar unidad de medida" : `Editar unidad de medida`}
 					</Typography>
 				</div>
 				<Formik

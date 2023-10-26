@@ -73,7 +73,7 @@ const RenderTreeView = ({data}) => {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Estructura Eliminada"
+		"Estructura eliminada"
 	);
 	const renderTreeItems = (items) => {
 		return items.map((item) => (

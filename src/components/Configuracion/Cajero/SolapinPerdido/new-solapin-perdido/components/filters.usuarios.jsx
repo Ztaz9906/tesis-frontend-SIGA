@@ -47,19 +47,13 @@ export default function FilterUsuarios({filter}) {
 						{
 							type: "text",
 							name: "ci",
-							label: "Carnet de Identidad",
+							label: "Carnet de identidad",
 							placeholder: "Inserte un carnet de identidad válido",
 						},
 						{
 							type: "text",
 							name: "solapin",
 							label: "Solapín",
-							placeholder: "Sensible a mayúsculas y minúsculas",
-						},
-						{
-							type: "text",
-							name: "username",
-							label: "Nombre de Usuario",
 							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{

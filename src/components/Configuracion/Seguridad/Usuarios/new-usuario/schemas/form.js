@@ -3,13 +3,13 @@ const form = {
 	formField: {
 		username: {
 			name: "username",
-			label: "Nombre de Usuario",
+			label: "Nombre de usuario",
 			type: "text",
 			errorMsg: "El nombre de usuario es requerido.",
 		},
 		email: {
 			name: "email",
-			label: "Correo Electronico",
+			label: "Correo electrónico",
 			type: "text",
 			errorMsg: "El correo electronico es requerido.",
 		},
@@ -35,7 +35,7 @@ const form = {
 		},
 		password_confirm: {
 			name: "password_confirm",
-			label: "Confirmar Contraseña",
+			label: "Confirmar contraseña",
 			type: "password",
 			errorMsg: "La contraseña es requerida .",
 		},
