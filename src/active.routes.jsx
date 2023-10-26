@@ -145,12 +145,12 @@ const RUTAS_POR_MODULO = {
 		{path: "area/update/:id", element: <Area/>}
 	],
 	seguridad: [
-		{path: "instituciones", element: <IndexInstituciones/>},
-		{path: "institucion/create", element: <Institucion/>},
-		{path: "institucion/update/:id", element: <Institucion/>},
-		{path: "roles", element: <IndexRoles/>},
-		{path: "roles/create", element: <Roles/>},
-		{path: "roles/update/:id", element: <Roles/>},
+		{path: "instituciones", element: <IndexInstituciones/>, staffOnly: true},
+		{path: "institucion/create", element: <Institucion/>, staffOnly: true},
+		{path: "institucion/update/:id", element: <Institucion/>, staffOnly: true},
+		{path: "roles", element: <IndexRoles/>, staffOnly: true},
+		{path: "roles/create", element: <Roles/>, staffOnly: true},
+		{path: "roles/update/:id", element: <Roles/>, staffOnly: true},
 		{path: "usuarios", element: <IndexUsuarioes/>},
 		{path: "usuario/create", element: <Usuario/>},
 		{path: "usuario/update/:id", element: <Usuario/>},
@@ -179,7 +179,7 @@ export default function RutasDinamicas() {
 							))
 						)
 					}
-					{RUTAS_POR_MODULO.seguridad.map(ruta => (
+					{RUTAS_POR_MODULO.seguridad.filter(ruta => !ruta.staffOnly || (ruta.staffOnly && user?.is_staff)).map(ruta => (
 						<Route key={ruta.path} path="seguridad" element={<Outlet/>}>
 							<Route path={ruta.path} element={ruta.element}/>
 						</Route>

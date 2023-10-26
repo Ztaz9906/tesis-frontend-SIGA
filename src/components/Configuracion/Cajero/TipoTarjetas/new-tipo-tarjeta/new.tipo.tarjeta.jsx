@@ -54,7 +54,7 @@ export default function TipoTarjeta() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Tipo de Tarjeta Creada",
+		"Tipo de tarjeta creada",
 		"/configuracion/cajero/tipo_tarjetas"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function TipoTarjeta() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Tipo de Tarjeta Editada",
+		"Tipo de tarjeta editada",
 		"/configuracion/cajero/tipo_tarjetas"
 	);
 	const submitForm = async (values, actions) => {
@@ -90,7 +90,7 @@ export default function TipoTarjeta() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Tipo de Tarjeta" : `Editar Tipo de Tarjeta`}
+						{!id ? "Registrar tipo de tarjeta" : `Editar tipo de tarjeta`}
 					</Typography>
 				</div>
 				<Formik

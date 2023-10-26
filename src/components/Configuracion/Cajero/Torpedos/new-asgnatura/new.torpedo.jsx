@@ -54,7 +54,7 @@ export default function Torpedo() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Torpedo Creado",
+		"Torpedo creado",
 		"/configuracion/cajero/torpedos"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function Torpedo() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Torpedo Editado",
+		"Torpedo editado",
 		"/configuracion/cajero/torpedos"
 	);
 	const submitForm = async (values, actions) => {
@@ -90,7 +90,7 @@ export default function Torpedo() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar  de Torpedo" : `Editar  de Torpedo`}
+						{!id ? "Registrar torpedo" : `Editar torpedo`}
 					</Typography>
 				</div>
 				<Formik

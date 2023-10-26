@@ -35,7 +35,7 @@ export default function Index() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Categoría Eliminada"
+		"Categoría eliminada"
 	);
 	const datadef = {
 		columns: [
@@ -93,7 +93,7 @@ export default function Index() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Categorías
+					Listado de categorías
 				</h2>
 				<div className="flex">
 					<Link
@@ -104,7 +104,7 @@ export default function Index() {
 					</Link>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las Categorías"
+						title="Filtro para las categorías"
 					>
 						<Button
 							variant={"ghost"}

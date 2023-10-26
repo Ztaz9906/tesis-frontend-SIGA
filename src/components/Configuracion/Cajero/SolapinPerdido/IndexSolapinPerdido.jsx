@@ -39,7 +39,7 @@ export default function IndexSolapinPerdido() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Persona con Solapín Perdido Eliminada"
+		"Persona con solapín perdido eliminada"
 	);
 
 	const datadef = {
@@ -79,7 +79,7 @@ export default function IndexSolapinPerdido() {
 					return format(date, 'dd/MM/yy HH:mm:ss');
 				},
 				cell: (info) => info.getValue(),
-				header: "Fecha de Registro",
+				header: "Fecha de registro",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -111,11 +111,11 @@ export default function IndexSolapinPerdido() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas con Solapín Perdido
+					Listado de personas con solapín perdido
 				</h2>
 				<div className="flex">
 					<Tooltip
-						title="Añadir Solapín Perdido"
+						title="Añadir solapín perdido"
 					>
 						<Link
 							to={"/configuracion/cajero/solapin_perdido/create"}
@@ -127,7 +127,7 @@ export default function IndexSolapinPerdido() {
 					>
 					<Tooltip
 						placement="bottom"
-						title="Filtro para los torpedos"
+						title="Filtro para los solapines perdidos"
 					>
 						<Button
 							variant={"ghost"}

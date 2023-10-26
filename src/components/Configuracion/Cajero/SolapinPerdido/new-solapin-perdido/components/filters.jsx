@@ -47,7 +47,7 @@ export default function FilterSolapinPerdido({filter}) {
 						{
 							type: "text",
 							name: "id_persona__ci",
-							label: "Carnet de Identidad",
+							label: "Carnet de identidad",
 							placeholder: "Inserte un carnet de identidad válido",
 						},
 						{

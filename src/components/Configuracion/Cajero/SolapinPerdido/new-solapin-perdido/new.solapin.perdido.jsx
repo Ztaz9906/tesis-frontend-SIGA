@@ -1,18 +1,20 @@
 import React, {useEffect} from "react";
 
-import {FilterIcon, PlusCircle} from "lucide-react";
+import {FilterIcon, PlusCircle, Undo2} from "lucide-react";
 import {Tooltip} from "@mui/material";
 import Delete from "@/components/auxiliar/delete.jsx";
 import {Button} from "@/components/ui/button.jsx";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
 import {
-	useCreateSolapinPerdidoMutation
+	useCreateSolapinPerdidoMutation,
+	useGetSolapinPerdidosQuery
 } from "@/components/Configuracion/Cajero/SolapinPerdido/service/solapin.perdido.service.js";
 import {useSelector} from "react-redux";
 import {SGTable} from "@/components/auxiliar/table.jsx";
 import FilterUsuarios
 	from "@/components/Configuracion/Cajero/SolapinPerdido/new-solapin-perdido/components/filters.usuarios.jsx";
 import {useGetPersonaQuery} from "@/services/persona.service.js";
+import {useNavigate} from "react-router-dom";
 
 
 export default function AddSolapinPerdido() {
@@ -22,6 +24,15 @@ export default function AddSolapinPerdido() {
 	const {data, refetch} = useGetPersonaQuery(currentFilters, {
 		refetchOnReconnect: true,
 	});
+	const {data: solapin_perdido} = useGetSolapinPerdidosQuery(undefined, {
+		refetchOnReconnect: true,
+	});
+	const PersonasasociadasIds = solapin_perdido?.map(res => res.id_persona.id);
+	const filteredData = data?.filter(persona =>
+		!PersonasasociadasIds?.includes(persona.id)
+	) || [];
+	const navigate = useNavigate();
+
 	const user = useSelector((state) => state.user);
 	useEffect(() => {
 		refetch()
@@ -100,14 +111,14 @@ export default function AddSolapinPerdido() {
 				footer: (props) => props.column.id,
 			},
 		],
-		rows: data ?? []
+		rows: filteredData ?? []
 	};
 
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Personas
+					Listado de personas
 				</h2>
 				<div className="flex">
 					<Tooltip
@@ -120,6 +131,13 @@ export default function AddSolapinPerdido() {
 							onClick={() => setActive(!active)}
 						>
 							<FilterIcon size={16}/>
+						</Button>
+					</Tooltip>
+					<Tooltip title={'Atrás'}>
+						<Button variant={'ghost'} size={'icon'} onClick={() => {
+							navigate('/configuracion/cajero/solapin-perdidos')
+						}}>
+							<Undo2 size={16}/>
 						</Button>
 					</Tooltip>
 				</div>

@@ -38,7 +38,7 @@ export default function IndexTorpedo() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Torpedo Eliminado"
+		"Torpedo eliminado"
 	);
 
 	const datadef = {
@@ -121,7 +121,7 @@ export default function IndexTorpedo() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Torpedos
+					Listado de torpedos
 				</h2>
 				<div className="flex">
 					<Tooltip

@@ -71,7 +71,7 @@ export default function AddSettings() {
 		<div className="flex flex-col bg-gray-100 h-full">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Configurar de la Estructura
+					Configurar estructura
 				</h2>
 				<Link
 					to={"/configuracion/distribucion/estructuras"}
@@ -97,7 +97,7 @@ export default function AddSettings() {
 					</div>
 					<div className="gap-1">
 						<p className="font-semibold">
-							<span className="font-bold">Estructura Padre:</span>
+							<span className="font-bold">Estructura padre:</span>
 							{estructura?.estructura_parent
 								? estructura?.estructura_parent.name
 								: "---"}

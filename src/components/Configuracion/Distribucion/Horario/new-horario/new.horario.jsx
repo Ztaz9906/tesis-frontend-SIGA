@@ -55,7 +55,7 @@ export default function Horario() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Horario Creado",
+		"Horario creado",
 		"/configuracion/distribucion/horarios"
 	);
 	useRedirectForm(
@@ -63,7 +63,7 @@ export default function Horario() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Horario Editado",
+		"Horario editado",
 		"/configuracion/distribucion/horarios"
 	);
 	const submitForm = async (values, actions) => {
@@ -91,7 +91,7 @@ export default function Horario() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Horario" : `Editar Horario`}
+						{!id ? "Registrar horario" : `Editar horario`}
 					</Typography>
 				</div>
 				<Formik

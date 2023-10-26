@@ -13,7 +13,9 @@ export default function PrivateRoute({children}) {
 			return <Navigate to="sin-autorizacion"/>
 		}
 	}
-	return (<div>
-		{children}
-	</div>);
+	return (
+		<>
+			{children}
+		</>
+	);
 }

@@ -28,7 +28,7 @@ export default function IndexRoles() {
     },
   ] = useDeleteGrupoMutation();
 
-  useRedirectForm(isLoadingD, isSuccessD, isErrorD, errorD, "Rol Eliminado");
+  useRedirectForm(isLoadingD, isSuccessD, isErrorD, errorD, "Rol eliminado");
 
   const datadef = {
     columns: [

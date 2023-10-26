@@ -54,7 +54,7 @@ export default function Producto() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Producto Creado",
+		"Producto creado",
 		"/configuracion/abastecimiento/productos"
 	);
 	useRedirectForm(
@@ -62,7 +62,7 @@ export default function Producto() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Producto Editado",
+		"Producto editado",
 		"/configuracion/abastecimiento/productos"
 	);
 	const submitForm = async (values, actions) => {
@@ -90,7 +90,7 @@ export default function Producto() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Producto" : `Editar Producto`}
+						{!id ? "Registrar producto" : `Editar producto`}
 					</Typography>
 				</div>
 				<Formik

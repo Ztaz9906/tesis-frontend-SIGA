@@ -119,7 +119,7 @@ export default function Estructura() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar Estructura" : `Editar Estructura`}
+						{!id ? "Registrar estructura" : `Editar estructura`}
 					</Typography>
 				</div>
 				<Formik
@@ -192,7 +192,7 @@ export default function Estructura() {
 										variant="outlined"
 										color="success"
 									>
-										{isLastStep ? "Aceptar" : "siguiente"}
+										{isLastStep ? "Aceptar" : "Siguiente"}
 									</Button>
 								</div>
 							</Form>

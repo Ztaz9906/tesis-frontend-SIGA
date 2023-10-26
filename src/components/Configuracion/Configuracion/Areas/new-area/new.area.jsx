@@ -50,7 +50,7 @@ export default function Area() {
 		isSuccessC,
 		isErrorC,
 		errorC,
-		"Área Creada",
+		"Área creada",
 		"/configuracion/configuracion/areas"
 	);
 	useRedirectForm(
@@ -58,7 +58,7 @@ export default function Area() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Área Editada",
+		"Área editada",
 		"/configuracion/configuracion/areas"
 	);
 	const submitForm = async (values, actions) => {
@@ -86,7 +86,7 @@ export default function Area() {
 			<div className="w-full lg:w-2/3 bg-white p-3 rounded shadow-xl">
 				<div className="text-center mb-6">
 					<Typography variant="h5" fontWeight="bold">
-						{!id ? "Registrar  de Area" : `Editar  de Area`}
+						{!id ? "Registrar área" : `Editar área`}
 					</Typography>
 				</div>
 				<Formik

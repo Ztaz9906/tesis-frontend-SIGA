@@ -30,7 +30,7 @@ export default function IndexHorarios() {
 		isSuccessD,
 		isErrorD,
 		errorD,
-		"Horario Eliminado"
+		"Horario eliminado"
 	);
 
 
@@ -47,14 +47,14 @@ export default function IndexHorarios() {
 				id: "hora_inicio",
 				accessorFn: (row) => row.hora_inicio,
 				cell: (info) => info.getValue(),
-				header: "Hora de Inicio",
+				header: "Hora de inicio",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "hora_fin",
 				accessorFn: (row) => row.hora_fin,
 				cell: (info) => info.getValue(),
-				header: "Hora de Fin",
+				header: "Hora de fin",
 				footer: (props) => props.column.id,
 			},
 			{

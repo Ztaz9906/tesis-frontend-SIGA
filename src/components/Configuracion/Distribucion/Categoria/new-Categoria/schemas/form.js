@@ -43,7 +43,7 @@ const form = {
     },
      base: {
       name: "base",
-      label: "Categoría Base",
+      label: "Categoría base",
       type: "text",
       errorMsg: "La categoría base es requerida.",
     },

@@ -40,7 +40,7 @@ export default function IndexAsignarResponsablesReservacion() {
 				id: "id_tipo_estructura",
 				accessorFn: (row) => row.id_tipo_estructura.nombre_tipo_estructura,
 				cell: (info) => info.getValue(),
-				header: "Tipo de Área",
+				header: "Tipo de área",
 				footer: (props) => props.column.id,
 			},
 			{
@@ -68,7 +68,7 @@ export default function IndexAsignarResponsablesReservacion() {
 								<List size={15}/>
 							</Link>
 						</Tooltip>
-						<Tooltip title={'Asignar responsable de area'}>
+						<Tooltip title={'Asignar responsable de área'}>
 							<Link
 								to={`/configuracion/reservacion/responsable-areas/asignar-responsable/${row.id_estructura}`}
 							>
@@ -97,12 +97,12 @@ export default function IndexAsignarResponsablesReservacion() {
 		<div className="flex flex-col gap-2">
 			<div className="flex border-b border-gray-300 justify-between">
 				<h2 className="text-gray-700 font-semibold text-lg justify-center al">
-					Listado de Áreas
+					Listado de áreas
 				</h2>
 				<div className="flex">
 					<Tooltip
 						placement="bottom"
-						title="Filtro para las areas"
+						title="Filtro para las áreas"
 					>
 						<Button
 							variant={"ghost"}
@@ -124,7 +124,7 @@ export default function IndexAsignarResponsablesReservacion() {
 							{
 								type: "select",
 								name: "id_tipo_estructura",
-								label: "Tipo de Área",
+								label: "Tipo de área",
 								options: [
 									{value: "", label: "--Activo--"},
 									...tiposAreasOptions
