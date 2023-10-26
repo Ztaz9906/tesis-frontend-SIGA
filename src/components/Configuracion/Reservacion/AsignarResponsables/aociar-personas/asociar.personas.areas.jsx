@@ -94,7 +94,7 @@ export default function AsociarPersonas() {
 			id_institucion: user.institucion.id,
 			fecha_registro: getCurrentDate()
 		};
-		CreateAsociarPersonas(newValues)
+		CreateAsociarPersonas(newValues).then(() => setProcessingId(null));
 	}
 
 	const datadef = {
@@ -151,7 +151,7 @@ export default function AsociarPersonas() {
 
 	function handleDelete(id_persona) {
 		setProcessingIdR(id_persona)
-		DeleteAsociarPersonas(id_persona)
+		DeleteAsociarPersonas(id_persona).then(() => setProcessingIdR(null));
 	}
 
 	const datadefResponsable = {

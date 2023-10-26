@@ -57,12 +57,6 @@ export default function FilterUsuarios({filter}) {
 							placeholder: "Sensible a mayúsculas y minúsculas",
 						},
 						{
-							type: "text",
-							name: "username",
-							label: "Nombre de usuario",
-							placeholder: "Sensible a mayúsculas y minúsculas",
-						},
-						{
 							type: "select",
 							name: "id_sexo",
 							label: "Sexo",

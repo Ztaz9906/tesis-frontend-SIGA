@@ -69,17 +69,17 @@ export default function SideBar({sectionsMap}) {
 							style={{backgroundColor: "#f5f5f5", padding: "8px 24px"}}
 						>
 							<div className="flex flex-col justify-between py-1 text-gray-500">
-								{config.routes.map((route, routeIndex) => (
-									<Link
-										key={routeIndex}
-										to={route.path}
-										className={`${
-											isActiveRoute(route.path) ? "active-text" : ""
-										} p-1 transition-colors duration-200 hover:text-red-500`}
-									>
-										{route.label}
-									</Link>
-								))}
+								{config.routes
+									.filter(route => !route.staffOnly || (route.staffOnly && user.is_staff))
+									.map((route, routeIndex) => (
+										<Link
+											key={routeIndex}
+											to={route.path}
+											className={`${isActiveRoute(route.path) ? "active-text" : ""} p-1 transition-colors duration-200 hover:text-red-500`}
+										>
+											{route.label}
+										</Link>
+									))}
 							</div>
 						</AccordionDetails>
 					</Accordion>

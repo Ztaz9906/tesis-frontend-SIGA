@@ -2,7 +2,7 @@ import {Form, Formik} from "formik";
 import validations from "./schemas/validations";
 import form from "./schemas/form";
 import {Link, useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Tooltip, Typography} from "@mui/material";
 import initialValues from "./schemas/initialValues";
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
@@ -21,7 +21,7 @@ import {
 	useGetAsignarIpQuery,
 	useLazyGetAsignarIpByIdQuery
 } from "@/components/Configuracion/Cajero/AsignarIP/service/asignarip.service.js";
-import {Edit2Icon, ListEndIcon, Trash} from "lucide-react";
+import {Edit2Icon, Trash, Undo2} from "lucide-react";
 import MyTypography from "@/components/auxiliar/MyTypography.jsx";
 
 
@@ -67,7 +67,7 @@ export default function AsignarIp() {
 			error: errorD,
 		},
 	] = useDeleteAsignarIpMutation();
-	
+
 	const {data, refetch} = useGetAsignarIpQuery({id_puerta: id}, {
 		refetchOnReconnect: true,
 	});
@@ -175,7 +175,7 @@ export default function AsignarIp() {
 				</Typography>
 				<Tooltip title={"Atrás"}>
 					<Link to={'/configuracion/cajero/asignar-ip'}>
-						<ListEndIcon size={15}/>
+						<Undo2 size={16}/>
 					</Link>
 				</Tooltip>
 			</div>

@@ -3,13 +3,13 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
 import UserAvatar from "./UserAvatar";
 import {useLogoutMutation} from "@/services/login.service.js";
 import {useRedirectForm} from "../../hooks/useRedirectForm";
 import ModalInstitucionSelecion
 	from "@/components/Configuracion/AdministracionInstitucionesStaff/AdminSelecionInstitucion.jsx";
 import {useSelector} from "react-redux";
+import {LogOut} from "lucide-react";
 
 export default function UserSettings() {
 	const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -21,7 +21,7 @@ export default function UserSettings() {
 	};
 
 	const user = useSelector(state => state.user);
-	
+
 	const [logout, {isError, isLoading, isSuccess, error}] =
 		useLogoutMutation();
 	const settings = [
@@ -51,7 +51,7 @@ export default function UserSettings() {
 			<Tooltip title="Abrir opciones de usuario">
 				<IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
 					<UserAvatar
-						name={user.is_staff ? "Admin" : user?.persona ? user?.persona.nombre_completo : user?.username}
+						name={user?.persona ? user?.persona.nombre_completo : user?.username}
 					/>
 				</IconButton>
 			</Tooltip>
@@ -71,11 +71,23 @@ export default function UserSettings() {
 				open={Boolean(anchorElUser)}
 				onClose={handleCloseUserMenu}
 			>
-				{settings.filter((item) => item).map((setting, index) => (
-					<MenuItem key={index} onClick={handleCloseUserMenu}>
-						{setting}
-					</MenuItem>
-				))}
+				<div className="w-full p-1">
+					{user && user.is_staff && (
+						<div className="w-full hover:bg-gray-200 cursor-pointer" onClick={handleCloseUserMenu}>
+							<ModalInstitucionSelecion/>
+						</div>
+					)}
+					<div
+						className="flex justify-start items-center text-center w-full text-sm hover:bg-gray-200 cursor-pointer gap-1"
+						onClick={() => {
+							logout();
+							handleCloseUserMenu();
+						}}
+					>
+						<span><LogOut size={16}/></span>
+						Desconectarse
+					</div>
+				</div>
 			</Menu>
 		</div>
 	);

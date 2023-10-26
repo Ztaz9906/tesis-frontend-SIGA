@@ -78,16 +78,21 @@ export default function Responsable() {
 		const day = date.getDate().toString().padStart(2, '0');
 		return `${year}-${month}-${day}`;
 	}
+	useEffect(() => {
+		if (processingId !== null) {
+			const newValues = {
+				id_persona: processingId,
+				id_estructura: id,
+				id_institucion: user.institucion.id,
+				fecha_registro: getCurrentDate()
+			};
+
+			CreateResponsable(newValues).then(() => setProcessingId(null));
+		}
+	}, [processingId]);
 
 	function handleSubmit(id_persona) {
 		setProcessingId(id_persona)
-		const newValues = {
-			id_persona: id_persona,
-			id_estructura: id,
-			id_institucion: user.institucion.id,
-			fecha_registro: getCurrentDate()
-		};
-		CreateResponsable(newValues)
 	}
 
 	const datadef = {
@@ -127,6 +132,7 @@ export default function Responsable() {
 						<Tooltip title={'Asignar responsable'}>
 							<Button onClick={() => handleSubmit(row.id)} variant={"ghost"} size={"icon"}
 							>
+
 								{processingId === row.id ? <CircularProgress size={16} color="success"/> :
 									<PlusCircle size={15}/>}
 
@@ -141,10 +147,14 @@ export default function Responsable() {
 		],
 		rows: filteredData ?? []
 	};
+	useEffect(() => {
+		if (processingIdR !== null) {
+			DeleteResponsable(processingIdR).then(() => setProcessingIdR(null));
+		}
+	}, [processingIdR]);
 
-	function handleDelete(id_persona) {
-		setProcessingIdR(id_persona)
-		DeleteResponsable(id_persona)
+	function handleDelete(id_responsable_reservacion) {
+		setProcessingIdR(id_responsable_reservacion)
 	}
 
 	const datadefResponsable = {
@@ -186,7 +196,8 @@ export default function Responsable() {
 								onClick={() => handleDelete(row.id_responsable_reservacion)} variant={"ghost"}
 								size={"icon"}
 							>
-								{processingIdR === row.id ? <CircularProgress size={16} color="success"/> :
+								{processingIdR === row.id_responsable_reservacion ?
+									<CircularProgress size={16} color="success"/> :
 									<Trash size={15}/>}
 
 							</Button>

@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {FilterIcon, PlusCircle, Undo2} from "lucide-react";
 import {CircularProgress, Tooltip} from "@mui/material";
@@ -20,7 +20,6 @@ export default function AddComensal() {
 	const [active, setActive] = React.useState(true);
 	const [configuracion, setConfiguracion] = useState({});
 	const [processingId, setProcessingId] = useState(null);
-	const processingIdRef = useRef(null);
 	const navigate = useNavigate();
 	const {data} = useGetPersonaQuery({id_configuracion_comensal: id, exclude: true, ...currentFilters}, {
 		refetchOnReconnect: true,
@@ -57,14 +56,12 @@ export default function AddComensal() {
 
 	function handleSubmit(id_persona) {
 		setProcessingId(id_persona);
-		processingIdRef.current = id_persona;
 		const newValues = {
 			id_configuracion_comensal: id,
 		};
 		EditPersona({id: id_persona, ...newValues})
-			.finally(() => {
-				setProcessingId(null); // <-- Restablece processingId a null al finalizar
-				processingIdRef.current = null;
+			.then(() => {
+				setProcessingId(null);
 			});
 	}
 
@@ -105,9 +102,8 @@ export default function AddComensal() {
 						<Tooltip title={'Asignar comensal'}>
 							<Button onClick={() => handleSubmit(row.id)} variant={"ghost"} size={"icon"}
 							>
-								{processingIdRef.current === row.id && isLoadingC ? <CircularProgress size={16}/> : (
-									<PlusCircle size={15}/>)
-								}
+								{processingId === row.id ? <CircularProgress size={16} color="success"/> :
+									<PlusCircle size={15}/>}
 
 							</Button>
 						</Tooltip>

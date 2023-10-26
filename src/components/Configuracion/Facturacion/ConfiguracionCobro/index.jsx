@@ -94,7 +94,7 @@ export default function IndexConfiguracionCobro() {
 				id: "activo",
 				accessorFn: (row) => row.activo,
 				cell: (info) => info.getValue() ? 'SI' : 'NO',
-				header: "Descripción del proceso de reservación",
+				header: "Activa",
 				footer: (props) => props.column.id,
 			},
 			{
