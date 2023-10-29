@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import checkout from "./form";
+import {emailValidation, OnlyLetters} from "@/components/auxiliar/RegexValidations.js";
 
 const {
 	formField: {username, email, institucion, groups, password, password_confirm},
@@ -7,11 +8,11 @@ const {
 
 const validations = [
 	Yup.object().shape({
-		[username.name]: Yup.string().required(username.errorMsg),
+		[username.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(username.errorMsg),
 		[email.name]: Yup.string()
 			.matches(
-				/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}(\.[a-zA-Z]{2,3})?$/,
-				'El correo electrónico no es válido.'
+				emailValidation.regex,
+				emailValidation.message
 			)
 			.required(email.errorMsg),
 		[groups.name]: Yup.string().required(groups.errorMsg),
@@ -44,7 +45,7 @@ const validations = [
 			.of(Yup.string())
 			.min(1, 'Debes seleccionar al menos un grupo')
 			.required(groups.errorMsg),
-		
+
 	}),
 ];
 export default validations;

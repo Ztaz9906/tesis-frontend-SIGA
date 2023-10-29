@@ -11,22 +11,23 @@ Coded by www.creative-tim.com
  =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ */
 
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyLetters} from "@/components/auxiliar/RegexValidations.js";
 
 const {
-  formField: { nombre_horario, activo, hora_fin,hora_inicio,dias_semana},
+	formField: {nombre_horario, activo, hora_fin, hora_inicio, dias_semana},
 } = checkout;
 
 const validations = [
-  Yup.object().shape({
-    [nombre_horario.name]: Yup.string().required(nombre_horario.errorMsg),
-    [activo.name]: Yup.string().required(activo.errorMsg),
-    [hora_fin.name]: Yup.string().required(hora_fin.errorMsg),
-    [hora_inicio.name]: Yup.string().required(hora_inicio.errorMsg),
-    [dias_semana.name]: Yup.array().min(1, dias_semana.errorMsg).of(Yup.string()),
-  }),
+	Yup.object().shape({
+		[nombre_horario.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(nombre_horario.errorMsg),
+		[activo.name]: Yup.string().required(activo.errorMsg),
+		[hora_fin.name]: Yup.string().required(hora_fin.errorMsg),
+		[hora_inicio.name]: Yup.string().required(hora_inicio.errorMsg),
+		[dias_semana.name]: Yup.array().min(1, dias_semana.errorMsg).of(Yup.string()),
+	}),
 ];
 export default validations;

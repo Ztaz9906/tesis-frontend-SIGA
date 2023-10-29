@@ -11,21 +11,22 @@ Coded by www.creative-tim.com
  =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ */
 
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyLetters} from "@/components/auxiliar/RegexValidations.js";
 
 const {
-  formField: { name, active, description,active_modules},
+	formField: {name, active, description, active_modules},
 } = checkout;
 
 const validations = [
-  Yup.object().shape({
-    [name.name]: Yup.string().required(name.errorMsg),
-    [active.name]: Yup.string().required(active.errorMsg),
-    [description.name]: Yup.string().required(description.errorMsg),
-    [active_modules.name]: Yup.array().min(1, active_modules.errorMsg).of(Yup.string()),
-  }),
+	Yup.object().shape({
+		[name.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(name.errorMsg),
+		[active.name]: Yup.string().required(active.errorMsg),
+		[description.name]: Yup.string().required(description.errorMsg),
+		[active_modules.name]: Yup.array().min(1, active_modules.errorMsg).of(Yup.string()),
+	}),
 ];
 export default validations;

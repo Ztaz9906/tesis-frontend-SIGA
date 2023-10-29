@@ -11,28 +11,31 @@ Coded by www.creative-tim.com
  =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ */
 
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyLetters, OnlyNumbers} from "@/components/auxiliar/RegexValidations.js";
 
 const {
-  formField: { nombre_producto,
-    descripcion,
-    precio_cup,
-    id_tipo_producto,
-    id_unidad_medida},
+	formField: {
+		nombre_producto,
+		descripcion,
+		precio_cup,
+		id_tipo_producto,
+		id_unidad_medida
+	},
 } = checkout;
 
 const validations = [
-  Yup.object().shape({
-    [nombre_producto.name]: Yup.string().required(nombre_producto.errorMsg),
-    [descripcion.name]: Yup.string().required(descripcion.errorMsg),
-    [precio_cup.name]: Yup.string().required(precio_cup.errorMsg),
-    [id_tipo_producto.name]: Yup.number().required(id_tipo_producto.errorMsg),
-    [id_unidad_medida.name]: Yup.number().required(id_unidad_medida.errorMsg),
-    
-    
-  }),
+	Yup.object().shape({
+		[nombre_producto.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(nombre_producto.errorMsg),
+		[descripcion.name]: Yup.string().required(descripcion.errorMsg),
+		[precio_cup.name]: Yup.string().matches(OnlyNumbers.regex, OnlyNumbers.message).required(precio_cup.errorMsg),
+		[id_tipo_producto.name]: Yup.number().required(id_tipo_producto.errorMsg),
+		[id_unidad_medida.name]: Yup.number().required(id_unidad_medida.errorMsg),
+
+
+	}),
 ];
 export default validations;

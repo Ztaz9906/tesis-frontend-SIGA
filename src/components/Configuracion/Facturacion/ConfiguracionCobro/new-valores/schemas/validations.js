@@ -1,5 +1,6 @@
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyNumbers} from "@/components/auxiliar/RegexValidations.js";
 
 const {
 	formField: {
@@ -13,7 +14,7 @@ const {
 	},
 } = checkout;
 export const validacionValoresConfiguracion = Yup.object().shape({
-	[precio.name]: Yup.string().required(precio.errorMsg),
+	[precio.name]: Yup.string().matches(OnlyNumbers.regex, OnlyNumbers.message).required(precio.errorMsg),
 	[id_tipo_cobro.name]: Yup.string().required(id_tipo_cobro.errorMsg),
 	[id_categoria.name]: Yup.string().required(id_categoria.errorMsg),
 	[id_evento.name]: Yup.string().required(id_evento.errorMsg),

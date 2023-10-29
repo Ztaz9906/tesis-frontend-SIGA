@@ -11,22 +11,25 @@ Coded by www.creative-tim.com
  =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
+ */
 
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyLetters} from "@/components/auxiliar/RegexValidations.js";
 
 const {
-  formField: { activo, nombre_tipo_producto,
-    descripcion_tipo_producto},
+	formField: {
+		activo, nombre_tipo_producto,
+		descripcion_tipo_producto
+	},
 } = checkout;
 
 const validations = [
-  Yup.object().shape({
-    [activo.name]: Yup.string().required(activo.errorMsg),
-    [nombre_tipo_producto.name]: Yup.string().required(nombre_tipo_producto.errorMsg),
-    [descripcion_tipo_producto.name]: Yup.string().required(descripcion_tipo_producto.errorMsg),
-    
-  }),
+	Yup.object().shape({
+		[activo.name]: Yup.string().required(activo.errorMsg),
+		[nombre_tipo_producto.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(nombre_tipo_producto.errorMsg),
+		[descripcion_tipo_producto.name]: Yup.string().required(descripcion_tipo_producto.errorMsg),
+
+	}),
 ];
 export default validations;

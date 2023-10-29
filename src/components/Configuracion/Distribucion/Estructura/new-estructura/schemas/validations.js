@@ -15,6 +15,7 @@ Coded by www.creative-tim.com
 
 import * as Yup from "yup";
 import checkout from "./form";
+import {OnlyLetters} from "@/components/auxiliar/RegexValidations.js";
 
 const {
 	formField: {
@@ -35,7 +36,7 @@ const {
 
 const validations = [
 	Yup.object().shape({
-			[name.name]: Yup.string().required(name.errorMsg),
+			[name.name]: Yup.string().matches(OnlyLetters.regex, OnlyLetters.message).required(name.errorMsg),
 			[initials.name]: Yup.string().required(initials.errorMsg),
 			[capacidad.name]: Yup.number()
 				.min(0, 'La cantidad no puede menor que 0')
@@ -49,7 +50,6 @@ const validations = [
 export const SettingsValidations = [
 	Yup.object().shape(
 		{
-
 			[centro_costo.name]: Yup.string().required(centro_costo.errorMsg),
 			[id_sub_director.name]: Yup.string().required(id_sub_director.errorMsg),
 			[id_tecnico_general.name]: Yup.string().required(id_tecnico_general.errorMsg),

@@ -45,6 +45,37 @@ const ModalContacto = ({id, title, edit}) => {
 	const handleSubmit = (values, actions) => {
 		submitForm(values, actions);
 	};
+	const handleKeyPress = (e) => {
+		let inputValue = e.target.value;
+
+		// Si el carácter ingresado no es un número o el símbolo '+', previene el ingreso.
+		if (!/[0-9+]/.test(e.key)) {
+			e.preventDefault();
+			return;
+		}
+
+		// Para números móviles: si el usuario escribe '+'.
+		if (inputValue.length === 0 && e.key === '+') {
+			e.preventDefault();
+			e.target.value = '+';
+			return;
+		}
+
+		// Si el usuario ya escribió '+', y ahora ingresa '5'.
+		if (inputValue === '+' && e.key === '5') {
+			e.preventDefault();
+			e.target.value = '+53 ';
+			return;
+		}
+
+		// Si es un número fijo y ha ingresado 2 dígitos.
+		if (inputValue.length === 2 && !inputValue.startsWith('+')) {
+			e.preventDefault();
+			e.target.value = `(${inputValue}) ${e.key}`;
+			return;
+		}
+	};
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -88,8 +119,9 @@ const ModalContacto = ({id, title, edit}) => {
 										label={formField.telefono.label}
 										name={formField.telefono.name}
 										value={telefonoV}
+										onKeyPress={handleKeyPress}
 										error={errors.telefono && touched.telefono}
-										style={{width: '100%'}}  // Asegurarte que el FormField se expanda al 100% del contenedor.
+										style={{width: '100%'}}
 									/>
 									<FormField
 										size="small"
@@ -98,7 +130,7 @@ const ModalContacto = ({id, title, edit}) => {
 										name={formField.correo.name}
 										value={correoV}
 										error={errors.correo && touched.correo}
-										style={{width: '100%'}}  // Asegurarte que el FormField se expanda al 100% del contenedor.
+										style={{width: '100%'}}
 									/>
 									<FormField
 										size="small"
