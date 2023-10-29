@@ -115,21 +115,21 @@ export default function ConfiguracionComensal() {
 		columns: [
 			{
 				id: "id_categoria",
-				accessorFn: (row) => row.id_categoria.nombre_categoria,
+				accessorFn: (row) => row.id_categoria?.nombre_categoria,
 				cell: (info) => info.getValue(),
 				header: "Nombre",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_categoria_residente",
-				accessorFn: (row) => row.id_categoria_residente.nombre_categoria_residente,
+				accessorFn: (row) => row.id_categoria_residente?.nombre_categoria_residente,
 				cell: (info) => info.getValue(),
 				header: "Descripción",
 				footer: (props) => props.column.id,
 			},
 			{
 				id: "id_estructura",
-				accessorFn: (row) => row.id_estructura.nombre_estructura,
+				accessorFn: (row) => row.id_estructura?.nombre_estructura,
 				cell: (info) => info.getValue(),
 				header: "Áreas",
 				footer: (props) => props.column.id,

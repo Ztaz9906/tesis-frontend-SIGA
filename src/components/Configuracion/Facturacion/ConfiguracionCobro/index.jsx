@@ -16,6 +16,7 @@ export default function IndexConfiguracionCobro() {
 	const {data} = useGetConfiguracionCobrosQuery(undefined, {
 		refetchOnReconnect: true,
 	});
+	const [activo, setActivo] = React.useState(false);
 	const [
 		createConfiguracionCobro,
 	] = useCreateConfiguracionCobroMutation()
@@ -43,7 +44,7 @@ export default function IndexConfiguracionCobro() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Configuración activada",
+		activo ? "Configuración activada" : "Configuración desactivada",
 	);
 
 	function handleDefault() {
@@ -57,6 +58,7 @@ export default function IndexConfiguracionCobro() {
 	}
 
 	function handleEdit(id, activo) {
+		setActivo(!activo)
 		const modifiedFields = {
 			'activo': `${!activo}`
 		}

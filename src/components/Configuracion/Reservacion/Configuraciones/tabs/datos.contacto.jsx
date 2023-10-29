@@ -48,7 +48,7 @@ export default function DatosContacto() {
 		isSuccessE,
 		isErrorE,
 		errorE,
-		"Cantidad editada",
+		"Datos de contacto editados",
 	);
 
 	function handleDefault() {

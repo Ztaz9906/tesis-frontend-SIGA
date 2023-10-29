@@ -54,7 +54,7 @@ export default function IndexUsuarioes() {
 					? row.groups.map((rol) => rol.name).join(", ")
 					: "",
 				cell: (info) => info.getValue(),
-				header: "Descripción",
+				header: "Rol",
 				footer: (props) => props.column.id,
 			},
 			{

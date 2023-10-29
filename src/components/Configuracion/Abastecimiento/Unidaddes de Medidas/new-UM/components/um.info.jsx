@@ -88,8 +88,8 @@ export default function AddUM({formData}) {
 						<MenuItem value={""} selected disabled>
 							--Seleccione--
 						</MenuItem>
-						<MenuItem value={"masa"}>Masa</MenuItem>
-						<MenuItem value={"volumen"}>Volumen</MenuItem>
+						<MenuItem value={"Masa"}>Masa</MenuItem>
+						<MenuItem value={"Volumen"}>Volumen</MenuItem>
 					</FormField>
 				</div>
 			</div>
