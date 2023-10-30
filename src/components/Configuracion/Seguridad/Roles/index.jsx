@@ -48,7 +48,7 @@ export default function IndexRoles() {
             </Link>
             <Delete
               title={`Borrar ${row.name}`}
-              message="Esta seguro que desea eliminar este rol"
+              message="¿Está seguro que desea eliminar este rol?"
               action={() => deleteGrupo(row.id)}
             >
               <Button variant={"ghost"} size={"icon"}>
