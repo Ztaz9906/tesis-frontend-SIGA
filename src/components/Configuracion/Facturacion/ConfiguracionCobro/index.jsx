@@ -1,25 +1,21 @@
 import {useRedirectForm} from "@/hooks/useRedirectForm.jsx";
-import {Button} from "@/components/ui/button.jsx";
 import {SGTable} from "@/components/auxiliar/table.jsx";
-import {Ban, CheckCircle2, PenSquare, PlusCircle} from "lucide-react";
+import {Ban, CheckCircle2, PenSquare} from "lucide-react";
 import Tooltip from "@mui/material/Tooltip";
 import {
-	useCreateConfiguracionCobroMutation,
 	useEditConfiguracionCobroMutation,
 	useGetConfiguracionCobrosQuery
 } from "@/components/Configuracion/Facturacion/ConfiguracionCobro/servive/configuracion.cobro.service.js";
 import {Link} from "react-router-dom";
 import React from "react";
 import {useSelector} from "react-redux";
+import Modal from "@/components/Configuracion/Facturacion/ConfiguracionCobro/create.default.modal.jsx";
 
 export default function IndexConfiguracionCobro() {
 	const {data} = useGetConfiguracionCobrosQuery(undefined, {
 		refetchOnReconnect: true,
 	});
 	const [activo, setActivo] = React.useState(false);
-	const [
-		createConfiguracionCobro,
-	] = useCreateConfiguracionCobroMutation()
 	const [
 		editConfiguracionCobro,
 		{
@@ -32,13 +28,6 @@ export default function IndexConfiguracionCobro() {
 
 	const user = useSelector(state => state.user);
 
-	const getCurrentDate = () => {
-		const date = new Date();
-		const year = date.getFullYear();
-		const month = (date.getMonth() + 1).toString().padStart(2, '0');
-		const day = date.getDate().toString().padStart(2, '0');
-		return `${year}-${month}-${day}`;
-	}
 	useRedirectForm(
 		isLoadingE,
 		isSuccessE,
@@ -46,16 +35,6 @@ export default function IndexConfiguracionCobro() {
 		errorE,
 		activo ? "Configuración activada" : "Configuración desactivada",
 	);
-
-	function handleDefault() {
-		createConfiguracionCobro({
-			'nombre_configuracion_cobro': 'Configuración por defecto',
-			'descripcion': 'Proceso de configuración por defecto , añadir valores y activar para su uso',
-			'activo': false,
-			'fecha_registro': getCurrentDate(),
-			'id_institucion': user.institucion.id,
-		})
-	}
 
 	function handleEdit(id, activo) {
 		setActivo(!activo)
@@ -142,9 +121,7 @@ export default function IndexConfiguracionCobro() {
 					Configuración del proceso de cobro
 				</h2>
 				<div className="flex">
-					<Tooltip title={'Agregar configuración por defecto'}>
-						<Button variant={'ghost'} onClick={handleDefault}><PlusCircle size={16}/></Button>
-					</Tooltip>
+					<Modal user={user}/>
 				</div>
 			</div>
 			<div className={'p-2'}>

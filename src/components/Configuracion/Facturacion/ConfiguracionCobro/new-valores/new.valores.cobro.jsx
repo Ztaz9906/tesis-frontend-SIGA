@@ -213,21 +213,6 @@ export default function AgregarValoresConfigurcionCobro() {
 										errors,
 									}}
 								/>
-
-								<div className="mt-6 w-full flex justify-start gap-2">
-									<Button
-										onClick={() => {
-											navigate("/configuracion/facturacion/configuracion-cobro");
-										}}
-										variant="outlined"
-										color="error"
-									>
-										Cancelar
-									</Button>
-									<Button type={'submit'} variant="outlined" color="success">
-										Aceptar
-									</Button>
-								</div>
 							</Form>
 						</div>
 					);
@@ -252,14 +237,32 @@ export default function AgregarValoresConfigurcionCobro() {
 									errors,
 								}}
 							/>
-							<Button type={'submit'} variant="outlined" color="success">
-								Asociar
-							</Button>
+							<div className="mt-6 w-full flex justify-end">
+								<Button type={'submit'} variant="outlined" color="success">
+									Asociar
+								</Button>
+							</div>
 						</Form>
 					);
 				}}
 			</Formik>
 			<SGTable data={datadef} setFilter={false} setPagination={false}/>
+
+			<div className="mt-6 w-full flex justify-end gap-2">
+				<Button
+					onClick={() => {
+						navigate("/configuracion/facturacion/configuracion-cobro");
+					}}
+					variant="outlined"
+					color="error"
+				>
+					Cancelar
+				</Button>
+				<Button type={'submit'} variant="outlined" color="success" form={form1Id}>
+					Aceptar
+				</Button>
+			</div>
+
 		</div>
 	);
 }
